@@ -153,11 +153,11 @@
 		19B2509C2474268F00478BDD /* Gui */ = {
 			isa = PBXGroup;
 			children = (
+				19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */,
+				19F5D29925C1AD52000C5B37 /* SettingsView.swift */,
 				19F5D2A325C1AED5000C5B37 /* Custom */,
-				19F5D29D25C1ADDF000C5B37 /* Statistics */,
 				1977F761249D084F008C0736 /* NewGame.swift */,
 				198356522469ADDC00A718BF /* MainView.swift */,
-				19F5D29825C1AD43000C5B37 /* Settings */,
 				19F5D29625C1AC96000C5B37 /* Sudoku */,
 			);
 			path = Gui;
@@ -182,22 +182,6 @@
 				19F5D2AA25C1B179000C5B37 /* SudokuView.swift */,
 			);
 			path = Sudoku;
-			sourceTree = "<group>";
-		};
-		19F5D29825C1AD43000C5B37 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				19F5D29925C1AD52000C5B37 /* SettingsView.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		19F5D29D25C1ADDF000C5B37 /* Statistics */ = {
-			isa = PBXGroup;
-			children = (
-				19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */,
-			);
-			path = Statistics;
 			sourceTree = "<group>";
 		};
 		19F5D2A325C1AED5000C5B37 /* Custom */ = {
