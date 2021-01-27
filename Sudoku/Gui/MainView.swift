@@ -18,9 +18,11 @@ struct MainView: View {
                 SudokuMainView()
             } else if main.visibleView == Views.NewGame {
                 NewGame()
-            } /*else if main.visibleView == Views.Settings {
-                Settings()
-            }*/
+            } else if main.visibleView == Views.Settings {
+                SettingsView()
+            } else if main.visibleView == Views.Statistics {
+                StatisticsView()
+            }
         }
     }
 }

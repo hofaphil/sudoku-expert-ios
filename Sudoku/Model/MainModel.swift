@@ -40,25 +40,6 @@ class MainModel: ObservableObject {
         } else {
             startNewGame()
         }
-        
-        //        sudoku = SudokuClass(threads: 1)
-        //        sudoku.create(difficulty: difficulty)
-        //
-        //        errorCheck = ErrorCheck(sudoku: sudoku)
-        //
-        //        fields = [[[SudokuFieldModel]]]()
-        //
-        //        for i in 0...8 {
-        //            fields.append([[SudokuFieldModel]]())
-        //            for j in 0...2 {
-        //                fields[i].append([SudokuFieldModel]())
-        //                for a in 0...2 {
-        //                    fields[i][j].append(SudokuFieldModel(main: self, position: Position(row: j, column: a, parent: i),number: sudoku.getSudoku()[i].getNumbers()[j][a], error: false))
-        //                }
-        //            }
-        //        }
-        //
-        //        start(time: 0)
     }
     
     func startNewGame(difficulty: Int = 0) {
@@ -91,4 +72,6 @@ class MainModel: ObservableObject {
 enum Views {
     case Game
     case NewGame
+    case Settings
+    case Statistics
 }

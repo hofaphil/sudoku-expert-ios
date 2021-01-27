@@ -22,8 +22,12 @@ struct StatusBar: View {
                 Spacer()
                 Text(main.time)
                 Spacer()
-                Button("Stats", action: {})
-                Button("Settings", action: {})
+                Button("Stats", action: {
+                    self.main.visibleView = Views.Statistics
+                })
+                Button("Settings", action: {
+                    self.main.visibleView = Views.Settings
+                })
             }.padding().background(Color.yellow)
             HStack {
                 Spacer()
