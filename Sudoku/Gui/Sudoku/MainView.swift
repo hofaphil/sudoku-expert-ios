@@ -15,16 +15,12 @@ struct MainView: View {
     var body: some View {
         ZStack {
             if main.visibleView == Views.Game {
-                VStack {
-                    StatusBar()
-                    SudokuGridView(sudoku: main.sudoku)
-                    Spacer()
-                    Keyboard()
-                    Spacer()
-                }
+                SudokuMainView()
             } else if main.visibleView == Views.NewGame {
                 NewGame()
-            }
+            } /*else if main.visibleView == Views.Settings {
+                Settings()
+            }*/
         }
     }
 }

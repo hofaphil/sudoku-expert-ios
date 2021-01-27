@@ -26,6 +26,7 @@
 		198356582469ADDD00A718BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 198356572469ADDD00A718BF /* Preview Assets.xcassets */; };
 		1983565B2469ADDD00A718BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198356592469ADDD00A718BF /* LaunchScreen.storyboard */; };
 		19F5A24E247AD1D40069B62E /* SudokuClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5A24D247AD1D40069B62E /* SudokuClass.swift */; };
+		19F5D29225C1AC3D000C5B37 /* SudokuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29125C1AC3D000C5B37 /* SudokuMainView.swift */; };
 		19F8E2D7247D46D400DB8EBD /* FieldColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2D6247D46D400DB8EBD /* FieldColor.swift */; };
 		19F8E2DB247D67F300DB8EBD /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2DA247D67F300DB8EBD /* MainModel.swift */; };
 		19F8E2DF247E5D0300DB8EBD /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2DE247E5D0300DB8EBD /* FieldModel.swift */; };
@@ -55,6 +56,7 @@
 		1983565A2469ADDD00A718BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1983565C2469ADDD00A718BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19F5A24D247AD1D40069B62E /* SudokuClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuClass.swift; sourceTree = "<group>"; };
+		19F5D29125C1AC3D000C5B37 /* SudokuMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuMainView.swift; sourceTree = "<group>"; };
 		19F8E2D6247D46D400DB8EBD /* FieldColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldColor.swift; sourceTree = "<group>"; };
 		19F8E2DA247D67F300DB8EBD /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		19F8E2DE247E5D0300DB8EBD /* FieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FieldModel.swift; path = Sudoku/Model/FieldModel.swift; sourceTree = SOURCE_ROOT; };
@@ -121,11 +123,7 @@
 		1983564D2469ADDC00A718BF /* Sudoku */ = {
 			isa = PBXGroup;
 			children = (
-				198356522469ADDC00A718BF /* MainView.swift */,
 				1936CA8324742C5B00B5F5B4 /* StatusBar.swift */,
-				1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */,
-				1971836C247441FF0031B501 /* SudokuBlockView.swift */,
-				1971836E247442D00031B501 /* SudokuFieldView.swift */,
 				1971836A247430F20031B501 /* Keyboard.swift */,
 				1977F761249D084F008C0736 /* NewGame.swift */,
 				1940438B247CFE1000F2D4DC /* Model */,
@@ -152,6 +150,7 @@
 		19B2509C2474268F00478BDD /* Gui */ = {
 			isa = PBXGroup;
 			children = (
+				19F5D29625C1AC96000C5B37 /* Sudoku */,
 			);
 			path = Gui;
 			sourceTree = "<group>";
@@ -162,6 +161,18 @@
 				19F5A24D247AD1D40069B62E /* SudokuClass.swift */,
 				1970CF272469DBF7000C8722 /* Block.swift */,
 				1970CF292469DC76000C8722 /* Number.swift */,
+			);
+			path = Sudoku;
+			sourceTree = "<group>";
+		};
+		19F5D29625C1AC96000C5B37 /* Sudoku */ = {
+			isa = PBXGroup;
+			children = (
+				198356522469ADDC00A718BF /* MainView.swift */,
+				1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */,
+				1971836C247441FF0031B501 /* SudokuBlockView.swift */,
+				1971836E247442D00031B501 /* SudokuFieldView.swift */,
+				19F5D29125C1AC3D000C5B37 /* SudokuMainView.swift */,
 			);
 			path = Sudoku;
 			sourceTree = "<group>";
@@ -204,7 +215,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Philipp Hofer";
 				TargetAttributes = {
 					1983564A2469ADDC00A718BF = {
@@ -262,6 +273,7 @@
 				1936CA8424742C5B00B5F5B4 /* StatusBar.swift in Sources */,
 				19F8E2DB247D67F300DB8EBD /* MainModel.swift in Sources */,
 				1977F762249D084F008C0736 /* NewGame.swift in Sources */,
+				19F5D29225C1AC3D000C5B37 /* SudokuMainView.swift in Sources */,
 				19F8E2E4247E643E00DB8EBD /* ErrorCheck.swift in Sources */,
 				1971837324744D850031B501 /* Position.swift in Sources */,
 				1970CF2E2469FD63000C8722 /* SudokuError.swift in Sources */,
@@ -312,6 +324,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -372,6 +385,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
