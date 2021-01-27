@@ -9,51 +9,75 @@
 import Foundation
 import SwiftUI
 
-struct SudokuField {
+class SudokuFieldModel: ObservableObject {
     
-    var number: Int
-    var color = Color.white
-    var error: Bool
-    var changeable = false
+    var main: MainModel
     
-    init(number: Int, error: Bool) {
+    @Published var number: Int
+    @Published var position: Position
+    @Published var color = Color.white
+    @Published var error: Bool
+    
+    @Published var changeable = false
+    @Published var isNotes = false
+    
+    @Published var notes = [Bool](repeating: false, count: 9)
+    
+    init(main: MainModel, position: Position, number: Int, error: Bool) {
+        self.main = main
         self.number = number
+        self.position = position
         self.error = error
         if number == 0 {
             self.changeable = true
         }
     }
-}
-
-extension MainModel {
     
-    func insert(number: Int) {
-        if selected == nil {
+    func insert(_ number: Int) {
+        if !changeable {
             return
         }
-        if get(selected!).changeable {
-            if number == get(selected!).number {
+        isNotes = main.isNotes
+        if isNotes {
+            notes[number - 1] = !notes[number - 1]
+        } else {
+            if number == self.number {
                 delete()
             } else {
-                fields[selected!.parent][selected!.row][selected!.column].number = number
-                numberCount.add(number)
-                fields[selected!.parent][selected!.row][selected!.column].error = errorCheck.check(position: selected!, number: number, wasError: get(selected!).error)
+                self.number = number
+                if main.errorCheck!.check(model: self) {
+                    setError()
+                }
             }
-            select(position: selected!)
+            // TODO: Anzahl der freien Felder verringern
         }
     }
     
     func delete() {
-        if selected == nil {
+        if !changeable {
             return
         }
-        if get(selected!).changeable {
-            if get(selected!).error {
-                errorCheck.removeError()
-                fields[selected!.parent][selected!.row][selected!.column].error = false
-            }
-            fields[selected!.parent][selected!.row][selected!.column].number = 0
+        if error {
+            unError()
         }
-        select(position: selected!)
+        isNotes = main.isNotes
+        if isNotes {
+            notes = [Bool](repeating: false, count: 9)
+        } else {
+            number = 0
+        }
+        // TODO: Anzahl der freien Felder erhöhen
+    }
+    
+    func setError() {
+        main.errorCheck!.setError(model: self)
+        error = true
+        color = MainModel.errorColor
+    }
+    
+    func unError() {
+        main.errorCheck!.unError()
+        error = false
+        color = MainModel.selectedColor
     }
 }

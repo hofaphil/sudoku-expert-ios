@@ -9,16 +9,29 @@
 import SwiftUI
 
 struct StatusBar: View {
+    
+    @EnvironmentObject var main: MainModel
+    
     var body: some View {
-        HStack {
-            Button("New", action: {})
-            Button("Share", action: {})
-            Spacer()
-            Text("00:00")
-            Spacer()
-            Button("Stats", action: {})
-            Button("Settings", action: {})
-        }.padding().background(Color.yellow)
+        VStack {
+            HStack {
+                Button("New", action: {
+                    self.main.visibleView = Views.NewGame
+                })
+                Button("Share", action: {})
+                Spacer()
+                Text(main.time)
+                Spacer()
+                Button("Stats", action: {})
+                Button("Settings", action: {})
+            }.padding().background(Color.yellow)
+            HStack {
+                Spacer()
+                Text(String(main.errorCheck!.overallErrors))
+                Text(" /   3 Errors")
+                Spacer()
+            }
+        }
     }
 }
 

@@ -39,9 +39,11 @@ struct Keyboard: View {
                 
             }.padding()
             HStack {
-                Button("Notes", action: {})
+                Button("Notes", action: {
+                    self.main.isNotes = !self.main.isNotes
+                })
                 Spacer()
-                Button("Delete", action: { self.main.delete() })
+                Button("Delete", action: { self.main.selected?.delete() })
                 Spacer()
                 Button("Pause", action: {})
             }.padding()
@@ -49,7 +51,7 @@ struct Keyboard: View {
     }
     
     private func insert(_ number: Int) {
-        main.insert(number: number)
+        main.selected?.insert(number)
     }
 }
 

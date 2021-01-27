@@ -9,29 +9,28 @@
 import SwiftUI
 
 struct MainView: View {
-                
-    var statusBar = StatusBar()
-    var sudokuGrid: SudokuGridView
-    var keyboard: Keyboard
     
-    init(sudoku: SudokuClass) {
-        sudokuGrid = SudokuGridView(sudoku: sudoku)
-        keyboard = Keyboard()
-    }
+    @EnvironmentObject var main: MainModel
     
     var body: some View {
-        VStack {
-            statusBar
-            sudokuGrid
-            Spacer()
-            keyboard
-            Spacer()
+        ZStack {
+            if main.visibleView == Views.Game {
+                VStack {
+                    StatusBar()
+                    SudokuGridView(sudoku: main.sudoku)
+                    Spacer()
+                    Keyboard()
+                    Spacer()
+                }
+            } else if main.visibleView == Views.NewGame {
+                NewGame()
+            }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(sudoku: SudokuClass(threads: 1))
+        MainView()
     }
 }

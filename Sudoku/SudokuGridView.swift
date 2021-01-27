@@ -12,7 +12,7 @@ struct SudokuGridView: View {
     
     let sudoku: SudokuClass
     var blocks: [SudokuBlockView]
-        
+    
     init(sudoku: SudokuClass) {
         self.sudoku = sudoku
         blocks = [SudokuBlockView]()
@@ -22,23 +22,23 @@ struct SudokuGridView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
                 blocks[0]
                 blocks[1]
                 blocks[2]
             }
-            HStack {
+            HStack(spacing: 0) {
                 blocks[3]
                 blocks[4]
                 blocks[5]
             }
-            HStack {
+            HStack(spacing: 0) {
                 blocks[6]
                 blocks[7]
                 blocks[8]
             }
-        }.border(Color.black)
+        }
     }
 }
 

@@ -12,40 +12,32 @@ struct SudokuBlockView: View {
     
     var parent: Int
     var block: Block
-    var fields: [[SudokuFieldView]]
         
+    @EnvironmentObject var main: MainModel
+    
     init(parent: Int, block: Block) {
         self.parent = parent
         self.block = block
-        
-        fields = [[SudokuFieldView]]()
-        for i in 0...2 {
-            fields.append([SudokuFieldView]())
-            for j in 0...2 {
-                fields[i].append(SudokuFieldView(position: Position(row: i, column: j, parent: parent)))
-            }
-        }
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                //Text(selectedFieldModel.s)
-                fields[0][0]
-                fields[0][1]
-                fields[0][2]
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                SudokuFieldView(model: main.fields[parent][0][0])
+                SudokuFieldView(model: main.fields[parent][0][1])
+                SudokuFieldView(model: main.fields[parent][0][2])
             }
-            HStack {
-                fields[1][0]
-                fields[1][1]
-                fields[1][2]
+            HStack(spacing: 0) {
+                SudokuFieldView(model: main.fields[parent][1][0])
+                SudokuFieldView(model: main.fields[parent][1][1])
+                SudokuFieldView(model: main.fields[parent][1][2])
             }
-            HStack {
-                fields[2][0]
-                fields[2][1]
-                fields[2][2]
+            HStack(spacing: 0) {
+                SudokuFieldView(model: main.fields[parent][2][0])
+                SudokuFieldView(model: main.fields[parent][2][1])
+                SudokuFieldView(model: main.fields[parent][2][2])
             }
-        }.border(Color.black)
+        }.padding(3)
     }
 }
 

@@ -73,7 +73,7 @@ class SudokuClass: ObservableObject {
     
     func deleteNumbers(threadNumber: Int, difficulty: Int, threadHolder: [Block]) {
         var b = 0
-        let diff = 30 //difficulty * 7 / 40
+        let diff = difficulty * 7 + 40
         var numbers = [Number]()
         for i in 0...8 {
             for j in 0...2 {
@@ -240,6 +240,9 @@ class SudokuClass: ObservableObject {
     func getSolution(sudoku: [Block]) throws -> [Block] {
         solutionFlag = -1;
         var solution = [Block]();
+        for _ in 0...8 {
+            solution.append(Block())
+        }
         initBlock(block: &solution);
         for i in 0...8 {
             solution[i].setNumbers(numbers: sudoku[i].getNumbers())
@@ -264,7 +267,7 @@ class SudokuClass: ObservableObject {
         self.blocks = blocks
     }
     
-    func printBlocks(blocks: [Block]) {
+    static func printBlocks(blocks: [Block]) {
         for i in stride(from: 0, to: 8, by: 3) {
             for k in 0...2 {
                 for j in i..<i + 3 {

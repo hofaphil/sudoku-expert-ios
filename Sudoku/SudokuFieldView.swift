@@ -10,17 +10,47 @@ import SwiftUI
 
 struct SudokuFieldView: View {
     
+    @ObservedObject var model: SudokuFieldModel
     @EnvironmentObject var main: MainModel
-        
+    
     var position: Position
+    
+    let fontSize: CGFloat = 12
+    
+    var screenWidth: CGFloat = (UIScreen.main.bounds.width - 18) / 9
+    
+    init(model: SudokuFieldModel) {
+        self.model = model
+        self.position = model.position
+    }
     
     var body: some View {
         ZStack {
             Button(action: {
-                self.main.select(position: self.position)
+                self.main.select(model: self.model)
             }, label: {
-                Text(main.get(position).number == 0 ? " " : String(main.get(position).number))
-            }).frame(width: 35, height: 35).border(Color.black).background(main.get(position).color)
+                if self.model.isNotes {
+                    VStack(spacing: 0) {
+                        HStack(spacing: 0) {
+                            Text(self.model.notes[0] ? "1" : "").font(.system(size: fontSize))
+                            Text(self.model.notes[1] ? "2" : "").font(.system(size: fontSize))
+                            Text(self.model.notes[2] ? "3" : "").font(.system(size: fontSize))
+                        }
+                        HStack(spacing: 0) {
+                            Text(self.model.notes[3] ? "4" : "").font(.system(size: fontSize))
+                            Text(self.model.notes[4] ? "5" : "").font(.system(size: fontSize))
+                            Text(self.model.notes[5] ? "6" : "").font(.system(size: fontSize))
+                        }
+                        HStack(spacing: 0) {
+                            Text(self.model.notes[6] ? "7" : "").font(.system(size: fontSize))
+                            Text(self.model.notes[7] ? "8" : "").font(.system(size: fontSize))
+                            Text(self.model.notes[8] ? "9" : "").font(.system(size: fontSize))
+                        }
+                    }
+                } else {
+                    Text(model.number == 0 ? " " : String(model.number)).font(.system(size: 22))
+                }
+            }).frame(width: screenWidth, height: screenWidth).border(Color.black).background(model.color).padding(0)
         }
     }
 }
@@ -28,12 +58,5 @@ struct SudokuFieldView: View {
 struct SudokuFieldView_Previews: PreviewProvider {
     static var previews: some View {
         Text("Hello World!")
-        //SudokuFieldView(selectedModel: nil, number: 0, position: Position(row: 0, column: 0, parent: 0))
     }
-}
-
-
-extension Color {
-    public static let yellow = Color("Yellow")
-    public static let gray = Color("Gray")
 }

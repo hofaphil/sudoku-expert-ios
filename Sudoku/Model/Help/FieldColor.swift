@@ -19,7 +19,7 @@ extension MainModel {
                     fields[a][i][j].color = MainModel.unSelectedColor
                     
                     // mark same numbers
-                    if fields[a][i][j].number == get(selected!).number && get(selected!).number != 0 {
+                    if fields[a][i][j].number == selected!.number && selected!.number != 0 {
                         fields[a][i][j].color = MainModel.lightSelectedColor
                     }
                 }
@@ -130,4 +130,10 @@ extension MainModel {
             }
         }
     }
+}
+
+
+extension Color {
+    public static let yellow = Color("Yellow")
+    public static let gray = Color("Gray")
 }
