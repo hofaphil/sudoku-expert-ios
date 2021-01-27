@@ -1,5 +1,5 @@
 //
-//  SudokuMainView.swift
+//  SudokuView.swift
 //  Sudoku
 //
 //  Created by Philipp Hofer on 27.01.21.
@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-struct SudokuMainView: View {
-    
+struct SudokuView: View {
     @EnvironmentObject var main: MainModel
     
     var body: some View {
@@ -23,8 +22,8 @@ struct SudokuMainView: View {
     }
 }
 
-struct SudokuMainView_Previews: PreviewProvider {
+struct SudokuView_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuMainView()
+        SudokuView()
     }
 }

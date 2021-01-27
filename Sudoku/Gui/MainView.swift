@@ -15,7 +15,7 @@ struct MainView: View {
     var body: some View {
         ZStack {
             if main.visibleView == Views.Game {
-                SudokuMainView()
+                SudokuView()
             } else if main.visibleView == Views.NewGame {
                 NewGame()
             } else if main.visibleView == Views.Settings {
