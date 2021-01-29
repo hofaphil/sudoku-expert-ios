@@ -12,6 +12,15 @@ struct Keyboard: View {
     
     @EnvironmentObject var main: MainModel
     
+    let padding: CGFloat = 10
+    let width: CGFloat
+    let borderWidth: CGFloat = 2
+    let spacing: CGFloat = 5
+    
+    init() {
+        width = (UIScreen.main.bounds.width - (6 * (padding + borderWidth) + 2 * spacing)) / 3
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -23,8 +32,8 @@ struct Keyboard: View {
                     Button("3", action: { self.insert(3) })
                     Spacer()
                     Button("4", action: { self.insert(4) })
+                    Spacer()
                 }
-                Spacer()
                 Group {
                     Button("5", action: { self.insert(5) })
                     Spacer()
@@ -36,18 +45,17 @@ struct Keyboard: View {
                     Spacer()
                     Button("9", action: { self.insert(9) })
                 }
-                
             }.padding()
-            HStack {
+            HStack (spacing: spacing){
                 Button("Notes", action: {
-                    self.main.isNotes = !self.main.isNotes
-                })
-                Spacer()
-                Button("Delete", action: { self.main.selected?.delete() })
-                Spacer()
-                Button("Pause", action: {})
-            }.padding()
-        }.padding()
+                    main.isNotes = !main.isNotes
+                }).frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? Color.yellow : Color.white)
+                Button("Delete", action: {
+                        main.selected?.delete()
+                }).frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                Button("Pause", action: {}).frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+            }
+        }
     }
     
     private func insert(_ number: Int) {
