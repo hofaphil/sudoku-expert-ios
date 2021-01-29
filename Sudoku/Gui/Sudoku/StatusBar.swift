@@ -12,25 +12,35 @@ struct StatusBar: View {
     
     @EnvironmentObject var main: MainModel
     @State var isActive = false
+    @State var newGame = false
+    
+    var newGameSheet: ActionSheet {
+        ActionSheet(title: Text("New Game"), message: Text("Select Difficulty"), buttons: [
+            .default(Text("Beginner")) {self.main.startNewGame(difficulty: 0)},
+            .default(Text("Advanced")) {self.main.startNewGame(difficulty: 1)},
+            .default(Text("Expert")) {self.main.startNewGame(difficulty: 2)},
+            .cancel()
+        ])
+    }
     
     var body: some View {
-            VStack {
-                HStack {
-                    NavigationLink("New", destination: NewGame(show: $isActive), isActive: self.$isActive)
-                    Button("Share", action: {})
-                    Spacer()
-                    Text(main.time)
-                    Spacer()
-                    NavigationLink("Statis", destination: StatisticsView())
-                    NavigationLink("Settings", destination: SettingsView())
-                }.padding().background(Color.yellow)
-                HStack {
-                    Spacer()
-                    Text(String(main.errorCheck!.overallErrors))
-                    Text(" /   3 Errors")
-                    Spacer()
-                }
+        VStack {
+            HStack {
+                Button("New", action: {newGame = true})
+                Button("Share", action: {})
+                Spacer()
+                Text(main.time)
+                Spacer()
+                NavigationLink("Statis", destination: StatisticsView())
+                NavigationLink("Settings", destination: SettingsView())
+            }.padding().background(Color.yellow)
+            HStack {
+                Spacer()
+                Text(String(main.errorCheck!.overallErrors))
+                Text(" /   3 Errors")
+                Spacer()
             }
+        }.actionSheet(isPresented: $newGame, content: {newGameSheet})
     }
 }
 

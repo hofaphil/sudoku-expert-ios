@@ -20,7 +20,6 @@
 		1971836F247442D00031B501 /* SudokuFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971836E247442D00031B501 /* SudokuFieldView.swift */; };
 		1971837324744D850031B501 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971837224744D850031B501 /* Position.swift */; };
 		1977F760249CF950008C0736 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977F75F249CF950008C0736 /* Timer.swift */; };
-		1977F762249D084F008C0736 /* NewGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977F761249D084F008C0736 /* NewGame.swift */; };
 		1983564F2469ADDC00A718BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983564E2469ADDC00A718BF /* AppDelegate.swift */; };
 		198356512469ADDC00A718BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198356502469ADDC00A718BF /* SceneDelegate.swift */; };
 		198356552469ADDD00A718BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 198356542469ADDD00A718BF /* Assets.xcassets */; };
@@ -51,7 +50,6 @@
 		1971836E247442D00031B501 /* SudokuFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuFieldView.swift; sourceTree = "<group>"; };
 		1971837224744D850031B501 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		1977F75F249CF950008C0736 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
-		1977F761249D084F008C0736 /* NewGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGame.swift; sourceTree = "<group>"; };
 		1983564B2469ADDC00A718BF /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1983564E2469ADDC00A718BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		198356502469ADDC00A718BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 			children = (
 				1954D08D25C429E800FD5235 /* Statistics */,
 				1954D08C25C429E100FD5235 /* Settings */,
-				1977F761249D084F008C0736 /* NewGame.swift */,
 				19F5D29625C1AC96000C5B37 /* Sudoku */,
 			);
 			path = Gui;
@@ -310,7 +307,6 @@
 				19F5D29F25C1ADEA000C5B37 /* StatisticsView.swift in Sources */,
 				19F8E2DB247D67F300DB8EBD /* MainModel.swift in Sources */,
 				1954D09825C44B5F00FD5235 /* SettingsButton.swift in Sources */,
-				1977F762249D084F008C0736 /* NewGame.swift in Sources */,
 				19F8E2E4247E643E00DB8EBD /* ErrorCheck.swift in Sources */,
 				1971837324744D850031B501 /* Position.swift in Sources */,
 				1970CF2E2469FD63000C8722 /* SudokuError.swift in Sources */,

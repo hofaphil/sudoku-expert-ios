@@ -16,7 +16,7 @@ class Data {
     static let TIMEINT = "timeInt"
     static let LOAD_MODE = "loadMode"
     
-    // fields
+    // for fields
     static let FIELD_NUMBER = "fieldNumber"
     static let FIELD_NOTES = "fieldNotes"
     static let FIELD_IS_NOTES = "fieldIsNotes"
