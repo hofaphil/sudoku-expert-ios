@@ -131,9 +131,3 @@ extension MainModel {
         }
     }
 }
-
-
-extension Color {
-    public static let yellow = Color("Yellow")
-    public static let gray = Color("Gray")
-}
