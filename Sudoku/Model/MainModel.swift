@@ -11,7 +11,6 @@ import SwiftUI
 
 class MainModel: ObservableObject {
     
-    @Published var visibleView = Views.Game
     
     @Published var selected: SudokuFieldModel?
     @Published var isNotes: Bool = false
@@ -67,11 +66,4 @@ class MainModel: ObservableObject {
         selected = model
         setFieldColors(position: model.position)
     }
-}
-
-enum Views {
-    case Game
-    case NewGame
-    case Settings
-    case Statistics
 }

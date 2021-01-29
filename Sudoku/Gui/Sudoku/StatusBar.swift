@@ -11,31 +11,26 @@ import SwiftUI
 struct StatusBar: View {
     
     @EnvironmentObject var main: MainModel
+    @State var isActive = false
     
     var body: some View {
-        VStack {
-            HStack {
-                Button("New", action: {
-                    self.main.visibleView = Views.NewGame
-                })
-                Button("Share", action: {})
-                Spacer()
-                Text(main.time)
-                Spacer()
-                Button("Stats", action: {
-                    self.main.visibleView = Views.Statistics
-                })
-                Button("Settings", action: {
-                    self.main.visibleView = Views.Settings
-                })
-            }.padding().background(Color.yellow)
-            HStack {
-                Spacer()
-                Text(String(main.errorCheck!.overallErrors))
-                Text(" /   3 Errors")
-                Spacer()
+            VStack {
+                HStack {
+                    NavigationLink("New", destination: NewGame(show: $isActive), isActive: self.$isActive)
+                    Button("Share", action: {})
+                    Spacer()
+                    Text(main.time)
+                    Spacer()
+                    NavigationLink("Statis", destination: StatisticsView())
+                    NavigationLink("Settings", destination: SettingsView())
+                }.padding().background(Color.yellow)
+                HStack {
+                    Spacer()
+                    Text(String(main.errorCheck!.overallErrors))
+                    Text(" /   3 Errors")
+                    Spacer()
+                }
             }
-        }
     }
 }
 

@@ -9,16 +9,17 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
     var body: some View {
-        VStack {
-            ToolBar(title: "Settings")
-            Spacer()
-        }
+        List {
+            SettingsSwitch(title: "Test", description: "testDescription testDescription testDescription testDescription testDescription")
+        }.listStyle(GroupedListStyle())
+        .navigationBarTitle(Text("Settings"))
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TemplateView")
+        SettingsView()
     }
 }

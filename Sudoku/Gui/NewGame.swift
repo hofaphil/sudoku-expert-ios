@@ -11,6 +11,7 @@ import SwiftUI
 struct NewGame: View {
     
     @EnvironmentObject var main: MainModel
+    @Binding var show: Bool
     
     var body: some View {
         VStack {
@@ -19,19 +20,19 @@ struct NewGame: View {
             Spacer()
             Button("Beginner", action: {
                 self.main.startNewGame(difficulty: 0)
-                self.main.visibleView = Views.Game
+                show = false
             }).padding()
             Button("Advanced", action: {
                 self.main.startNewGame(difficulty: 1)
-                self.main.visibleView = Views.Game
+                show = false
             }).padding()
             Button("Expert", action: {
                 self.main.startNewGame(difficulty: 2)
-                self.main.visibleView = Views.Game
+                show = false
             }).padding()
             Spacer()
             Button("Cancel", action: {
-                self.main.visibleView = Views.Game
+                show = false
             }).padding()
             Spacer()
         }
@@ -40,6 +41,6 @@ struct NewGame: View {
 
 struct NewGame_Previews: PreviewProvider {
     static var previews: some View {
-        NewGame()
+        Text("Hello World")
     }
 }

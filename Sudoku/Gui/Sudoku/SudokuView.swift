@@ -12,12 +12,15 @@ struct SudokuView: View {
     @EnvironmentObject var main: MainModel
     
     var body: some View {
-        VStack {
-            StatusBar()
-            SudokuGridView(sudoku: main.sudoku)
-            Spacer()
-            Keyboard()
-            Spacer()
+        NavigationView {
+            VStack {
+                StatusBar()
+                SudokuGridView(sudoku: main.sudoku)
+                Spacer()
+                Keyboard()
+                Spacer()
+            }
+            .navigationBarHidden(true)
         }
     }
 }

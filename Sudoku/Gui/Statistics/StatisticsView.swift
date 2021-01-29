@@ -11,7 +11,6 @@ import SwiftUI
 struct StatisticsView: View {
     var body: some View {
         VStack {
-            ToolBar(title: "Statistics")
             Spacer()
         }
     }

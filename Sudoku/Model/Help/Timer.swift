@@ -18,10 +18,11 @@ extension MainModel {
     }
     
     @objc func timerAction() {
-        if visibleView == Views.Game {
+        // TODO not working that way!
+        //if visibleView == Views.Game {
             timeInt += 1
             setTime(timeInt)
-        }
+        //}
     }
     
     // input time in sec!
