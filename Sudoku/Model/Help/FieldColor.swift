@@ -38,8 +38,6 @@ extension MainModel {
                 }
             }
             
-            
-            
             switch position.parent {
             case 0:
                 for i in 0...2 {
@@ -118,9 +116,6 @@ extension MainModel {
             }
         }
         
-        // TODO mark same numbers or also mark as error
-        
-        
         // mark selected field
         fields[position.parent][position.row][position.column].color = MainModel.selectedColor
         
@@ -128,7 +123,7 @@ extension MainModel {
             for i in 0...2 {
                 for j in 0...2 {
                     // mark errors
-                    if fields[a][i][j].error {
+                    if fields[a][i][j].error && UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS){
                         fields[a][i][j].color = MainModel.errorColor
                     }
                 }
