@@ -11,6 +11,7 @@
 		1936CA8424742C5B00B5F5B4 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936CA8324742C5B00B5F5B4 /* StatusBar.swift */; };
 		1936CA8624742D6800B5F5B4 /* SudokuGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */; };
 		1954D09325C42A3B00FD5235 /* SettingsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1954D09225C42A3B00FD5235 /* SettingsSwitch.swift */; };
+		1954D09825C44B5F00FD5235 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1954D09725C44B5F00FD5235 /* SettingsButton.swift */; };
 		1970CF282469DBF7000C8722 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970CF272469DBF7000C8722 /* Block.swift */; };
 		1970CF2A2469DC76000C8722 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970CF292469DC76000C8722 /* Number.swift */; };
 		1970CF2E2469FD63000C8722 /* SudokuError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1970CF2D2469FD63000C8722 /* SudokuError.swift */; };
@@ -41,6 +42,7 @@
 		1936CA8324742C5B00B5F5B4 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGridView.swift; sourceTree = "<group>"; };
 		1954D09225C42A3B00FD5235 /* SettingsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitch.swift; sourceTree = "<group>"; };
+		1954D09725C44B5F00FD5235 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		1970CF272469DBF7000C8722 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		1970CF292469DC76000C8722 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		1970CF2D2469FD63000C8722 /* SudokuError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuError.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				19F5D29925C1AD52000C5B37 /* SettingsView.swift */,
 				1954D09225C42A3B00FD5235 /* SettingsSwitch.swift */,
+				1954D09725C44B5F00FD5235 /* SettingsButton.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				1936CA8424742C5B00B5F5B4 /* StatusBar.swift in Sources */,
 				19F5D29F25C1ADEA000C5B37 /* StatisticsView.swift in Sources */,
 				19F8E2DB247D67F300DB8EBD /* MainModel.swift in Sources */,
+				1954D09825C44B5F00FD5235 /* SettingsButton.swift in Sources */,
 				1977F762249D084F008C0736 /* NewGame.swift in Sources */,
 				19F8E2E4247E643E00DB8EBD /* ErrorCheck.swift in Sources */,
 				1971837324744D850031B501 /* Position.swift in Sources */,

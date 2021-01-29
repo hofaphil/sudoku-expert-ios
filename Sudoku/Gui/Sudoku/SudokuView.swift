@@ -21,7 +21,7 @@ struct SudokuView: View {
                 Spacer()
             }
             .navigationBarHidden(true)
-        }
+        }.accentColor(.black)
     }
 }
 

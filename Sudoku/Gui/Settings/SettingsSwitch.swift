@@ -12,16 +12,24 @@ struct SettingsSwitch: View {
     
     var title: String
     var description: String
-    @State var state: Bool = false
+    var key: String
     
-    init(title: String, description: String) {
+    var state: Binding<Bool>
+    
+    init(title: String, description: String, key: String) {
         self.title = title
         self.description = description
+        self.key = key
+        self.state = Binding<Bool>(
+            get: { UserDefaults.standard.bool(forKey: key) },
+            set: { UserDefaults.standard.set($0, forKey: key) })
     }
     
     var body: some View {
         Section(footer: Text(description)) {
-            Toggle(title, isOn: $state)
+            if #available(iOS 14.0, *) {
+                Toggle(title, isOn: state).toggleStyle(SwitchToggleStyle(tint: Color.yellow))
+            }
         }
     }
 }
