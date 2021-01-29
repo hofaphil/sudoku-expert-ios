@@ -19,16 +19,13 @@ struct NewGame: View {
             Text("New Game").font(.system(size: 40))
             Spacer()
             Button("Beginner", action: {
-                self.main.startNewGame(difficulty: 0)
-                show = false
+                startNewGame(0)
             }).padding()
             Button("Advanced", action: {
-                self.main.startNewGame(difficulty: 1)
-                show = false
+                startNewGame(1)
             }).padding()
             Button("Expert", action: {
-                self.main.startNewGame(difficulty: 2)
-                show = false
+                startNewGame(2)
             }).padding()
             Spacer()
             Button("Cancel", action: {
@@ -36,6 +33,11 @@ struct NewGame: View {
             }).padding()
             Spacer()
         }
+    }
+    
+    func startNewGame(_ difficulty: Int) {
+        self.main.startNewGame(difficulty: difficulty)
+        show = false
     }
 }
 
