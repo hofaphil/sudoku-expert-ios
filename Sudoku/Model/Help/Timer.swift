@@ -10,7 +10,7 @@ import Foundation
 
 extension MainModel {
     
-    func start(time: Int) {
+    func startTimer(time: Int) {
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
         self.timeInt = time

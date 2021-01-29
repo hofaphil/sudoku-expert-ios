@@ -36,6 +36,7 @@ class MainModel: ObservableObject {
     init(difficulty: Int = 0) {
         if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             Data.instance.loadGame(main: self)
+            startTimer(time: timeInt)
         } else {
             startNewGame()
         }
@@ -58,7 +59,7 @@ class MainModel: ObservableObject {
                 }
             }
         }
-        start(time: 0)
+        startTimer(time: 0)
         UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
     }
     

@@ -57,7 +57,6 @@ class Data {
     }
     
     func loadGame(main: MainModel) {
-        print("load")
         main.difficulty = storage.integer(forKey: Data.GAME_DIFFICULTY)
         main.timeInt = storage.integer(forKey: Data.GAME_TIME)
         
@@ -69,7 +68,7 @@ class Data {
         
         // has to be loaded after the errorcheck is ready
         loadFieldModels(main)
-        print("ready loading")
+        print("loaded")
     }
     
     private func saveFieldModels(_ fields: [[[SudokuFieldModel]]]) {
