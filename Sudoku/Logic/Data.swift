@@ -12,6 +12,9 @@ class Data {
     
     static let LOAD_MODE = "loadmode"
     
+    // for the sudoku behind the game
+    static let GAME_SUDOKU = "game_sudoku"
+    
     // for game
     static let GAME_ERRORS = "game_errors";
     static let GAME_DIFFICULTY = "game_difficulty";
@@ -44,7 +47,12 @@ class Data {
     func saveGame(main: MainModel) {
         storage.set(main.difficulty, forKey: Data.GAME_DIFFICULTY)
         storage.set(main.timeInt, forKey: Data.GAME_TIME)
+        
+        // save the fieldmodels itself
         saveFieldModels(main.fields)
+        
+        // save the sudoku behind the game (for sharing, solution creation etc.)
+        saveSudoku(sudoku: main.sudoku)
         print("saved")
     }
     
@@ -52,8 +60,15 @@ class Data {
         print("load")
         main.difficulty = storage.integer(forKey: Data.GAME_DIFFICULTY)
         main.timeInt = storage.integer(forKey: Data.GAME_TIME)
-        loadErrorCheck(main)
-        loadFieldModels(main: main)
+        
+        // load the sudoku behind the game (for sharing, solution creation etc.)
+        loadSudoku(main)
+        
+        // set the ErrorCheck: has to be done after the solution was created
+        main.errorCheck = ErrorCheck(solution: main.sudoku.getSolution())
+        
+        // has to be loaded after the errorcheck is ready
+        loadFieldModels(main)
         print("ready loading")
     }
     
@@ -70,7 +85,7 @@ class Data {
         }
     }
     
-    private func loadFieldModels(main: MainModel) {
+    private func loadFieldModels(_ main: MainModel) {
         for i in 0..<9 {
             main.fields.append([[SudokuFieldModel]]())
             for j in 0..<3 {
@@ -89,29 +104,37 @@ class Data {
         }
     }
     
-    private func loadErrorCheck(_ main: MainModel) {
-        // load numbers and generate solution for errorCheck
+    private func saveSudoku(sudoku: SudokuClass) {
+        for i in 0..<9 {
+            for j in 0..<3 {
+                for a in 0..<3 {
+                    storage.set(sudoku.getSudoku()[i].getNumbers()[j][a], forKey: Data.GAME_SUDOKU + String(i) + String(j) + String(a))
+                }
+            }
+        }
+    }
+    
+    private func loadSudoku(_ main: MainModel) {
         var sudoku = [Block]()
         for i in 0..<9 {
             var numbers = [[Int]]()
             for j in 0..<3 {
                 numbers.append([Int](repeating: 0, count: 3))
                 for a in 0..<3 {
-                    numbers[j][a] = storage.integer(forKey: Data.FIELD_NUMBER + String(i) + String(j) + String(a))
+                    numbers[j][a] = storage.integer(forKey: Data.GAME_SUDOKU + String(i) + String(j) + String(a))
                 }
             }
             let block = Block()
             block.setNumbers(numbers: numbers)
             sudoku.append(block)
         }
-        print("here")
-        SudokuClass.printBlocks(blocks: sudoku)
+        
+        // set the sudoku and its solution
+        main.sudoku.setSudoku(blocks: sudoku)
         do {
-            try main.errorCheck = ErrorCheck(solution: SudokuClass(threads: 1).getSolution(sudoku: sudoku))
-            try SudokuClass.printBlocks(blocks: SudokuClass(threads: 1).getSolution(sudoku: sudoku))
+            try main.sudoku.setSolution(blocks: main.sudoku.solve(blocks: sudoku))
         } catch  {
             print(error)
-            print("error") // TODO errorhandling
         }
     }
 }

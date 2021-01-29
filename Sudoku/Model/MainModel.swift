@@ -34,7 +34,7 @@ class MainModel: ObservableObject {
     var sudoku = SudokuClass(threads: 1)
     
     init(difficulty: Int = 0) {
-        if false { //}(UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
+        if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             Data.instance.loadGame(main: self)
         } else {
             startNewGame()

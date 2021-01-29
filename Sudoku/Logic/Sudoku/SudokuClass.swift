@@ -162,9 +162,7 @@ class SudokuClass: ObservableObject {
         return true;
     }
     
-    func solve(blocks: [Block], number: Int, block: Int) -> Bool {
-        print("new run \(number)")
-        SudokuClass.printBlocks(blocks: blocks)
+    private func solve(blocks: [Block], number: Int, block: Int) -> Bool {
         if number == 10 || solutionFlag != -1 {
             return true
         }
@@ -242,7 +240,7 @@ class SudokuClass: ObservableObject {
         return solution
     }
     
-    func getSolution(sudoku: [Block]) throws -> [Block] {
+    func solve(blocks: [Block]) throws -> [Block] {
         solutionFlag = -1;
         var solution = [Block]();
         for _ in 0...8 {
@@ -250,7 +248,7 @@ class SudokuClass: ObservableObject {
         }
         initBlock(block: &solution)
         for i in 0...8 {
-            solution[i].setNumbers(numbers: sudoku[i].getNumbers())
+            solution[i].setNumbers(numbers: blocks[i].getNumbers())
         }
 
         if !solve(blocks: solution, number: 1, block: 0) {
