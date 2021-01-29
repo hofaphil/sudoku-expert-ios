@@ -163,6 +163,8 @@ class SudokuClass: ObservableObject {
     }
     
     func solve(blocks: [Block], number: Int, block: Int) -> Bool {
+        print("new run \(number)")
+        SudokuClass.printBlocks(blocks: blocks)
         if number == 10 || solutionFlag != -1 {
             return true
         }
@@ -190,13 +192,13 @@ class SudokuClass: ObservableObject {
             }
             
             if counter >= 9 {
-                blocks[block].deleteWithPosition(number: number, row: r, column: c);
-                return false;
+                blocks[block].deleteWithPosition(number: number, row: r, column: c)
+                return false
             }
             
             ready = solve(blocks: blocks, number: block == 8 ? number + 1 : number, block: block == 8 ? 0 : block + 1);
         } while !ready && solutionFlag == -1
-        return true;
+        return true
     }
     
     func generate(number: Int, block: Int) -> Bool {
@@ -246,7 +248,7 @@ class SudokuClass: ObservableObject {
         for _ in 0...8 {
             solution.append(Block())
         }
-        initBlock(block: &solution);
+        initBlock(block: &solution)
         for i in 0...8 {
             solution[i].setNumbers(numbers: sudoku[i].getNumbers())
         }

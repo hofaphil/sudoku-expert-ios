@@ -59,7 +59,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         print("disconnect")
-
         Data.instance.saveGame(main: main)
         print("disconnect")
         // Called as the scene transitions from the foreground to the background.

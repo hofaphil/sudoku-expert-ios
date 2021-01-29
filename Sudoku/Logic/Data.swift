@@ -10,30 +10,30 @@ import Foundation
 
 class Data {
     
-    static let DIFFICULTY = "difficulty"
-    static let FIELDMODELS = "fieldModels"
-    static let ERRORCHECK = "errorCheck"
-    static let TIMEINT = "timeInt"
-    static let LOAD_MODE = "loadMode"
+    static let LOAD_MODE = "loadmode"
+    
+    // for game
+    static let GAME_ERRORS = "game_errors";
+    static let GAME_DIFFICULTY = "game_difficulty";
+    static let GAME_TIME = "game_time";
+    static let GAME_SHOW_ERRORS = "game_main_show_errors";
+    static let GAME_SHOW_TIME = "game_main_show_time";
     
     // for fields
-    static let FIELD_NUMBER = "fieldNumber"
-    static let FIELD_NOTES = "fieldNotes"
-    static let FIELD_IS_NOTES = "fieldIsNotes"
-    static let FIELD_CHANGEABLE = "fieldChangeable"
+    static let FIELD_NUMBER = "field_Number"
+    static let FIELD_NOTES = "field_Notes"
+    static let FIELD_IS_NOTES = "field_IsNotes"
+    static let FIELD_CHANGEABLE = "field_Changeable"
     
     // for settings
-    static let SETTINGS_POWERMODE = "powermode";
-    static let SETTINGS_MARK_LINES = "marklines";
-    static let SETTINGS_MARK_NUMBERS = "marknumbers";
-    static let SETTINGS_MARK_ERRORS = "markerrors";
-    static let SETTINGS_CHECK_NOTES = "checknotes";
-    static let SETTINGS_SHOW_TIME = "showtime";
-    static let SETTINGS_COLOR = "color";
-    static let SETTINGS_SUPPORTER = "supporter";
-    
-    // errorCheck
-    //static let ERRORCHECK_OVERALLERRORS = "overallErrors"
+    static let SETTINGS_POWERMODE = "settings_powermode";
+    static let SETTINGS_MARK_LINES = "settings_marklines";
+    static let SETTINGS_MARK_NUMBERS = "settings_marknumbers";
+    static let SETTINGS_MARK_ERRORS = "settings_markerrors";
+    static let SETTINGS_CHECK_NOTES = "settings_checknotes";
+    static let SETTINGS_SHOW_TIME = "settings_showtime";
+    static let SETTINGS_COLOR = "settings_color";
+    static let SETTINGS_SUPPORTER = "settings_supporter";
     
     static let instance = Data()
     
@@ -42,26 +42,19 @@ class Data {
     private init() {}
     
     func saveGame(main: MainModel) {
-        storage.set(main.difficulty, forKey: Data.DIFFICULTY)
-        storage.set(main.timeInt, forKey: Data.TIMEINT)
+        storage.set(main.difficulty, forKey: Data.GAME_DIFFICULTY)
+        storage.set(main.timeInt, forKey: Data.GAME_TIME)
         saveFieldModels(main.fields)
+        print("saved")
     }
     
     func loadGame(main: MainModel) {
         print("load")
-        main.difficulty = storage.integer(forKey: Data.DIFFICULTY)
-        main.timeInt = storage.integer(forKey: Data.TIMEINT)
+        main.difficulty = storage.integer(forKey: Data.GAME_DIFFICULTY)
+        main.timeInt = storage.integer(forKey: Data.GAME_TIME)
         loadErrorCheck(main)
         loadFieldModels(main: main)
         print("ready loading")
-    }
-    
-    func setLoadMode(mode: Bool) {
-        storage.set(mode, forKey: Data.LOAD_MODE)
-    }
-    
-    func getLoadMode() -> Bool {
-        return storage.bool(forKey: Data.LOAD_MODE)
     }
     
     private func saveFieldModels(_ fields: [[[SudokuFieldModel]]]) {
@@ -98,7 +91,7 @@ class Data {
     
     private func loadErrorCheck(_ main: MainModel) {
         // load numbers and generate solution for errorCheck
-        var solution = [Block]()
+        var sudoku = [Block]()
         for i in 0..<9 {
             var numbers = [[Int]]()
             for j in 0..<3 {
@@ -109,13 +102,15 @@ class Data {
             }
             let block = Block()
             block.setNumbers(numbers: numbers)
-            solution.append(block)
+            sudoku.append(block)
         }
-        let sudoku = SudokuClass(threads: 1)
+        print("here")
+        SudokuClass.printBlocks(blocks: sudoku)
         do {
-            try main.errorCheck = ErrorCheck(solution: sudoku.getSolution(sudoku: solution))
-            try SudokuClass.printBlocks(blocks: sudoku.getSolution(sudoku: solution))
+            try main.errorCheck = ErrorCheck(solution: SudokuClass(threads: 1).getSolution(sudoku: sudoku))
+            try SudokuClass.printBlocks(blocks: SudokuClass(threads: 1).getSolution(sudoku: sudoku))
         } catch  {
+            print(error)
             print("error") // TODO errorhandling
         }
     }

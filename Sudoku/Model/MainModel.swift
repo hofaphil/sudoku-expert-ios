@@ -34,7 +34,7 @@ class MainModel: ObservableObject {
     var sudoku = SudokuClass(threads: 1)
     
     init(difficulty: Int = 0) {
-        if(Data.instance.getLoadMode()) {
+        if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             Data.instance.loadGame(main: self)
         } else {
             startNewGame()
@@ -59,7 +59,7 @@ class MainModel: ObservableObject {
             }
         }
         start(time: 0)
-        Data.instance.setLoadMode(mode: true)
+        UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
     }
     
     func select(model: SudokuFieldModel) {
