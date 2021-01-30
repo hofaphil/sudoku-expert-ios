@@ -14,7 +14,7 @@ struct Keyboard: View {
     
     let padding: CGFloat = 10
     let width: CGFloat
-    let borderWidth: CGFloat = 2
+    let borderWidth: CGFloat = 1
     let spacing: CGFloat = 5
     
     init() {

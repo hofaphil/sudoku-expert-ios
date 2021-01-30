@@ -33,14 +33,14 @@ struct StatusBar: View {
                 Spacer()
                 NavigationLink("Statis", destination: StatisticsView())
                 NavigationLink("Settings", destination: SettingsView())
-            }.padding().background(Color.yellow)
+            }.padding()
             HStack {
                 Spacer()
                 Text(String(main.errorCheck!.overallErrors))
                 Text(" /   3 Errors")
                 Spacer()
-            }
-        }.actionSheet(isPresented: $newGame, content: {newGameSheet})
+            }.border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
+        }.actionSheet(isPresented: $newGame, content: {newGameSheet}).background(Color.yellow)
     }
 }
 
