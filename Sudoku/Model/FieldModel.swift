@@ -35,6 +35,7 @@ class SudokuFieldModel: ObservableObject {
     }
     
     func insert(_ number: Int) {
+        print("insert \(number)")
         if !changeable {
             return
         }

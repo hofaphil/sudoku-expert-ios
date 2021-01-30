@@ -61,7 +61,7 @@ struct Keyboard: View {
     private func button(_ number: Int) -> some View {
         return Button(String(number), action: { self.insert(number) })
             .disabled(main.numberCount.numberCount[number] >= 9)
-            .accentColor(main.numberCount.numberCount[number] >= 9 ? Color.white : Color.black)
+            .foregroundColor(main.numberCount.numberCount[number] >= 9 ? Color.white : .accentColor)
     }
     
     private func insert(_ number: Int) {

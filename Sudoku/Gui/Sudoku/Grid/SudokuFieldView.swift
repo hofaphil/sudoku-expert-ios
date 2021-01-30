@@ -35,19 +35,19 @@ struct SudokuFieldView: View {
                 if self.model.isNotes {
                     VStack(spacing: 0) {
                         HStack(spacing: 0) {
-                            Text(self.model.notes[0] ? "1" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
-                            Text(self.model.notes[1] ? "2" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
-                            Text(self.model.notes[2] ? "3" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
+                            note(1)
+                            note(2)
+                            note(3)
                         }
                         HStack(spacing: 0) {
-                            Text(self.model.notes[3] ? "4" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
-                            Text(self.model.notes[4] ? "5" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
-                            Text(self.model.notes[5] ? "6" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
+                            note(4)
+                            note(5)
+                            note(6)
                         }
                         HStack(spacing: 0) {
-                            Text(self.model.notes[6] ? "7" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
-                            Text(self.model.notes[7] ? "8" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
-                            Text(self.model.notes[8] ? "9" : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
+                            note(7)
+                            note(8)
+                            note(9)
                         }
                     }
                 } else {
@@ -55,6 +55,11 @@ struct SudokuFieldView: View {
                 }
             }).frame(width: fieldSize, height: fieldSize).border(Color.black).background(model.color).padding(0)
         }
+    }
+    
+    func note(_ number: Int) -> some View {
+        return Text(self.model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
+
     }
 }
 
