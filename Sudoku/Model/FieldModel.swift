@@ -65,8 +65,8 @@ class SudokuFieldModel: ObservableObject {
         if isNotes {
             notes = [Bool](repeating: false, count: 9)
         } else {
-            number = 0
             main.numberCount.delete(number)
+            number = 0
         }
     }
     
