@@ -19,8 +19,8 @@ class Data {
     static let GAME_ERRORS = "game_errors";
     static let GAME_DIFFICULTY = "game_difficulty";
     static let GAME_TIME = "game_time";
-    //static let GAME_SHOW_ERRORS = "game_main_show_errors";
-    //static let GAME_SHOW_TIME = "game_main_show_time";
+    static let GAME_SHOW_ERRORS = "game_main_show_errors";
+    static let GAME_SHOW_TIME = "game_main_show_time";
     
     // for fields
     static let FIELD_NUMBER = "field_Number"
@@ -48,6 +48,10 @@ class Data {
     func saveGame(main: MainModel) {
         storage.set(main.difficulty.rawValue, forKey: Data.GAME_DIFFICULTY)
         storage.set(main.timeInt, forKey: Data.GAME_TIME)
+        storage.set(main.showTime, forKey: Data.GAME_SHOW_TIME)
+        storage.set(main.showErrors, forKey: Data.GAME_SHOW_ERRORS)
+        
+        // TODO evtl. errors????
         
         // save the fieldmodels itself
         saveFieldModels(main.fields)
@@ -60,6 +64,8 @@ class Data {
     func loadGame(main: MainModel) {
         main.difficulty = Difficulty.getDifficutly(intVal: storage.integer(forKey: Data.GAME_DIFFICULTY))
         main.timeInt = storage.integer(forKey: Data.GAME_TIME)
+        main.showTime = storage.bool(forKey: Data.GAME_SHOW_TIME)
+        main.showErrors = storage.bool(forKey: Data.GAME_SHOW_ERRORS)
         
         // load the sudoku behind the game (for sharing, solution creation etc.)
         loadSudoku(main)

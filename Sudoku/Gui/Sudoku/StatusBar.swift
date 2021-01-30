@@ -39,7 +39,7 @@ struct StatusBar: View {
                 Spacer()
                 Text(main.difficulty.asString)
                 Spacer()
-                Text("\(main.errorCheck!.overallErrors) /   3 Errors")
+                Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }.border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $newGame, content: {newGameSheet}).background(Color.yellow)

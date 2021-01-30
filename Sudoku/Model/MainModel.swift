@@ -20,12 +20,13 @@ class MainModel: ObservableObject {
     @Published var difficulty = Difficulty.ADVANCED
     
     @Published var errorCheck: ErrorCheck?
+    @Published var showErrors = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS)
     var numberCount = NumberCount()
     
     var timer = Timer()
     var timeInt = 0
     @Published var time = "00:00"
-    @Published var showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
+    @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
     
     static let unSelectedColor = Color.white
     static let lightSelectedColor = Color.gray
@@ -51,7 +52,6 @@ class MainModel: ObservableObject {
         errorCheck = ErrorCheck(solution: sudoku.getSolution())
         
         fields = [[[SudokuFieldModel]]]()
-        
         for i in 0...8 {
             fields.append([[SudokuFieldModel]]())
             for j in 0...2 {
@@ -61,7 +61,10 @@ class MainModel: ObservableObject {
                 }
             }
         }
+        
         showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
+        showErrors = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS)
+        
         startTimer(time: 0)
         UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
     }
