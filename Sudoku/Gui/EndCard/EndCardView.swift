@@ -9,13 +9,33 @@
 import SwiftUI
 
 struct EndCardView: View {
+    
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
+    var won: Bool
+    var title: String
+    var main: MainModel
+    
+    init(main: MainModel, won: Bool) {
+        self.won = won
+        self.title = won ? "You won!" : "You lost..."
+        self.main = main
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{}.navigationBarTitle(title)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Button(action : {
+                self.mode.wrappedValue.dismiss()
+                main.startNewGame(difficulty: main.difficulty)
+            }){
+                Image(systemName: "arrow.left")
+            })
     }
 }
 
 struct EndCardView_Previews: PreviewProvider {
     static var previews: some View {
-        EndCardView()
+        Text("Hello World")
     }
 }

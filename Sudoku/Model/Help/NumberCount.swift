@@ -15,7 +15,6 @@ struct NumberCount {
     
     mutating func add(_ number: Int) {
         numberCount[number] += 1
-        print(numberCount)
         if numberCount[number] == 9 {
             check()
         }

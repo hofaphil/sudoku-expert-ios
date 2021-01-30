@@ -20,7 +20,7 @@ struct SudokuView: View {
                 Spacer()
                 Keyboard()
                 Spacer()
-                NavigationLink("", destination: EndCardView(), isActive: $main.numberCount.finished).hidden()
+                NavigationLink("", destination: EndCardView(main: main, won: true), isActive: $main.numberCount.finished).hidden()
             }
             .navigationBarHidden(true)
         }.accentColor(.black)
