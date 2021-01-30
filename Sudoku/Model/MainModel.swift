@@ -17,7 +17,7 @@ class MainModel: ObservableObject {
     
     var fields = [[[SudokuFieldModel]]]()
     
-    @Published var difficulty = 0 // 0 = Beginner, 1 = Advanced, 2 = Expert
+    @Published var difficulty = Difficulty.ADVANCED
     
     @Published var errorCheck: ErrorCheck?
     var numberCount = NumberCount()
@@ -25,6 +25,7 @@ class MainModel: ObservableObject {
     var timer = Timer()
     var timeInt = 0
     @Published var time = "00:00"
+    @Published var showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
     
     static let unSelectedColor = Color.white
     static let lightSelectedColor = Color.gray
@@ -42,9 +43,10 @@ class MainModel: ObservableObject {
         }
     }
     
-    func startNewGame(difficulty: Int = 0) {
+    func startNewGame(difficulty: Difficulty = Difficulty.ADVANCED) {
         sudoku = SudokuClass(threads: 1)
-        sudoku.create(difficulty: self.difficulty)
+        sudoku.create(difficulty: difficulty.rawValue)
+        self.difficulty = difficulty
         
         errorCheck = ErrorCheck(solution: sudoku.getSolution())
         
@@ -59,6 +61,7 @@ class MainModel: ObservableObject {
                 }
             }
         }
+        showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
         startTimer(time: 0)
         UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
     }

@@ -11,14 +11,15 @@ import SwiftUI
 struct StatusBar: View {
     
     @EnvironmentObject var main: MainModel
+
     @State var isActive = false
     @State var newGame = false
     
     var newGameSheet: ActionSheet {
         ActionSheet(title: Text("New Game"), message: Text("Select Difficulty"), buttons: [
-            .default(Text("Beginner")) {self.main.startNewGame(difficulty: 0)},
-            .default(Text("Advanced")) {self.main.startNewGame(difficulty: 1)},
-            .default(Text("Expert")) {self.main.startNewGame(difficulty: 2)},
+            .default(Text(Difficulty.BEGINNER.asString)) {self.main.startNewGame(difficulty: Difficulty.BEGINNER)},
+            .default(Text(Difficulty.ADVANCED.asString)) {self.main.startNewGame(difficulty: Difficulty.ADVANCED)},
+            .default(Text(Difficulty.EXPERT.asString)) {self.main.startNewGame(difficulty: Difficulty.EXPERT)},
             .cancel()
         ])
     }
@@ -29,15 +30,16 @@ struct StatusBar: View {
                 Button("New", action: {newGame = true})
                 Button("Share", action: {})
                 Spacer()
-                Text(main.time)
+                Text(main.showTime ? main.time : "--:--")
                 Spacer()
                 NavigationLink("Statis", destination: StatisticsView())
                 NavigationLink("Settings", destination: SettingsView())
             }.padding()
             HStack {
                 Spacer()
-                Text(String(main.errorCheck!.overallErrors))
-                Text(" /   3 Errors")
+                Text(main.difficulty.asString)
+                Spacer()
+                Text("\(main.errorCheck!.overallErrors) /   3 Errors")
                 Spacer()
             }.border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $newGame, content: {newGameSheet}).background(Color.yellow)
