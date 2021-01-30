@@ -25,6 +25,7 @@ class MainModel: ObservableObject {
     
     var timer = Timer()
     var timeInt = 0
+    var timerRun = true
     @Published var time = "00:00"
     @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
     

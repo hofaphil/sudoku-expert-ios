@@ -24,7 +24,11 @@ struct SudokuView: View {
                     Spacer()
                     Keyboard()
                     Spacer()
-                }.navigationBarHidden(true)
+                }.navigationBarHidden(true).onDisappear(perform: {
+                    main.timerRun = false
+                }).onAppear(perform: {
+                    main.timerRun = true
+                })
             }
         }.accentColor(.black)
     }
