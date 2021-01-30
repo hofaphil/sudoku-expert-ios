@@ -29,7 +29,6 @@ class Data {
     static let FIELD_CHANGEABLE = "field_Changeable"
     
     // for settings
-   
     static let SETTINGS_POWERMODE = "settings_powermode";
     static let SETTINGS_MARK_LINES = "settings_marklines";
     static let SETTINGS_MARK_NUMBERS = "settings_marknumbers";

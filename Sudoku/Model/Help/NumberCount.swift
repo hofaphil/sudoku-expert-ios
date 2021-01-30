@@ -12,15 +12,16 @@ struct NumberCount {
     
     var numberCount = Array(repeating: 0, count: 10)
     var finished = false
-
+    
     mutating func add(_ number: Int) {
         numberCount[number] += 1
+        print(numberCount[number])
         if numberCount[number] == 9 {
             check()
         }
     }
     
-    mutating func sub(_ number: Int) {
+    mutating func delete(_ number: Int) {
         numberCount[number] -= 1
     }
     

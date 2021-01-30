@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct SudokuView: View {
+    
     @EnvironmentObject var main: MainModel
     
     var body: some View {
@@ -19,6 +20,7 @@ struct SudokuView: View {
                 Spacer()
                 Keyboard()
                 Spacer()
+                NavigationLink("", destination: EndCardView(), isActive: $main.numberCount.finished).hidden()
             }
             .navigationBarHidden(true)
         }.accentColor(.black)

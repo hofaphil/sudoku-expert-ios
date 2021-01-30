@@ -20,6 +20,7 @@
 		1971836F247442D00031B501 /* SudokuFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971836E247442D00031B501 /* SudokuFieldView.swift */; };
 		1971837324744D850031B501 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971837224744D850031B501 /* Position.swift */; };
 		19741F8A25C5611100FA94CB /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19741F8925C5611100FA94CB /* Difficulty.swift */; };
+		19741F8E25C578FE00FA94CB /* EndCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19741F8D25C578FE00FA94CB /* EndCardView.swift */; };
 		1977F760249CF950008C0736 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977F75F249CF950008C0736 /* Timer.swift */; };
 		1983564F2469ADDC00A718BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983564E2469ADDC00A718BF /* AppDelegate.swift */; };
 		198356512469ADDC00A718BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198356502469ADDC00A718BF /* SceneDelegate.swift */; };
@@ -51,6 +52,7 @@
 		1971836E247442D00031B501 /* SudokuFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuFieldView.swift; sourceTree = "<group>"; };
 		1971837224744D850031B501 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		19741F8925C5611100FA94CB /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		19741F8D25C578FE00FA94CB /* EndCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndCardView.swift; sourceTree = "<group>"; };
 		1977F75F249CF950008C0736 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		1983564B2469ADDC00A718BF /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1983564E2469ADDC00A718BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,14 @@
 			path = Help;
 			sourceTree = "<group>";
 		};
+		19741F8C25C578E500FA94CB /* EndCard */ = {
+			isa = PBXGroup;
+			children = (
+				19741F8D25C578FE00FA94CB /* EndCardView.swift */,
+			);
+			path = EndCard;
+			sourceTree = "<group>";
+		};
 		198356422469ADDC00A718BF = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 		19B2509C2474268F00478BDD /* Gui */ = {
 			isa = PBXGroup;
 			children = (
+				19741F8C25C578E500FA94CB /* EndCard */,
 				1954D08D25C429E800FD5235 /* Statistics */,
 				1954D08C25C429E100FD5235 /* Settings */,
 				19F5D29625C1AC96000C5B37 /* Sudoku */,
@@ -298,6 +309,7 @@
 				1983564F2469ADDC00A718BF /* AppDelegate.swift in Sources */,
 				1954D09325C42A3B00FD5235 /* SettingsSwitch.swift in Sources */,
 				198356512469ADDC00A718BF /* SceneDelegate.swift in Sources */,
+				19741F8E25C578FE00FA94CB /* EndCardView.swift in Sources */,
 				1971836D247441FF0031B501 /* SudokuBlockView.swift in Sources */,
 				19741F8A25C5611100FA94CB /* Difficulty.swift in Sources */,
 				1971836F247442D00031B501 /* SudokuFieldView.swift in Sources */,

@@ -19,9 +19,10 @@ class MainModel: ObservableObject {
     
     @Published var difficulty = Difficulty.ADVANCED
     
+    @Published var numberCount = NumberCount()
+
     @Published var errorCheck: ErrorCheck?
     @Published var showErrors = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS)
-    var numberCount = NumberCount()
     
     var timer = Timer()
     var timeInt = 0

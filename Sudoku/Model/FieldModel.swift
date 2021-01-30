@@ -45,6 +45,7 @@ class SudokuFieldModel: ObservableObject {
                 delete()
             } else {
                 self.number = number
+                main.numberCount.add(number)
                 if main.errorCheck!.check(model: self) {
                     setError()
                 }
@@ -65,6 +66,7 @@ class SudokuFieldModel: ObservableObject {
             notes = [Bool](repeating: false, count: 9)
         } else {
             number = 0
+            main.numberCount.delete(number)
         }
         // TODO: Anzahl der freien Felder erhöhen
     }
