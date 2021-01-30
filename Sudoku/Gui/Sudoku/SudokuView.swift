@@ -14,15 +14,17 @@ struct SudokuView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                StatusBar()
-                SudokuGridView(sudoku: main.sudoku)
-                Spacer()
-                Keyboard()
-                Spacer()
-                NavigationLink("", destination: EndCardView(main: main, won: true), isActive: $main.numberCount.finished).hidden()
+            if (main.numberCount.finished) {
+                NavigationLink("", destination: EndCardView(won: true).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
+            } else {
+                VStack {
+                    StatusBar()
+                    SudokuGridView(sudoku: main.sudoku)
+                    Spacer()
+                    Keyboard()
+                    Spacer()
+                }.navigationBarHidden(true)
             }
-            .navigationBarHidden(true)
         }.accentColor(.black)
     }
 }

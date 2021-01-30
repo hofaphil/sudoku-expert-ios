@@ -22,7 +22,9 @@ struct SettingsView: View {
             SettingsButton(title: "Support", description: "Support the developer, never have any Ads shown again and unlock color options!")
             SettingsButton(title: "Reset", description: "Delete all your statistics and reset the app")
             SettingsButton(title: "Contact")
-        }.listStyle(GroupedListStyle()).navigationBarTitle(Text("Settings"))
+        }
+        .listStyle(GroupedListStyle())
+        .navigationBarTitle(Text("Settings"))
     }
 }
 

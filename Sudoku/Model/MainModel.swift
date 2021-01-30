@@ -11,7 +11,6 @@ import SwiftUI
 
 class MainModel: ObservableObject {
     
-    
     @Published var selected: SudokuFieldModel?
     @Published var isNotes: Bool = false
     
