@@ -25,25 +25,25 @@ struct Keyboard: View {
         VStack {
             HStack {
                 Group {
-                    Button("1", action: { self.insert(1) })
+                    button(1)
                     Spacer()
-                    Button("2", action: { self.insert(2) })
+                    button(2)
                     Spacer()
-                    Button("3", action: { self.insert(3) })
+                    button(3)
                     Spacer()
-                    Button("4", action: { self.insert(4) })
+                    button(4)
                     Spacer()
                 }
                 Group {
-                    Button("5", action: { self.insert(5) })
+                    button(5)
                     Spacer()
-                    Button("6", action: { self.insert(6) })
+                    button(6)
                     Spacer()
-                    Button("7", action: { self.insert(7) })
+                    button(7)
                     Spacer()
-                    Button("8", action: { self.insert(8) })
+                    button(8)
                     Spacer()
-                    Button("9", action: { self.insert(9) })
+                    button(9)
                 }
             }.padding()
             HStack (spacing: spacing){
@@ -56,6 +56,12 @@ struct Keyboard: View {
                 Button("Pause", action: {}).frame(width: width).padding(padding).border(Color.black, width: borderWidth)
             }
         }
+    }
+    
+    private func button(_ number: Int) -> some View {
+        return Button(String(number), action: { self.insert(number) })
+            .disabled(main.numberCount.numberCount[number] >= 9)
+            .foregroundColor(main.numberCount.numberCount[number] >= 9 ? Color.white : nil)
     }
     
     private func insert(_ number: Int) {

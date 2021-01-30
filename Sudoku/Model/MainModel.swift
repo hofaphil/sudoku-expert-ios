@@ -46,6 +46,7 @@ class MainModel: ObservableObject {
     }
     
     func startNewGame(difficulty: Difficulty = Difficulty.ADVANCED) {
+        numberCount = NumberCount()
         sudoku = SudokuClass(threads: 1)
         sudoku.create(difficulty: difficulty.rawValue)
         self.difficulty = difficulty
@@ -62,7 +63,7 @@ class MainModel: ObservableObject {
                 }
             }
         }
-        
+                
         showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
         showErrors = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS)
         

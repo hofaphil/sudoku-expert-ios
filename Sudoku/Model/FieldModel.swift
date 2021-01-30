@@ -26,6 +26,7 @@ class SudokuFieldModel: ObservableObject {
     init(main: MainModel, position: Position, number: Int, error: Bool) {
         self.main = main
         self.number = number
+        main.numberCount.add(number)
         self.position = position
         self.error = error
         if number == 0 {
@@ -50,7 +51,6 @@ class SudokuFieldModel: ObservableObject {
                     setError()
                 }
             }
-            // TODO: Anzahl der freien Felder verringern
         }
     }
     
@@ -68,7 +68,6 @@ class SudokuFieldModel: ObservableObject {
             number = 0
             main.numberCount.delete(number)
         }
-        // TODO: Anzahl der freien Felder erhöhen
     }
     
     func setError() {
