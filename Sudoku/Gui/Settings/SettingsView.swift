@@ -43,7 +43,7 @@ struct SettingsView: View {
             }
         }
         .listStyle(GroupedListStyle())
-        .navigationBarTitle(Text("Settings"))
+        .navigationBarTitle("Settings")
     }
 }
 

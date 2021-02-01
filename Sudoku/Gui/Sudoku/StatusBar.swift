@@ -43,19 +43,19 @@ struct StatusBar: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Button(action: {
                     actionSheet = true
                     options = false
-                }) { Image(systemName: "plus") }
+                }) { Image(systemName: "plus").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/) }
                 Spacer()
-                Text(main.showTime ? main.time : "--:--")
+                Text(main.showTime ? main.time : "--:--").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 Spacer()
                 Button(action: {
                     actionSheet = true
                     options = true
-                }) { Image(systemName: "ellipsis") }
+                }) { Image(systemName: "ellipsis").font(.title) }
                 NavigationLink("", destination: SettingsView(), isActive: $settings)
                 NavigationLink("", destination: StatisticsView(), isActive: $statistics)
             }.padding()
@@ -65,7 +65,7 @@ struct StatusBar: View {
                 Spacer()
                 Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
-            }.border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
+            }.padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $actionSheet) {
             return options ? optionSheet : newGameSheet
         }.background(Color.yellow)
