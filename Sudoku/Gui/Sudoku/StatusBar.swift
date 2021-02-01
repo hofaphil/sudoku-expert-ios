@@ -45,17 +45,17 @@ struct StatusBar: View {
     var body: some View {
         VStack {
             HStack {
-                Button("+", action: {
+                Button(action: {
                     actionSheet = true
                     options = false
-                })
+                }) { Image(systemName: "plus") }
                 Spacer()
                 Text(main.showTime ? main.time : "--:--")
                 Spacer()
-                Button("...", action: {
+                Button(action: {
                     actionSheet = true
                     options = true
-                })
+                }) { Image(systemName: "ellipsis") }
                 NavigationLink("", destination: SettingsView(), isActive: $settings)
                 NavigationLink("", destination: StatisticsView(), isActive: $statistics)
             }.padding()

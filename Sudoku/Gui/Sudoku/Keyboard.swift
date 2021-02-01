@@ -47,15 +47,30 @@ struct Keyboard: View {
                 }
             }.padding()
             HStack (spacing: spacing){
-                Button("Notes", action: {
+                Button(action: {
                     main.isNotes = !main.isNotes
-                }).frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? Color.yellow : Color.white)
-                Button("Delete", action: {
+                }) {
+                    HStack {
+                        Image(systemName: "pencil").imageScale(.small)
+                        Text("Notes")
+                    }
+                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? Color.yellow : Color.white)
+                Button(action: {
                         main.selected?.delete()
-                }).frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-                Button("Pause", action: {
+                }) {
+                    HStack {
+                        Image(systemName: "delete.left").imageScale(.small)
+                        Text("Delete")
+                    }
+                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                Button(action: {
                     main.pause = !main.pause
-                }).frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? Color.yellow : Color.white)
+                }) {
+                    HStack {
+                        Image(systemName: "pause").imageScale(.small)
+                        Text("Pause")
+                    }
+                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? Color.yellow : Color.white)
             }
         }
     }
