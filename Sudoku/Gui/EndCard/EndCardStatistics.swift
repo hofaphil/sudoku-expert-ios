@@ -15,7 +15,7 @@ struct EndCardStatistics: View {
     
     let bestTime: String
     let width = UIScreen.main.bounds.width - 8
-    
+
     init(time: String, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty

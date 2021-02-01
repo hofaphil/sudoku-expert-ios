@@ -28,6 +28,7 @@
 		198356582469ADDD00A718BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 198356572469ADDD00A718BF /* Preview Assets.xcassets */; };
 		1983565B2469ADDD00A718BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198356592469ADDD00A718BF /* LaunchScreen.storyboard */; };
 		1989812A25C83C7C009BAAC3 /* EndCardStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989812925C83C7C009BAAC3 /* EndCardStatistics.swift */; };
+		1989812D25C84496009BAAC3 /* StatisticsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989812C25C84496009BAAC3 /* StatisticsCard.swift */; };
 		19F5A24E247AD1D40069B62E /* SudokuClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5A24D247AD1D40069B62E /* SudokuClass.swift */; };
 		19F5D29A25C1AD52000C5B37 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29925C1AD52000C5B37 /* SettingsView.swift */; };
 		19F5D29F25C1ADEA000C5B37 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */; };
@@ -63,6 +64,7 @@
 		1983565A2469ADDD00A718BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1983565C2469ADDD00A718BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1989812925C83C7C009BAAC3 /* EndCardStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndCardStatistics.swift; sourceTree = "<group>"; };
+		1989812C25C84496009BAAC3 /* StatisticsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCard.swift; sourceTree = "<group>"; };
 		19F5A24D247AD1D40069B62E /* SudokuClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuClass.swift; sourceTree = "<group>"; };
 		19F5D29925C1AD52000C5B37 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */,
+				1989812C25C84496009BAAC3 /* StatisticsCard.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				198356512469ADDC00A718BF /* SceneDelegate.swift in Sources */,
 				19741F8E25C578FE00FA94CB /* EndCardView.swift in Sources */,
 				1971836D247441FF0031B501 /* SudokuBlockView.swift in Sources */,
+				1989812D25C84496009BAAC3 /* StatisticsCard.swift in Sources */,
 				19741F8A25C5611100FA94CB /* Difficulty.swift in Sources */,
 				1971836F247442D00031B501 /* SudokuFieldView.swift in Sources */,
 				1971836B247430F20031B501 /* Keyboard.swift in Sources */,
