@@ -11,9 +11,8 @@ import SwiftUI
 struct StatusBar: View {
     
     @EnvironmentObject var main: MainModel
-
-    @State var isActive = false
-    @State var newGame = false
+    
+    @State var actionSheet = false
     @State var options = false
     
     @State var settings = false
@@ -41,11 +40,17 @@ struct StatusBar: View {
     var body: some View {
         VStack {
             HStack {
-                Button("+", action: {newGame = true})
+                Button("+", action: {
+                    actionSheet = true
+                    options = false
+                })
                 Spacer()
                 Text(main.showTime ? main.time : "--:--")
                 Spacer()
-                Button("...", action: {options = true})
+                Button("...", action: {
+                    actionSheet = true
+                    options = true
+                })
                 NavigationLink("", destination: SettingsView(), isActive: $settings)
                 NavigationLink("", destination: StatisticsView(), isActive: $statistics)
             }.padding()
@@ -56,7 +61,9 @@ struct StatusBar: View {
                 Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }.border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
-        }.actionSheet(isPresented: $newGame, content: {newGameSheet}).actionSheet(isPresented: $options, content: {optionSheet}).background(Color.yellow)
+        }.actionSheet(isPresented: $actionSheet) {
+            return options ? optionSheet : newGameSheet
+        }.background(Color.yellow)
     }
 }
 
