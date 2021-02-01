@@ -13,20 +13,30 @@ struct EndCardView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var main: MainModel
     
-    var won: Bool
-    var title: String
+    //var won: Bool
+    //var time: Int
+    //var difficulty: Difficulty
     
-    init(won: Bool) {
-        self.won = won
-        self.title = won ? "You won!" : "You lost..."
+    let title: String
+    let description: String
+    
+    init(won: Bool, time: String, difficulty: Difficulty) {
+        if won {
+            title = "You won!"
+            description = "It took you \(time) to solve this Sudoku."
+        } else {
+            title = "You lost..."
+            description = "You did not solve this one, try again!"
+        }
+        
     }
     
     var body: some View {
-        HStack{Text("...")}.navigationBarTitle(title).onDisappear(perform: {
+        HStack{Text(description)}.navigationBarTitle(title).onDisappear(perform: {
             main.startNewGame(difficulty: main.difficulty)
         })
     }
-
+    
 }
 
 struct EndCardView_Previews: PreviewProvider {

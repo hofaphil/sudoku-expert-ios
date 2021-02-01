@@ -16,7 +16,7 @@ struct SudokuView: View {
         NavigationView {
             if (main.numberCount.finished && main.errorCheck!.activeErrors == 0) ||
                 (main.errorCheck!.overallErrors >= 3 && main.showErrors) {
-                NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
+                NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3, time: main.time, difficulty: main.difficulty).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
             } else {
                 VStack {
                     StatusBar()
