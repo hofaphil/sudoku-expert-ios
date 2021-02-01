@@ -28,6 +28,7 @@ class MainModel: ObservableObject {
     var timerRun = true
     @Published var time = "00:00"
     @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
+    @Published var pause = false
     
     static let unSelectedColor = Color.white
     static let lightSelectedColor = Color.gray

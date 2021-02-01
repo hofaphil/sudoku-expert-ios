@@ -53,7 +53,9 @@ struct Keyboard: View {
                 Button("Delete", action: {
                         main.selected?.delete()
                 }).frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-                Button("Pause", action: {}).frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                Button("Pause", action: {
+                    main.pause = !main.pause
+                }).frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? Color.yellow : Color.white)
             }
         }
     }

@@ -18,7 +18,7 @@ extension MainModel {
     }
     
     @objc func timerAction() {
-        if timerRun {
+        if timerRun && !pause {
             timeInt += 1
             setTime(timeInt)
         }

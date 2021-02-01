@@ -20,7 +20,11 @@ struct SudokuView: View {
             } else {
                 VStack {
                     StatusBar()
-                    SudokuGridView(sudoku: main.sudoku)
+                    if(!main.pause) {
+                        SudokuGridView(sudoku: main.sudoku)
+                    } else {
+                        Text("").frame(height: UIScreen.main.bounds.width)
+                    }
                     Spacer()
                     Keyboard()
                     Spacer()
