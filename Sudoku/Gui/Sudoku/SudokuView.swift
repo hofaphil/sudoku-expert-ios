@@ -14,25 +14,29 @@ struct SudokuView: View {
     
     var body: some View {
         NavigationView {
-            if (main.numberCount.finished && main.errorCheck!.activeErrors == 0) ||
-                (main.errorCheck!.overallErrors >= 3 && main.showErrors) {
-                NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3, time: main.timeInt, difficulty: main.difficulty).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
-            } else {
-                VStack(spacing: 0){
-                    StatusBar()
-                    if(!main.pause) {
-                        SudokuGridView(sudoku: main.sudoku)
-                    } else {
-                        Text("").frame(height: UIScreen.main.bounds.width)
-                    }
-                    Spacer()
-                    Keyboard()
-                    Spacer()
-                }.navigationBarHidden(true).onDisappear(perform: {
-                    main.timerRun = false
-                }).onAppear(perform: {
-                    main.timerRun = true
-                })
+            ZStack {
+                Rectangle().frame(maxHeight: .infinity, alignment: .topLeading).foregroundColor(.yellow).edgesIgnoringSafeArea(.top)
+                
+                if (main.numberCount.finished && main.errorCheck!.activeErrors == 0) ||
+                    (main.errorCheck!.overallErrors >= 3 && main.showErrors) {
+                    NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3, time: main.timeInt, difficulty: main.difficulty).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
+                } else {
+                    VStack(spacing: 0){
+                        StatusBar()
+                        if(!main.pause) {
+                            SudokuGridView(sudoku: main.sudoku)
+                        } else {
+                            Text("").frame(height: UIScreen.main.bounds.width)
+                        }
+                        Spacer()
+                        Keyboard()
+                        Spacer()
+                    }.navigationBarHidden(true).onDisappear(perform: {
+                        main.timerRun = false
+                    }).onAppear(perform: {
+                        main.timerRun = true
+                    }).background(Color.white)
+                }
             }
         }.accentColor(.black)
     }
