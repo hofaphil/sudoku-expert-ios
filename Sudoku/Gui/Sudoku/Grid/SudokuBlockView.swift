@@ -12,7 +12,7 @@ struct SudokuBlockView: View {
     
     var parent: Int
     var block: Block
-    let padding: CGFloat = 3
+    let padding: CGFloat = 2
         
     @EnvironmentObject var main: MainModel
     
@@ -38,13 +38,13 @@ struct SudokuBlockView: View {
                 SudokuFieldView(model: main.fields[parent][2][1], parentPadding: self.padding)
                 SudokuFieldView(model: main.fields[parent][2][2], parentPadding: self.padding)
             }
-        }.padding(self.padding)
+        }.border(Color.black, width: 2).padding(self.padding)
     }
 }
 
 
 struct SudokuBlock_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuBlockView(parent: 0, block: Block())
+        SudokuBlockView(parent: 0, block: Block()).environmentObject(MainModel())
     }
 }

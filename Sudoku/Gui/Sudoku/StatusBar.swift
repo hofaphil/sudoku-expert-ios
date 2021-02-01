@@ -74,6 +74,6 @@ struct StatusBar: View {
 
 struct StatusBar_Previews: PreviewProvider {
     static var previews: some View {
-        StatusBar()
+        StatusBar().environmentObject(MainModel())
     }
 }

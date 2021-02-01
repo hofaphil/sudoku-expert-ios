@@ -53,7 +53,7 @@ struct SudokuFieldView: View {
                 } else {
                     Text(model.number == 0 ? " " : String(model.number)).font(.system(size: 22))
                 }
-            }).frame(width: fieldSize, height: fieldSize).border(Color.black).background(model.color).padding(0)
+            }).frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5).background(model.color).padding(0)
         }
     }
     
@@ -65,6 +65,6 @@ struct SudokuFieldView: View {
 
 struct SudokuFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello World!")
+        SudokuFieldView(model: SudokuFieldModel(main: MainModel(), position: Position(row: 0, column: 0, parent: 0), number: 1, error: false), parentPadding: 2)
     }
 }

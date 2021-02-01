@@ -18,7 +18,7 @@ struct SudokuView: View {
                 (main.errorCheck!.overallErrors >= 3 && main.showErrors) {
                 NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3, time: main.timeInt, difficulty: main.difficulty).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
             } else {
-                VStack {
+                VStack(spacing: 0){
                     StatusBar()
                     if(!main.pause) {
                         SudokuGridView(sudoku: main.sudoku)
@@ -40,6 +40,6 @@ struct SudokuView: View {
 
 struct SudokuView_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuView()
+        SudokuView().environmentObject(MainModel())
     }
 }
