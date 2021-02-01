@@ -11,25 +11,21 @@ import SwiftUI
 struct SettingsButton: View {
     
     var title: String
-    var description: String
     @State var state: Bool = false
     
-    init(title: String, description: String = "") {
+    init(title: String) {
         self.title = title
-        self.description = description
     }
     
     var body: some View {
-        Section(footer: Text(description)) {
-            Button(action: {}, label: {
-                Text(title).foregroundColor(Color.black)
-            })
-        }
+        Button(action: {}, label: {
+            Text(title).foregroundColor(Color.black)
+        })
     }
 }
 
 struct SettingsButton_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsButton(title: "TestTitle", description: "This is a test description")
+        SettingsButton(title: "TestTitle")
     }
 }

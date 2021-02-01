@@ -11,14 +11,12 @@ import SwiftUI
 struct SettingsSwitch: View {
     
     var title: String
-    var description: String
     var key: String
     
     var state: Binding<Bool>
     
-    init(title: String, description: String, key: String) {
+    init(title: String, key: String) {
         self.title = title
-        self.description = description
         self.key = key
         self.state = Binding<Bool>(
             get: { UserDefaults.standard.bool(forKey: key) },
@@ -26,16 +24,17 @@ struct SettingsSwitch: View {
     }
     
     var body: some View {
-        Section(footer: Text(description)) {
             if #available(iOS 14.0, *) {
                 Toggle(title, isOn: state).toggleStyle(SwitchToggleStyle(tint: Color.yellow))
+            } else {
+                Toggle(title, isOn: state)
             }
-        }
+        
     }
 }
 
 struct SettingsSwitch_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsSwitch(title: "Test Title", description: "This is a test description", key: Data.FIELD_IS_NOTES)
+        SettingsSwitch(title: "Test Title", key: Data.FIELD_IS_NOTES)
     }
 }
