@@ -36,6 +36,6 @@ struct SettingsSwitch: View {
 
 struct SettingsSwitch_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello World")
+        SettingsSwitch(title: "Test Title", description: "This is a test description", key: Data.FIELD_IS_NOTES)
     }
 }

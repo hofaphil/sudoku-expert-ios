@@ -14,13 +14,13 @@ struct EndCardView: View {
     @EnvironmentObject var main: MainModel
     
     let won: Bool
-    let time: String
+    let time: Int
     let difficulty: Difficulty
     
     let title: String
     let description: String
     
-    init(won: Bool, time: String, difficulty: Difficulty) {
+    init(won: Bool, time: Int, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty
         self.won = won
@@ -28,6 +28,11 @@ struct EndCardView: View {
         if won {
             title = "You won!"
             description = "It took you \(time) to solve this Sudoku."
+            UserDefaults.standard.set(time + UserDefaults.standard.integer(forKey: Data.STATISTICS_TIMEOVERALL + "\(difficulty.rawValue)"), forKey: Data.STATISTICS_TIMEOVERALL + "\(difficulty.rawValue)")
+            UserDefaults.standard.set(1 + UserDefaults.standard.integer(forKey: Data.STATISTICS_TIMESPLAYED + "\(difficulty.rawValue)"), forKey: Data.STATISTICS_TIMESPLAYED + "\(difficulty.rawValue)")
+            if time < UserDefaults.standard.integer(forKey: Data.STATISTICS_BESTTIME + "\(difficulty.rawValue)") || UserDefaults.standard.integer(forKey: Data.STATISTICS_BESTTIME + "\(difficulty.rawValue)") == 0 {
+                UserDefaults.standard.set(time, forKey: Data.STATISTICS_BESTTIME + "\(difficulty.rawValue)")
+            }
         } else {
             title = "You lost..."
             description = "You did not solve this one, try again!"
@@ -38,7 +43,7 @@ struct EndCardView: View {
     var body: some View {
         VStack {
             Text(description).padding().font(.system(size: 30))
-            EndCardStatistics(time: won ? time : "--:--", difficulty: difficulty)
+            EndCardStatistics(time: won ? MainModel.timeToString(time) : "--:--", difficulty: difficulty)
             Spacer()
         }.navigationBarTitle(title).onDisappear(perform: {
             main.startNewGame(difficulty: main.difficulty)
@@ -49,6 +54,6 @@ struct EndCardView: View {
 
 struct EndCardView_Previews: PreviewProvider {
     static var previews: some View {
-        EndCardView(won: false, time: "00:00", difficulty: Difficulty.BEGINNER)
+        EndCardView(won: false, time: 0, difficulty: Difficulty.BEGINNER)
     }
 }

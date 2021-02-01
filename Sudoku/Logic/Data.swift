@@ -16,11 +16,11 @@ class Data {
     static let GAME_SUDOKU = "game_sudoku"
     
     // for game
-    static let GAME_ERRORS = "game_errors";
-    static let GAME_DIFFICULTY = "game_difficulty";
-    static let GAME_TIME = "game_time";
-    static let GAME_SHOW_ERRORS = "game_main_show_errors";
-    static let GAME_SHOW_TIME = "game_main_show_time";
+    static let GAME_ERRORS = "game_errors"
+    static let GAME_DIFFICULTY = "game_difficulty"
+    static let GAME_TIME = "game_time"
+    static let GAME_SHOW_ERRORS = "game_main_show_errors"
+    static let GAME_SHOW_TIME = "game_main_show_time"
     
     // for fields
     static let FIELD_NUMBER = "field_Number"
@@ -29,14 +29,19 @@ class Data {
     static let FIELD_CHANGEABLE = "field_Changeable"
     
     // for settings
-    static let SETTINGS_POWERMODE = "settings_powermode";
-    static let SETTINGS_MARK_LINES = "settings_marklines";
-    static let SETTINGS_MARK_NUMBERS = "settings_marknumbers";
-    static let SETTINGS_MARK_ERRORS = "settings_markerrors";
-    static let SETTINGS_CHECK_NOTES = "settings_checknotes";
-    static let SETTINGS_SHOW_TIME = "settings_showtime";
-    static let SETTINGS_COLOR = "settings_color";
-    static let SETTINGS_SUPPORTER = "settings_supporter";
+    static let SETTINGS_POWERMODE = "settings_powermode"
+    static let SETTINGS_MARK_LINES = "settings_marklines"
+    static let SETTINGS_MARK_NUMBERS = "settings_marknumbers"
+    static let SETTINGS_MARK_ERRORS = "settings_markerrors"
+    static let SETTINGS_CHECK_NOTES = "settings_checknotes"
+    static let SETTINGS_SHOW_TIME = "settings_showtime"
+    static let SETTINGS_COLOR = "settings_color"
+    static let SETTINGS_SUPPORTER = "settings_supporter"
+    
+    // for statistics
+    static let STATISTICS_BESTTIME = "besttime"
+    static let STATISTICS_TIMEOVERALL = "timeoverall"
+    static let STATISTICS_TIMESPLAYED = "timesplayed"
     
     static let instance = Data()
     

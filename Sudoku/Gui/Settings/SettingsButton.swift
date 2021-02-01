@@ -30,6 +30,6 @@ struct SettingsButton: View {
 
 struct SettingsButton_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello world")
+        SettingsButton(title: "TestTitle", description: "This is a test description")
     }
 }

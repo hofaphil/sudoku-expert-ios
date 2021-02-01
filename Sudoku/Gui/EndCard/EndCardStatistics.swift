@@ -19,7 +19,7 @@ struct EndCardStatistics: View {
     init(time: String, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty
-        self.bestTime = "00:00" // Todo: load besttime from the userdefaults
+        self.bestTime = MainModel.timeToString(UserDefaults.standard.integer(forKey: Data.STATISTICS_BESTTIME + "\(difficulty.rawValue)"))
     }
     
     var body: some View {

@@ -71,7 +71,6 @@ struct Keyboard: View {
 
 struct Keyboard_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello World")
-        //Keyboard()
+        Keyboard()
     }
 }
