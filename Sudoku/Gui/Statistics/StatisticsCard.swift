@@ -28,13 +28,13 @@ struct StatisticsCard: View {
     }
     
     var body: some View {
-        VStack {
-            Text(difficulty.asString).font(.system(size: 30)).frame(maxWidth: .infinity, alignment: .leading).padding()
+        
+        Section(header: Text(difficulty.asString)) {
             VStack {
                 Text("Average: \(MainModel.timeToString(averageTime))").frame(maxWidth: .infinity, alignment: .leading).padding()
                 Text("Best time: \(MainModel.timeToString(bestTime))").frame(maxWidth: .infinity, alignment: .leading).padding(.leading)
                 Text("Number of games: \(numberOfGames)").frame(maxWidth: .infinity, alignment: .leading).padding()
-            }.frame(width: width).border(Color.black, width: 2)
+            }
         }
     }
 }

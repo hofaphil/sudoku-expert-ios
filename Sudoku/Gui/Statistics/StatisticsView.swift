@@ -10,14 +10,13 @@ import SwiftUI
 
 struct StatisticsView: View {
     var body: some View {
-        ScrollView {
-            VStack {
-                StatisticsCard(difficulty: Difficulty.BEGINNER)
-                StatisticsCard(difficulty: Difficulty.ADVANCED)
-                StatisticsCard(difficulty: Difficulty.EXPERT)
-                Spacer()
-            }.padding(0)
-        }.navigationBarTitle("Statistics")
+        List {
+            StatisticsCard(difficulty: Difficulty.BEGINNER)
+            StatisticsCard(difficulty: Difficulty.ADVANCED)
+            StatisticsCard(difficulty: Difficulty.EXPERT)
+        }
+        .listStyle(GroupedListStyle())
+        .navigationBarTitle("Statistics")
     }
 }
 
