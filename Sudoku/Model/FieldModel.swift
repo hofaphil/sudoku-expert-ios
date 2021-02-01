@@ -39,13 +39,19 @@ class SudokuFieldModel: ObservableObject {
         if !changeable {
             return
         }
-        isNotes = main.isNotes
+        if isNotes != main.isNotes {
+            delete()
+            isNotes = !isNotes
+        }
         if isNotes {
             notes[number - 1] = !notes[number - 1]
         } else {
             if number == self.number {
                 delete()
             } else {
+                if self.number != 0 {
+                    delete()
+                }
                 self.number = number
                 main.numberCount.add(number)
                 if main.errorCheck!.check(model: self) {
@@ -62,7 +68,6 @@ class SudokuFieldModel: ObservableObject {
         if error {
             unError()
         }
-        isNotes = main.isNotes
         if isNotes {
             notes = [Bool](repeating: false, count: 9)
         } else {
