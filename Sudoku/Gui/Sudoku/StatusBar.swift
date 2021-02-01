@@ -29,7 +29,12 @@ struct StatusBar: View {
     
     var optionSheet: ActionSheet {
         ActionSheet(title: Text("More"), buttons: [
-            .default(Text("Share")) {},
+            .default(Text("Share")) {
+                // TODO hier noch den richtigen link und das richtige share-verhalten einfügen!
+                let data = URL(string: "https://philipphofer.de/share?id=a37182la6la1o1l96c8a9142a6a5a3a4927c5798a14m2b54c43689b")
+                let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
+                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+            },
             .default(Text("Statistics")) { statistics = true },
             .default(Text("Rate")) {},
             .default(Text("Settings")) { settings = true },
