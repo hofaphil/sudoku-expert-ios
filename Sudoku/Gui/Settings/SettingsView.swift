@@ -32,7 +32,9 @@ struct SettingsView: View {
                 SettingsButton(title: "Reset your statistics").onTapGesture {
                     alert = true
                 }
-                SettingsButton(title: "Contact")
+                SettingsButton(title: "Contact").onTapGesture {
+                    UIApplication.shared.open(URL(string: "https://philipphofer.de/contact")!)
+                }
             }.alert(isPresented: self.$alert) {
                 Alert(title: Text("Delete Statistics"),
                       message: Text("Do you want to delete all you statistics?"),
