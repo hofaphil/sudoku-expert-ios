@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @State var alert = false
+    
     var body: some View {
         List {
             Section(header: Text("Game settings")) {
@@ -27,8 +29,15 @@ struct SettingsView: View {
                 SettingsButton(title: "Make support")
             }
             Section(header: Text("More")) {
-                SettingsButton(title: "Reset your statistics")
+                SettingsButton(title: "Reset your statistics").onTapGesture {
+                    alert = true
+                }
                 SettingsButton(title: "Contact")
+            }.alert(isPresented: self.$alert) {
+                Alert(title: Text("Delete Statistics"),
+                      message: Text("Do you want to delete all you statistics?"),
+                      primaryButton: .destructive(Text("Delete"), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
+                      secondaryButton: .default(Text("Cancel")))
             }
         }
         .listStyle(GroupedListStyle())
