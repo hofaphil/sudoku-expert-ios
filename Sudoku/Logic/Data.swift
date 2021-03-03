@@ -68,7 +68,6 @@ class Data {
         
         // save the sudoku behind the game (for sharing, solution creation etc.)
         saveSudoku(sudoku: main.sudoku)
-        print("saved")
     }
     
     func loadGame(main: MainModel) {
@@ -85,7 +84,6 @@ class Data {
         
         // has to be loaded after the errorcheck is ready
         loadFieldModels(main)
-        print("loaded")
     }
     
     private func saveFieldModels(_ fields: [[[SudokuFieldModel]]]) {
