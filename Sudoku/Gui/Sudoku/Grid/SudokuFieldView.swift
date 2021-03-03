@@ -58,6 +58,7 @@ struct SudokuFieldView: View {
                     } else {
                         Text(model.number == 0 ? " " : String(model.number))
                             .font(.system(size: 22))
+                            .bold()
                     }
                     
                 }

@@ -31,7 +31,7 @@ class MainModel: ObservableObject {
     @Published var pause = false
     
     static let unSelectedColor = Color.white
-    static let lightSelectedColor = Color.gray
+    static let lightSelectedColor = Color(.systemGray3)
     static let selectedColor = Color.yellow
     static let errorColor = Color.red
     
