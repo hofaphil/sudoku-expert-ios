@@ -50,7 +50,7 @@ struct StatusBar: View {
                     options = false
                 }) { Image(systemName: "plus").font(.title) }
                 Spacer()
-                Text(main.showTime ? main.time : "--:--").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).foregroundColor(.black)
+                Text(main.showTime ? main.time : "--:--").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 Spacer()
                 Button(action: {
                     actionSheet = true
@@ -63,7 +63,7 @@ struct StatusBar: View {
                 Spacer()
                 Text(main.difficulty.asString).foregroundColor(.black)
                 Spacer()
-                Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors").foregroundColor(.black)
+                Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }.padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $actionSheet) {
