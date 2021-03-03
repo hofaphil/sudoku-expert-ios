@@ -48,9 +48,9 @@ struct StatusBar: View {
                 Button(action: {
                     actionSheet = true
                     options = false
-                }) { Image(systemName: "plus").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/) }
+                }) { Image(systemName: "plus").font(.title) }
                 Spacer()
-                Text(main.showTime ? main.time : "--:--").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                Text(main.showTime ? main.time : "--:--").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).foregroundColor(.black)
                 Spacer()
                 Button(action: {
                     actionSheet = true
@@ -61,9 +61,9 @@ struct StatusBar: View {
             }.padding()
             HStack {
                 Spacer()
-                Text(main.difficulty.asString)
+                Text(main.difficulty.asString).foregroundColor(.black)
                 Spacer()
-                Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors")
+                Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors").foregroundColor(.black)
                 Spacer()
             }.padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $actionSheet) {

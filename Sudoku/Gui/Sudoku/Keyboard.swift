@@ -52,7 +52,7 @@ struct Keyboard: View {
                 }) {
                     HStack {
                         Image(systemName: "pencil").imageScale(.small)
-                        Text("Notes")
+                        Text("Notes").foregroundColor(.black)
                     }
                 }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? Color.yellow : Color.white)
                 Button(action: {
@@ -60,7 +60,7 @@ struct Keyboard: View {
                 }) {
                     HStack {
                         Image(systemName: "delete.left").imageScale(.small)
-                        Text("Delete")
+                        Text("Delete").foregroundColor(.black)
                     }
                 }.frame(width: width).padding(padding).border(Color.black, width: borderWidth)
                 Button(action: {
@@ -68,7 +68,7 @@ struct Keyboard: View {
                 }) {
                     HStack {
                         Image(systemName: "pause").imageScale(.small)
-                        Text("Pause")
+                        Text("Pause").foregroundColor(.black)
                     }
                 }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? Color.yellow : Color.white)
             }
@@ -78,7 +78,7 @@ struct Keyboard: View {
     private func button(_ number: Int) -> some View {
         return Button(String(number), action: { self.insert(number) })
             .disabled(main.numberCount.numberCount[number] >= 9)
-            .foregroundColor(main.numberCount.numberCount[number] >= 9 ? Color.white : .accentColor)
+            .foregroundColor(main.numberCount.numberCount[number] >= 9 ? Color.white : .black)
     }
     
     private func insert(_ number: Int) {

@@ -51,7 +51,7 @@ struct SudokuFieldView: View {
                         }
                     }
                 } else {
-                    Text(model.number == 0 ? " " : String(model.number)).font(.system(size: 22))
+                    Text(model.number == 0 ? " " : String(model.number)).font(.system(size: 22)).foregroundColor(.black)
                 }
             }).frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5).background(model.color).padding(0)
         }

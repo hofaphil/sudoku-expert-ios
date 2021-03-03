@@ -23,7 +23,6 @@ struct SettingsView: View {
                 SettingsSwitch(title: "Show Errors", key: Data.SETTINGS_MARK_ERRORS)
                 SettingsSwitch(title: "Play with Timer", key: Data.SETTINGS_SHOW_TIME)
             }
-            // SettingsSwitch(title: "Low Power Mode", description: "Activate this mode when your battery is low", key: Data.SETTINGS_POWERMODE)
             Section(header: Text("Support"), footer: Text("Support the developer to unlock different colors and never see any ads again")) {
                 SettingsButton(title: "Color of the app")
                 SettingsButton(title: "Give support")
