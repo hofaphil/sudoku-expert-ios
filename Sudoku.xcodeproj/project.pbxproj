@@ -29,6 +29,8 @@
 		1983565B2469ADDD00A718BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198356592469ADDD00A718BF /* LaunchScreen.storyboard */; };
 		1989812A25C83C7C009BAAC3 /* EndCardStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989812925C83C7C009BAAC3 /* EndCardStatistics.swift */; };
 		1989812D25C84496009BAAC3 /* StatisticsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989812C25C84496009BAAC3 /* StatisticsCard.swift */; };
+		199FF2902609F09900CB76F8 /* LinkShorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FF28F2609F09900CB76F8 /* LinkShorter.swift */; };
+		199FF2942609F34400CB76F8 /* ShareClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FF2932609F34400CB76F8 /* ShareClass.swift */; };
 		19F5A24E247AD1D40069B62E /* SudokuClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5A24D247AD1D40069B62E /* SudokuClass.swift */; };
 		19F5D29A25C1AD52000C5B37 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29925C1AD52000C5B37 /* SettingsView.swift */; };
 		19F5D29F25C1ADEA000C5B37 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */; };
@@ -65,6 +67,8 @@
 		1983565C2469ADDD00A718BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1989812925C83C7C009BAAC3 /* EndCardStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndCardStatistics.swift; sourceTree = "<group>"; };
 		1989812C25C84496009BAAC3 /* StatisticsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCard.swift; sourceTree = "<group>"; };
+		199FF28F2609F09900CB76F8 /* LinkShorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkShorter.swift; sourceTree = "<group>"; };
+		199FF2932609F34400CB76F8 /* ShareClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareClass.swift; sourceTree = "<group>"; };
 		19F5A24D247AD1D40069B62E /* SudokuClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuClass.swift; sourceTree = "<group>"; };
 		19F5D29925C1AD52000C5B37 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		1970CF2B2469FD3A000C8722 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				199FF2922609F33800CB76F8 /* Share */,
 				19F5A24F247AD2180069B62E /* Sudoku */,
 				1970CF2C2469FD45000C8722 /* Help */,
 				1921F8EB24B5CECB00816FD7 /* Data.swift */,
@@ -183,6 +188,15 @@
 				198356572469ADDD00A718BF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		199FF2922609F33800CB76F8 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				199FF28F2609F09900CB76F8 /* LinkShorter.swift */,
+				199FF2932609F34400CB76F8 /* ShareClass.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		19B2509C2474268F00478BDD /* Gui */ = {
@@ -315,6 +329,7 @@
 				1983564F2469ADDC00A718BF /* AppDelegate.swift in Sources */,
 				1954D09325C42A3B00FD5235 /* SettingsSwitch.swift in Sources */,
 				198356512469ADDC00A718BF /* SceneDelegate.swift in Sources */,
+				199FF2902609F09900CB76F8 /* LinkShorter.swift in Sources */,
 				19741F8E25C578FE00FA94CB /* EndCardView.swift in Sources */,
 				1971836D247441FF0031B501 /* SudokuBlockView.swift in Sources */,
 				1989812D25C84496009BAAC3 /* StatisticsCard.swift in Sources */,
@@ -322,6 +337,7 @@
 				1971836F247442D00031B501 /* SudokuFieldView.swift in Sources */,
 				1971836B247430F20031B501 /* Keyboard.swift in Sources */,
 				1970CF2A2469DC76000C8722 /* Number.swift in Sources */,
+				199FF2942609F34400CB76F8 /* ShareClass.swift in Sources */,
 				1921F8EC24B5CECB00816FD7 /* Data.swift in Sources */,
 				19F8E2E1247E5FAF00DB8EBD /* NumberCount.swift in Sources */,
 				1977F760249CF950008C0736 /* Timer.swift in Sources */,

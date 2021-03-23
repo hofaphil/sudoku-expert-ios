@@ -55,6 +55,7 @@ struct SudokuFieldView: View {
                         Text(model.number == 0 ? " " : String(model.number))
                             .font(.system(size: 22))
                             .italic()
+                            .fontWeight(.light)
                     } else {
                         Text(model.number == 0 ? " " : String(model.number))
                             .font(.system(size: 22))
