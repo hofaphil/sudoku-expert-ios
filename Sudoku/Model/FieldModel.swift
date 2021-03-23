@@ -84,6 +84,6 @@ class SudokuFieldModel: ObservableObject {
     func unError() {
         main.errorCheck!.unError()
         error = false
-        color = MainModel.selectedColor
+        color = main.appColor
     }
 }

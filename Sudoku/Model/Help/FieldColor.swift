@@ -117,7 +117,7 @@ extension MainModel {
         }
         
         // mark selected field
-        fields[position.parent][position.row][position.column].color = MainModel.selectedColor
+        fields[position.parent][position.row][position.column].color = appColor
         
         for a in 0...8 {
             for i in 0...2 {

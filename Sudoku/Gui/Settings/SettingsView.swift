@@ -10,7 +10,20 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @EnvironmentObject var main: MainModel
+    
     @State var alert = false
+    @State var colorChooser = false
+    
+    var colorChooserActionSheet: ActionSheet {
+        ActionSheet(title: Text("Choose your color"), message: Text("Choose your favorite color for the app"), buttons: [
+            .default(Text("Green")) { main.appColor = Color.green },
+            .default(Text("Yellow")) { main.appColor = Color.yellow },
+            .default(Text("Blue")) { main.appColor = Color.blue },
+            .default(Text("Orange")) { main.appColor = Color.orange },
+            .cancel()
+        ])
+    }
     
     var body: some View {
         List {
@@ -24,17 +37,17 @@ struct SettingsView: View {
                 SettingsSwitch(title: "Play with Timer", key: Data.SETTINGS_SHOW_TIME)
             }
             Section(header: Text("Support"), footer: Text("Support the developer to unlock different colors and never see any ads again")) {
-                SettingsButton(title: "Color of the app")
-                SettingsButton(title: "Give support")
+                SettingsButton(title: "Color of the app", action: { colorChooser = true })
+                SettingsButton(title: "Give support", action: {}) // TODO link google pay system
+            }
+            .actionSheet(isPresented: self.$colorChooser) {
+                return colorChooserActionSheet
             }
             Section(header: Text("More")) {
-                SettingsButton(title: "Reset your statistics").onTapGesture {
-                    alert = true
-                }
-                SettingsButton(title: "Contact").onTapGesture {
-                    UIApplication.shared.open(URL(string: "https://philipphofer.de/contact")!)
-                }
-            }.alert(isPresented: self.$alert) {
+                SettingsButton(title: "Reset your statistics", action: { alert = true })
+                SettingsButton(title: "Contact", action: { UIApplication.shared.open(URL(string: "https://philipphofer.de/contact")!) })
+            }
+            .alert(isPresented: self.$alert) {
                 Alert(title: Text("Delete Statistics"),
                       message: Text("Do you want to delete all you statistics?"),
                       primaryButton: .destructive(Text("Delete"), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),

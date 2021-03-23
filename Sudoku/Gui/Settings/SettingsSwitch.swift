@@ -10,6 +10,8 @@ import SwiftUI
 
 struct SettingsSwitch: View {
     
+    @EnvironmentObject var main: MainModel
+    
     var title: String
     var key: String
     
@@ -25,7 +27,7 @@ struct SettingsSwitch: View {
     
     var body: some View {
             if #available(iOS 14.0, *) {
-                Toggle(title, isOn: state).toggleStyle(SwitchToggleStyle(tint: Color.yellow))
+                Toggle(title, isOn: state).toggleStyle(SwitchToggleStyle(tint: main.appColor))
             } else {
                 Toggle(title, isOn: state)
             }

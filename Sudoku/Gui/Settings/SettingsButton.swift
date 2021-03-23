@@ -10,15 +10,18 @@ import SwiftUI
 
 struct SettingsButton: View {
     
-    var title: String
+    let title: String
+    let action: () -> Void
+    
     @State var state: Bool = false
     
-    init(title: String) {
+    init(title: String, action: @escaping () -> Void) {
         self.title = title
+        self.action = action
     }
     
     var body: some View {
-        Button(action: {}, label: {
+        Button(action: { action() }, label: {
             Text(title).foregroundColor(Color.black)
         })
     }
@@ -26,6 +29,6 @@ struct SettingsButton: View {
 
 struct SettingsButton_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsButton(title: "TestTitle")
+        SettingsButton(title: "TestTitle", action: { print("hello world") })
     }
 }

@@ -54,7 +54,7 @@ struct Keyboard: View {
                         Image(systemName: "pencil").imageScale(.small)
                         Text("Notes").bold()
                     }
-                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? Color.yellow : Color.white)
+                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? main.appColor : Color.white)
                 Button(action: {
                         main.selected?.delete()
                 }) {
@@ -70,7 +70,7 @@ struct Keyboard: View {
                         Image(systemName: "pause").imageScale(.small)
                         Text("Pause").bold()
                     }
-                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? Color.yellow : Color.white)
+                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? main.appColor : Color.white)
             }
         }
     }

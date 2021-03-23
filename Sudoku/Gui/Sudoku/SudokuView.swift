@@ -15,7 +15,7 @@ struct SudokuView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Rectangle().frame(maxHeight: .infinity, alignment: .topLeading).foregroundColor(.yellow).edgesIgnoringSafeArea(.top)
+                Rectangle().frame(maxHeight: .infinity, alignment: .topLeading).foregroundColor(main.appColor).edgesIgnoringSafeArea(.top)
                 if (main.numberCount.finished && main.errorCheck!.activeErrors == 0) ||
                     (main.errorCheck!.overallErrors >= 3 && main.showErrors) {
                     NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3, time: main.timeInt, difficulty: main.difficulty).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)

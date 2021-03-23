@@ -30,9 +30,10 @@ class MainModel: ObservableObject {
     @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
     @Published var pause = false
     
+    @Published var appColor = Color(UIColor.yellow)
+    
     static let unSelectedColor = Color.white
     static let lightSelectedColor = Color(.systemGray3)
-    static let selectedColor = Color.yellow
     static let errorColor = Color.red
     
     var sudoku = SudokuClass(threads: 1)
@@ -78,5 +79,9 @@ class MainModel: ObservableObject {
     func select(model: SudokuFieldModel) {
         selected = model
         setFieldColors(position: model.position)
+    }
+    
+    func changeColor(_ color: Color) {
+        appColor = color
     }
 }
