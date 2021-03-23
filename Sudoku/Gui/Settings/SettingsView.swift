@@ -17,10 +17,22 @@ struct SettingsView: View {
     
     var colorChooserActionSheet: ActionSheet {
         ActionSheet(title: Text("Choose your color"), message: Text("Choose your favorite color for the app"), buttons: [
-            .default(Text("Green")) { main.appColor = Color.green },
-            .default(Text("Yellow")) { main.appColor = Color.yellow },
-            .default(Text("Blue")) { main.appColor = Color.blue },
-            .default(Text("Orange")) { main.appColor = Color.orange },
+            .default(Text("Green")) {
+                main.appColor = Color("Green")
+                UserDefaults.standard.set("Green", forKey: Data.SETTINGS_COLOR)
+            },
+            .default(Text("Yellow")) {
+                main.appColor = Color("Yellow")
+                UserDefaults.standard.set("Yellow", forKey: Data.SETTINGS_COLOR)
+            },
+            .default(Text("Blue")) {
+                main.appColor = Color("Blue")
+                UserDefaults.standard.set("Blue", forKey: Data.SETTINGS_COLOR)
+            },
+            .default(Text("Orange")) {
+                main.appColor = Color("Orange")
+                UserDefaults.standard.set("Orange", forKey: Data.SETTINGS_COLOR)
+            },
             .cancel()
         ])
     }

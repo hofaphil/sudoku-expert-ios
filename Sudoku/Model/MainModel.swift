@@ -30,7 +30,7 @@ class MainModel: ObservableObject {
     @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
     @Published var pause = false
     
-    @Published var appColor = Color(UIColor.yellow)
+    @Published var appColor = Color(UserDefaults.standard.string(forKey: Data.SETTINGS_COLOR)!)
     
     static let unSelectedColor = Color.white
     static let lightSelectedColor = Color(.systemGray3)

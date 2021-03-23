@@ -46,14 +46,7 @@ class Data {
     
     let storage = UserDefaults.standard
     
-    private init() {
-        UserDefaults.standard.register(defaults: [Data.SETTINGS_MARK_LINES: true])
-        UserDefaults.standard.register(defaults: [Data.SETTINGS_MARK_NUMBERS: true])
-        UserDefaults.standard.register(defaults: [Data.SETTINGS_MARK_ERRORS: true])
-        UserDefaults.standard.register(defaults: [Data.SETTINGS_CHECK_NOTES: true])
-        UserDefaults.standard.register(defaults: [Data.SETTINGS_SHOW_TIME: true])
-
-    }
+    private init() {}
     
     func saveGame(main: MainModel) {
         storage.set(main.difficulty.rawValue, forKey: Data.GAME_DIFFICULTY)

@@ -12,6 +12,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let userdefaults = [
+            Data.SETTINGS_MARK_LINES: true,
+            Data.SETTINGS_MARK_NUMBERS: true,
+            Data.SETTINGS_MARK_ERRORS: true,
+            Data.SETTINGS_CHECK_NOTES: true,
+            Data.SETTINGS_SHOW_TIME: true,
+            Data.SETTINGS_COLOR: "Yellow"
+        ] as [String : Any]
+        UserDefaults.standard.register(defaults: userdefaults)
+        
         // Override point for customization after application launch.
         return true
     }
