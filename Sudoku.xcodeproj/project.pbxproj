@@ -98,7 +98,6 @@
 			children = (
 				19F8E2DE247E5D0300DB8EBD /* FieldModel.swift */,
 				19F8E2DA247D67F300DB8EBD /* MainModel.swift */,
-				19F8E2E2247E643000DB8EBD /* Help */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,6 +124,7 @@
 		1970CF2B2469FD3A000C8722 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				1978974B260C7D26009FFBDE /* Game */,
 				199FF2922609F33800CB76F8 /* Share */,
 				19F5A24F247AD2180069B62E /* Sudoku */,
 				1970CF2C2469FD45000C8722 /* Help */,
@@ -150,6 +150,17 @@
 				1989812925C83C7C009BAAC3 /* EndCardStatistics.swift */,
 			);
 			path = EndCard;
+			sourceTree = "<group>";
+		};
+		1978974B260C7D26009FFBDE /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				19F8E2E0247E5FAF00DB8EBD /* NumberCount.swift */,
+				19F8E2E3247E643E00DB8EBD /* ErrorCheck.swift */,
+				19F8E2D6247D46D400DB8EBD /* FieldColor.swift */,
+				1977F75F249CF950008C0736 /* Timer.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		198356422469ADDC00A718BF = {
@@ -242,17 +253,6 @@
 				1971836E247442D00031B501 /* SudokuFieldView.swift */,
 			);
 			path = Grid;
-			sourceTree = "<group>";
-		};
-		19F8E2E2247E643000DB8EBD /* Help */ = {
-			isa = PBXGroup;
-			children = (
-				19F8E2E0247E5FAF00DB8EBD /* NumberCount.swift */,
-				19F8E2E3247E643E00DB8EBD /* ErrorCheck.swift */,
-				19F8E2D6247D46D400DB8EBD /* FieldColor.swift */,
-				1977F75F249CF950008C0736 /* Timer.swift */,
-			);
-			path = Help;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
