@@ -53,6 +53,7 @@ class SudokuFieldModel: ObservableObject {
                 }
                 self.number = number
                 main.numberCount.add(number)
+                main.checkNotes(sudokuField: self, number: number)
                 if main.errorCheck!.check(model: self) {
                     setError()
                 }
@@ -85,5 +86,11 @@ class SudokuFieldModel: ObservableObject {
         main.errorCheck!.unError()
         error = false
         color = main.appColor
+    }
+    
+    func checkNotes(number: Int) {
+        if number != 0 && isNotes {
+            notes[number - 1] = false
+        }
     }
 }
