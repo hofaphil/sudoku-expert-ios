@@ -51,6 +51,10 @@ class MainModel: ObservableObject {
     }
     
     func startNewGame(difficulty: Difficulty) {
+        if loading {
+            return
+        }
+        
         self.loading = true
         
         numberCount = NumberCount()
@@ -59,7 +63,7 @@ class MainModel: ObservableObject {
         DispatchQueue.global(qos: .background).async {
             self.sudoku = SudokuClass(threads: 1)
             self.sudoku.create(difficulty: difficulty.rawValue)
-            usleep(5000000)
+            usleep(2000000)
             
             DispatchQueue.main.sync {
                 self.startNewGame()
