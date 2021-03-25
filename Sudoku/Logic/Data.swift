@@ -99,6 +99,14 @@ class Data {
                 main.fields[i].append([SudokuFieldModel]())
                 for a in 0..<3 {
                     main.fields[i][j].append(SudokuFieldModel(main: main, position: Position(row: j, column: a, parent: i),number: 0, error: false))
+                }
+            }
+        }
+        
+        // first init, then load, otherwise the notecheck has a nullpointer!
+        for i in 0..<9 {
+            for j in 0..<3 {
+                for a in 0..<3 {
                     main.fields[i][j][a].isNotes = storage.bool(forKey: Data.FIELD_IS_NOTES + String(i) + String(j) + String(a))
                     if main.fields[i][j][a].isNotes {
                         main.fields[i][j][a].notes = storage.array(forKey: Data.FIELD_NOTES + String(i) + String(j) + String(a)) as! [Bool]
