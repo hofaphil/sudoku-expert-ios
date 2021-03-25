@@ -74,8 +74,8 @@ class SudokuClass: ObservableObject {
     func deleteNumbers(threadNumber: Int, difficulty: Int, threadHolder: [Block]) {
         var b = 0
         
-        //let diff = difficulty * 7 + 40
-        let diff = 2
+        let diff = difficulty * 7 + 40
+        //let diff = 2
 
         var numbers = [Number]()
         for i in 0...8 {

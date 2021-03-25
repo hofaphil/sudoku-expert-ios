@@ -19,7 +19,7 @@ class MainModel: ObservableObject {
     @Published var difficulty = Difficulty.ADVANCED
     
     @Published var numberCount = NumberCount()
-
+    
     @Published var errorCheck: ErrorCheck?
     @Published var showErrors = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS)
     
@@ -54,30 +54,18 @@ class MainModel: ObservableObject {
         if loading {
             return
         }
-        
         self.loading = true
         
-        numberCount = NumberCount()
-        self.difficulty = difficulty
-        
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.main.async {
+            self.numberCount = NumberCount()
+            self.difficulty = difficulty
+            
             self.sudoku = SudokuClass(threads: 1)
             self.sudoku.create(difficulty: difficulty.rawValue)
-            usleep(2000000)
             
-            DispatchQueue.main.sync {
-                self.startNewGame()
-                self.loading = false
-            }
+            self.startNewGame()
+            self.loading = false
         }
-        
-        /*loading = false
-        numberCount = NumberCount()
-        sudoku = SudokuClass(threads: 1)
-        sudoku.create(difficulty: difficulty.rawValue)
-        self.difficulty = difficulty
-        
-        startNewGame()*/
     }
     
     func startNewGame() {
@@ -95,7 +83,7 @@ class MainModel: ObservableObject {
                 }
             }
         }
-                
+        
         showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
         showErrors = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS)
         print(showErrors)
