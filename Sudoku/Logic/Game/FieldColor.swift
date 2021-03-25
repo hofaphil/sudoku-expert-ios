@@ -123,7 +123,7 @@ extension MainModel {
             for i in 0...2 {
                 for j in 0...2 {
                     // mark errors
-                    if fields[a][i][j].error && UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS){
+                    if fields[a][i][j].error && UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS) {
                         fields[a][i][j].color = MainModel.errorColor
                     }
                 }
