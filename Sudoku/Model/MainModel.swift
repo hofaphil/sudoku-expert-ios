@@ -28,8 +28,9 @@ class MainModel: ObservableObject {
     var timerRun = true
     @Published var time = "00:00"
     @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
-    @Published var pause = false
     
+    @Published var pause = false
+    @Published var loading = false
     @Published var appColor = Color(UserDefaults.standard.string(forKey: Data.SETTINGS_COLOR)!)
     
     static let unSelectedColor = Color.white
@@ -50,12 +51,29 @@ class MainModel: ObservableObject {
     }
     
     func startNewGame(difficulty: Difficulty) {
+        self.loading = true
+        
+        numberCount = NumberCount()
+        self.difficulty = difficulty
+        
+        DispatchQueue.global(qos: .background).async {
+            self.sudoku = SudokuClass(threads: 1)
+            self.sudoku.create(difficulty: difficulty.rawValue)
+            usleep(5000000)
+            
+            DispatchQueue.main.sync {
+                self.startNewGame()
+                self.loading = false
+            }
+        }
+        
+        /*loading = false
         numberCount = NumberCount()
         sudoku = SudokuClass(threads: 1)
         sudoku.create(difficulty: difficulty.rawValue)
         self.difficulty = difficulty
         
-        startNewGame()
+        startNewGame()*/
     }
     
     func startNewGame() {

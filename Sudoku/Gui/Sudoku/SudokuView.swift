@@ -12,6 +12,8 @@ struct SudokuView: View {
     
     @EnvironmentObject var main: MainModel
     
+    @State var animate = true
+        
     var body: some View {
         NavigationView {
             ZStack {
@@ -22,10 +24,12 @@ struct SudokuView: View {
                 } else {
                     VStack(spacing: 0){
                         StatusBar()
-                        if(!main.pause) {
-                            SudokuGridView(sudoku: main.sudoku)
-                        } else {
+                        if(main.pause) {
                             Text("").frame(height: UIScreen.main.bounds.width)
+                        } else if (main.loading){
+                            ActivityIndicator(shouldAnimate: $animate).frame(height: UIScreen.main.bounds.width)
+                        } else {
+                            SudokuGridView(sudoku: main.sudoku)
                         }
                         Spacer()
                         Keyboard()
@@ -44,5 +48,23 @@ struct SudokuView: View {
 struct SudokuView_Previews: PreviewProvider {
     static var previews: some View {
         SudokuView().environmentObject(MainModel())
+    }
+}
+
+struct ActivityIndicator: UIViewRepresentable {
+    
+    @Binding var shouldAnimate: Bool
+    
+    func makeUIView(context: Context) -> UIActivityIndicatorView {
+        return UIActivityIndicatorView()
+    }
+
+    func updateUIView(_ uiView: UIActivityIndicatorView,
+                      context: Context) {
+        if self.shouldAnimate {
+            uiView.startAnimating()
+        } else {
+            uiView.stopAnimating()
+        }
     }
 }

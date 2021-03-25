@@ -20,7 +20,9 @@ struct StatusBar: View {
     
     var newGameSheet: ActionSheet {
         ActionSheet(title: Text("New Game"), message: Text("Select Difficulty"), buttons: [
-            .default(Text(Difficulty.BEGINNER.asString)) {self.main.startNewGame(difficulty: Difficulty.BEGINNER)},
+            .default(Text(Difficulty.BEGINNER.asString)) {
+                self.main.loading = true
+                self.main.startNewGame(difficulty: Difficulty.BEGINNER)},
             .default(Text(Difficulty.ADVANCED.asString)) {self.main.startNewGame(difficulty: Difficulty.ADVANCED)},
             .default(Text(Difficulty.EXPERT.asString)) {self.main.startNewGame(difficulty: Difficulty.EXPERT)},
             .cancel()
