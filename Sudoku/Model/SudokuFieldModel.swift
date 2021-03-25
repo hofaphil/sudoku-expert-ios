@@ -15,7 +15,7 @@ class SudokuFieldModel: ObservableObject {
     
     @Published var number: Int
     @Published var position: Position
-    @Published var color = Color.white
+    @Published var color = MainModel.unSelectedColor
     @Published var error: Bool
     
     @Published var changeable = false

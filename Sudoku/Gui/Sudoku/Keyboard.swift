@@ -54,7 +54,7 @@ struct Keyboard: View {
                         Image(systemName: "pencil").imageScale(.small)
                         Text("Notes").bold()
                     }
-                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? main.appColor : Color.white)
+                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
                 Button(action: {
                         main.selected?.delete()
                 }) {
@@ -70,7 +70,7 @@ struct Keyboard: View {
                         Image(systemName: "pause").imageScale(.small)
                         Text("Pause").bold()
                     }
-                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? main.appColor : Color.white)
+                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? main.appColor : MainModel.unSelectedColor)
             }
         }
     }
@@ -79,7 +79,7 @@ struct Keyboard: View {
         return Button(action: { self.insert(number) })
             { Text(String(number)).font(.system(size: 30)).bold() }
             .disabled(main.numberCount.numberCount[number] >= 9)
-            .foregroundColor(main.numberCount.numberCount[number] >= 9 ? Color.white : .black)
+            .opacity(main.numberCount.numberCount[number] >= 9 ? 0 : 1)
     }
     
     private func insert(_ number: Int) {

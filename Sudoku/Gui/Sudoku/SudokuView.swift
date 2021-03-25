@@ -38,7 +38,7 @@ struct SudokuView: View {
                         main.timerRun = false
                     }).onAppear(perform: {
                         main.timerRun = true
-                    }).background(Color.white)
+                    }).background(MainModel.unSelectedColor)
                 }
             }
         }.accentColor(.black)
