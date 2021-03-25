@@ -45,15 +45,21 @@ class MainModel: ObservableObject {
             startTimer(time: timeInt)
         } else {
             print("start game")
-            startNewGame()
+            startNewGame(difficulty: Difficulty.ADVANCED)
         }
     }
     
-    func startNewGame(difficulty: Difficulty = Difficulty.ADVANCED) {
+    func startNewGame(difficulty: Difficulty) {
         numberCount = NumberCount()
         sudoku = SudokuClass(threads: 1)
         sudoku.create(difficulty: difficulty.rawValue)
         self.difficulty = difficulty
+        
+        startNewGame()
+    }
+    
+    func startNewGame() {
+        numberCount = NumberCount()
         
         errorCheck = ErrorCheck(solution: sudoku.getSolution())
         
