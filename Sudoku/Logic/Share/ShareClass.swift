@@ -28,11 +28,12 @@ class ShareClass {
         return URL(string: websiteURL + "share?id=" + LinkShorter.getLink(id: id))
     }
     
-    static func load(main: MainModel, url: URL) throws -> SudokuClass{
-        let sudoku = SudokuClass(threads: 4)
+    static func load(main: MainModel, url: URL) throws {
+        main.sudoku = SudokuClass(threads: 4)
 
+        let urlComponents = URLComponents(string: url.absoluteString)
+        let link = urlComponents?.queryItems?.first(where: { $0.name == "id" })?.value
         
-        let link = url.query;
         if link == nil {
             // TODO throw exception
         }
@@ -51,24 +52,28 @@ class ShareClass {
         main.difficulty = Difficulty(rawValue: difficulty!)!
 
         var block = [Block]()
-        var numbers = [[Int]]()
+        var numbers = [[Int]](repeating: [Int](repeating: 0, count: 3), count: 3)
         
         var k = 1
         
         for i in 0..<9 {
-            for a in 0..<9 {
-                for b in 0..<9 {
-                    numbers[a][b] = Int(String(id[id.index(id.startIndex, offsetBy: k)]))!
+            for a in 0..<3 {
+                for b in 0..<3 {
+                    numbers[a][b] = Int(String(id[k]))!
                     k += 1
                 }
             }
-            block[i] = Block();
+            block.append(Block());
             block[i].setNumbers(numbers: numbers);
         }
-        sudoku.setSudoku(blocks: block)
-        let solution = try sudoku.solve(blocks: sudoku.getSudoku())
-        sudoku.setSolution(blocks: solution)
-        
-        return sudoku
+        main.sudoku.setSudoku(blocks: block)
+        let solution = try main.sudoku.solve(blocks: main.sudoku.getSudoku())
+        main.sudoku.setSolution(blocks: solution)
+    }
+}
+
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
     }
 }
