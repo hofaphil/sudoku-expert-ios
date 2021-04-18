@@ -70,7 +70,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
         print("ready")
-        main.startNewGame()
+        // TODO
+        main.startNewGame(difficulty: Difficulty.init(rawValue: 0)!)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

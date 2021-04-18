@@ -132,24 +132,19 @@ class Data {
     private func loadSudoku(_ main: MainModel) {
         var sudoku = [Block]()
         for i in 0..<9 {
-            var numbers = [[Int]]()
+            var numbers = [[Int32]]()
             for j in 0..<3 {
-                numbers.append([Int](repeating: 0, count: 3))
+                numbers.append([Int32](repeating: 0, count: 3))
                 for a in 0..<3 {
-                    numbers[j][a] = storage.integer(forKey: Data.GAME_SUDOKU + String(i) + String(j) + String(a))
+                    numbers[j][a] = Int32(storage.integer(forKey: Data.GAME_SUDOKU + String(i) + String(j) + String(a)))
                 }
             }
-            let block = Block()
-            block.setNumbers(numbers: numbers)
+            let block = Block(numbers: numbers)
             sudoku.append(block)
         }
         
         // set the sudoku and its solution
         main.sudoku.setSudoku(blocks: sudoku)
-        do {
-            try main.sudoku.setSolution(blocks: main.sudoku.solve(blocks: sudoku))
-        } catch  {
-            print(error)
-        }
+        main.sudoku.setSolution(blocks: main.sudoku.solve(blocks: sudoku))
     }
 }

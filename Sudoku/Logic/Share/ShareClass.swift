@@ -29,7 +29,7 @@ class ShareClass {
     }
     
     static func load(main: MainModel, url: URL) throws {
-        main.sudoku = SudokuClass(threads: 4)
+        main.sudoku = SudokuClass()
 
         let urlComponents = URLComponents(string: url.absoluteString)
         let link = urlComponents?.queryItems?.first(where: { $0.name == "id" })?.value
@@ -52,22 +52,21 @@ class ShareClass {
         main.difficulty = Difficulty(rawValue: difficulty!)!
 
         var block = [Block]()
-        var numbers = [[Int]](repeating: [Int](repeating: 0, count: 3), count: 3)
+        var numbers = [[Int32]](repeating: [Int32](repeating: 0, count: 3), count: 3)
         
         var k = 1
         
-        for i in 0..<9 {
+        for _ in 0..<9 {
             for a in 0..<3 {
                 for b in 0..<3 {
-                    numbers[a][b] = Int(String(id[k]))!
+                    numbers[a][b] = Int32(String(id[k]))!
                     k += 1
                 }
             }
-            block.append(Block());
-            block[i].setNumbers(numbers: numbers);
+            block.append(Block(numbers: numbers));
         }
         main.sudoku.setSudoku(blocks: block)
-        let solution = try main.sudoku.solve(blocks: main.sudoku.getSudoku())
+        let solution = main.sudoku.solve(blocks: main.sudoku.getSudoku())
         main.sudoku.setSolution(blocks: solution)
     }
 }

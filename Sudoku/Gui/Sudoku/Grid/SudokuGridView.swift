@@ -44,6 +44,6 @@ struct SudokuGridView: View {
 
 struct SudokuGrid_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuGridView(sudoku: SudokuClass(threads: 1)).environmentObject(MainModel())
+        SudokuGridView(sudoku: SudokuClass()).environmentObject(MainModel())
     }
 }

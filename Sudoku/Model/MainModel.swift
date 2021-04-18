@@ -37,17 +37,17 @@ class MainModel: ObservableObject {
     static let lightSelectedColor = Color("DimGray")
     static let errorColor = Color("Red")
     
-    var sudoku = SudokuClass(threads: 1)
-    
+    var sudoku = SudokuClass()
+
     init(difficulty: Int = 0) {
-        if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
+        /*if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             print("load game")
             Data.instance.loadGame(main: self)
             startTimer(time: timeInt)
-        } else {
+        } else {*/
             print("start game")
             startNewGame(difficulty: Difficulty.ADVANCED)
-        }
+        //}
     }
     
     func startNewGame(difficulty: Difficulty) {
@@ -60,15 +60,13 @@ class MainModel: ObservableObject {
             self.numberCount = NumberCount()
             self.difficulty = difficulty
             
-            self.sudoku = SudokuClass(threads: 1)
-            self.sudoku.create(difficulty: difficulty.rawValue)
-            
+            self.sudoku.generate(difficulty: difficulty.rawValue)
             self.startNewGame()
             self.loading = false
         }
     }
     
-    func startNewGame() {
+    private func startNewGame() {
         numberCount = NumberCount()
         
         errorCheck = ErrorCheck(solution: sudoku.getSolution())
@@ -79,7 +77,7 @@ class MainModel: ObservableObject {
             for j in 0...2 {
                 fields[i].append([SudokuFieldModel]())
                 for a in 0...2 {
-                    fields[i][j].append(SudokuFieldModel(main: self, position: Position(row: j, column: a, parent: i),number: sudoku.getSudoku()[i].getNumbers()[j][a], error: false))
+                    fields[i][j].append(SudokuFieldModel(main: self, position: Position(row: j, column: a, parent: i),number: Int(sudoku.getSudoku()[i].getNumbers()[j][a]), error: false))
                 }
             }
         }
