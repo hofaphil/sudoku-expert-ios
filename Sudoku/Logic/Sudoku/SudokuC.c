@@ -195,11 +195,12 @@ int generate(sudoku *sudoku, int number, int block)
 block *get_solution(block sudoku[])
 {
     solution_flag = -1;
-    block solution[9];
+    block *solution = malloc(sizeof(block) * 9);
     init_block(solution);
     for (int i = 0; i < 9; i++)
         set_numbers(&solution[i], sudoku[i].numbers);
 
+    // TODO do not exit but error
     if (!solve(solution, 1, 0))
         exit(0);
 

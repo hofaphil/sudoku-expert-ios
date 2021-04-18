@@ -66,7 +66,7 @@ class ShareClass {
             block.append(Block(numbers: numbers));
         }
         main.sudoku.setSudoku(blocks: block)
-        let solution = main.sudoku.solve(blocks: main.sudoku.getSudoku())
+        let solution = SudokuClass.solve(blocks: main.sudoku.getSudoku())
         main.sudoku.setSolution(blocks: solution)
     }
 }

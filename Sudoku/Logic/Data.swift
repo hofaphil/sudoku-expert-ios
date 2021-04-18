@@ -145,6 +145,6 @@ class Data {
         
         // set the sudoku and its solution
         main.sudoku.setSudoku(blocks: sudoku)
-        main.sudoku.setSolution(blocks: main.sudoku.solve(blocks: sudoku))
+        main.sudoku.setSolution(blocks: SudokuClass.solve(blocks: sudoku))
     }
 }

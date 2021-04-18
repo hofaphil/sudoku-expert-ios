@@ -40,14 +40,14 @@ class MainModel: ObservableObject {
     var sudoku = SudokuClass()
 
     init(difficulty: Int = 0) {
-        /*if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
+        if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             print("load game")
             Data.instance.loadGame(main: self)
             startTimer(time: timeInt)
-        } else {*/
+        } else {
             print("start game")
             startNewGame(difficulty: Difficulty.ADVANCED)
-        //}
+        }
     }
     
     func startNewGame(difficulty: Difficulty) {

@@ -58,17 +58,22 @@ class SudokuClass: ObservableObject {
         self.blocks = blocks
     }
     
-    func solve(blocks: [Block]) -> [Block] {
+    static func solve(blocks: [Block]) -> [Block] {
         var solution = [Block]()
                        
         let blocks_c = UnsafeMutablePointer<block>.allocate(capacity: 9)
         
-        get_solution(blocks_c)
-        
         for i in 0..<9 {
-            solution[i] = Block(block: blocks_c.deinitialize(count: i).load(as: block.self));
+            blocks_c[i] = Block.blockToC(block: blocks[i]);
         }
         
+        let solution_c = get_solution(blocks_c)
+
+        for i in 0..<9 {
+            solution.append(Block(block: solution_c![i]));
+        }
+        
+        solution_c?.deallocate()
         return solution
     }
     
