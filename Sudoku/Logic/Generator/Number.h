@@ -1,7 +1,3 @@
-//
-// Created by Philipp Hofer on 26.03.21.
-//
-
 #ifndef GENERATOR_NUMBER_H
 #define GENERATOR_NUMBER_H
 

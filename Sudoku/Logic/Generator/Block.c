@@ -1,7 +1,14 @@
 #include <stdlib.h>
-#include <stdio.h>
 
-#include "BlockC.h"
+#include "Block.h"
+
+int block_conflict(block *block, int number);
+
+int line_conflict(block *block, int number, int row, int column);
+
+int has_in_row(block *block, int number, int row);
+
+int has_in_column(block *block, int number, int column);
 
 block new_block()
 {
@@ -10,20 +17,24 @@ block new_block()
         for (int j = 0; j < 3; j++)
             b.numbers[i][j] = 0;
 
-    for (int j = 0; j < 3; j++)
-        for (int i = 0; i < 10; i++) {
-            b.contains_number[i] = 0;
-            b.row[j][i] = 0;
-            b.column[j][i] = 0;
-        }
+    set_numbers(&b, b.numbers);
 
     b.latest_del_index_x = b.latest_del_index_z = -1;
+
+    for (int i = 0; i < 2; i++) {
+        b.row_partner[i] = NULL;
+        b.column_partner[i] = NULL;
+    }
     return b;
 }
 
 block new_block_copy(block copy_block)
 {
     block b = new_block();
+    for (int i = 0; i < 2; i++) {
+        b.row_partner[i] = copy_block.row_partner[i];
+        b.column_partner[i] = copy_block.column_partner[i];
+    }
     set_numbers(&b, copy_block.numbers);
     return b;
 }
@@ -93,7 +104,8 @@ void generate_random(block *block)
             block->contains_number[i] = 1;
             block->row[row][i] = 1;
             block->column[column][i] = 1;
-        } else
+        }
+        else
             i--;
     }
 }
@@ -106,9 +118,9 @@ int block_conflict(block *block, int number)
 int line_conflict(block *block, int number, int row, int column)
 {
     return !(!has_in_row(block->row_partner[0], number, row) &&
-             !has_in_row(block->row_partner[1], number, row) &&
-             !has_in_column(block->column_partner[0], number, column) &&
-             !has_in_column(block->column_partner[1], number, column));
+        !has_in_row(block->row_partner[1], number, row) &&
+        !has_in_column(block->column_partner[0], number, column) &&
+        !has_in_column(block->column_partner[1], number, column));
 }
 
 int has_in_row(block *block, int number, int row)
@@ -121,7 +133,7 @@ int has_in_column(block *block, int number, int column)
     return block->column[column][number];
 }
 
-int delete(block *block, int number)
+int delete_number(block *block, int number)
 {
     if (block->contains_number[number]) {
         block->contains_number[number] = 0;
@@ -141,7 +153,7 @@ int delete(block *block, int number)
     return 0;
 }
 
-void delete_with_position(block *block, int number, int row, int column)
+int delete_with_position(block *block, int number, int row, int column)
 {
     if (block->contains_number[number]) {
         block->contains_number[number] = 0;
@@ -150,7 +162,9 @@ void delete_with_position(block *block, int number, int row, int column)
         block->column[column][number] = 0;
         block->latest_del_index_x = row;
         block->latest_del_index_z = column;
+        return 1;
     }
+    return 0;
 }
 
 int contains(block *block, int number)

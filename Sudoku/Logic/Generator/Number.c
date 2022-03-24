@@ -1,4 +1,4 @@
-#include "NumberC.h"
+#include "Number.h"
 
 number new_number(int block, int number)
 {

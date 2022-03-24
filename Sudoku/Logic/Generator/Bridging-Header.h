@@ -9,8 +9,8 @@
 #ifndef Bridging_Header_h
 #define Bridging_Header_h
 
-#import "SudokuC.h"
-#import "BlockC.h"
-#import "NumberC.h"
+#import "Sudoku.h"
+#import "Block.h"
+#import "Number.h"
 
 #endif /* Bridging_Header_h */

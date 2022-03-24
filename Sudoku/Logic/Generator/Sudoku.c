@@ -2,19 +2,28 @@
 #include <stdio.h>
 #include <time.h>
 
-#include "SudokuC.h"
+#include "Sudoku.h"
 
-int solution_flag = -1;
+void shuffle(number *array, int n);
+
+int delete_numbers(int difficulty, block blocks[9]);
+
+int check_solutions(int index, int x, int z, int number, block holder_num[9]);
+
+int solve_sudoku(block blocks[9], int number, int block);
+
+int generate(sudoku *sudoku, int number, int block);
 
 sudoku *new_sudoku()
 {
     sudoku *s = malloc(sizeof(sudoku));
+    init_blocks(s->blocks);
+    init_blocks(s->solution);
     srand(time(NULL));
-    init_block(s->blocks);
     return s;
 }
 
-int create(sudoku *sudoku, int difficulty)
+int create(sudoku *sudoku, int freeFields)
 {
     generate_random(&sudoku->blocks[0]);
     generate_random(&sudoku->blocks[4]);
@@ -23,15 +32,14 @@ int create(sudoku *sudoku, int difficulty)
     generate(sudoku, 1, 1);
 
     for (int i = 0; i < 9; i++)
-        sudoku->solution[i] = new_block();
+        sudoku->solution[i] = new_block_copy(sudoku->blocks[i]);
 
-    return delete_numbers(difficulty, sudoku->blocks);
+    return delete_numbers(freeFields, sudoku->blocks);
 }
 
-int delete_numbers(int difficulty, block blocks[9])
+int delete_numbers(int freeFields, block blocks[9])
 {
     int b = 0;
-    int diff = difficulty * 7 + 40;
 
     number numbers[81];
     int array_index = 0;
@@ -44,12 +52,12 @@ int delete_numbers(int difficulty, block blocks[9])
 
     array_index = 0;
 
-    while (b < diff && array_index < 81) {
+    while (b < freeFields && array_index < 81) {
         int index = numbers[array_index].block;
         int number = numbers[array_index++].number;
 
         block holder = new_block_copy(blocks[index]);
-        if (delete(&blocks[index], number)) {
+        if (delete_number(&blocks[index], number)) {
             b++;
 
             if (!check_solutions(index, blocks[index].latest_del_index_x, blocks[index].latest_del_index_z, number,
@@ -62,7 +70,7 @@ int delete_numbers(int difficulty, block blocks[9])
     return b;
 }
 
-void init_block(block block[9])
+void init_blocks(block block[9])
 {
     for (int i = 0; i < 9; i++)
         block[i] = new_block();
@@ -103,13 +111,11 @@ int check_solutions(int index, int x, int z, int number, block holder_num[9])
     }
 
     for (int j = 1; j < 10; j++) {
-        if (solution_flag != -1)
-            return 1;
         if (j == number)
             continue;
 
         if (insert(&holder_num[index], j, x, z)) {
-            if (solve(holder_num, 1, 0)) {
+            if (solve_sudoku(holder_num, 1, 0)) {
                 for (int i = 0; i < 9; i++)
                     set_numbers(&holder_num[i], holder[i].numbers);
                 return 0;
@@ -120,13 +126,13 @@ int check_solutions(int index, int x, int z, int number, block holder_num[9])
     return 1;
 }
 
-int solve(block blocks[9], int number, int block)
+int solve_sudoku(block blocks[9], int number, int block)
 {
-    if (number == 10 || solution_flag != -1)
+    if (number == 10)
         return 1;
 
     if (contains(&blocks[block], number))
-        return solve(blocks, block == 8 ? number + 1 : number, block == 8 ? 0 : block + 1);
+        return solve_sudoku(blocks, block == 8 ? number + 1 : number, block == 8 ? 0 : block + 1);
 
     int counter = -1;
     int ready = 0;
@@ -151,8 +157,9 @@ int solve(block blocks[9], int number, int block)
             return 0;
         }
 
-        ready = solve(blocks, block == 8 ? number + 1 : number, block == 8 ? 0 : block + 1);
-    } while (!ready && solution_flag == -1);
+        ready = solve_sudoku(blocks, block == 8 ? number + 1 : number, block == 8 ? 0 : block + 1);
+    }
+    while (!ready);
     return 1;
 }
 
@@ -188,42 +195,37 @@ int generate(sudoku *sudoku, int number, int block)
         else
             ready = generate(sudoku, number, block + 1);
 
-    } while (!ready);
+    }
+    while (!ready);
     return 1;
 }
 
-block *get_solution(block sudoku[])
+int solve(sudoku *sudoku)
 {
-    solution_flag = -1;
-    block *solution = malloc(sizeof(block) * 9);
-    init_block(solution);
+    block solution[9];
+    init_blocks(solution);
     for (int i = 0; i < 9; i++)
-        set_numbers(&solution[i], sudoku[i].numbers);
+        set_numbers(&solution[i], sudoku->blocks[i].numbers);
 
-    // TODO do not exit but error
-    if (!solve(solution, 1, 0))
-        exit(0);
+    if (!solve_sudoku(solution, 1, 0))
+        return 1;
 
-    return solution;
+    set_solution(sudoku, solution);
+    return 0;
 }
 
-void set_solution(sudoku *sudoku, block blocks[])
+void set_solution(sudoku *sudoku, block blocks[9])
 {
     for (int i = 0; i < 9; i++) {
         sudoku->solution[i] = blocks[i];
     }
 }
 
-void set_sudoku(sudoku *sudoku, block blocks[])
+void set_sudoku(sudoku *sudoku, block blocks[9])
 {
     for (int i = 0; i < 9; i++) {
         sudoku->blocks[i] = blocks[i];
     }
-}
-
-void print_sudoku(sudoku *sudoku)
-{
-    print_blocks(sudoku->blocks);
 }
 
 void print_blocks(block *blocks)
@@ -251,4 +253,3 @@ void shuffle(number *array, int n)
             array[i] = t;
         }
 }
-
