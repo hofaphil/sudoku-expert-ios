@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Sudoku: Equatable {
+class Sudoku: Equatable, Codable {
 
     var blocks: [Block];
     var overallErrors: Int = 0;
@@ -56,7 +56,7 @@ class Sudoku: Equatable {
     }
 
     func getNumber(position: Position) -> Number {
-        return blocks[position.block].getNumber(row: position.row, column: position.column);
+        blocks[position.block].getNumber(row: position.row, column: position.column);
     }
 
     func setNumber(position: Position, number: Number) {
@@ -64,7 +64,7 @@ class Sudoku: Equatable {
     }
 
     func getSudoku() -> [Block] {
-        return blocks;
+        blocks;
     }
 
     static func ==(a: Sudoku, b: Sudoku) -> Bool {

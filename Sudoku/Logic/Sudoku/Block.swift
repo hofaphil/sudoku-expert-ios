@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Block: Equatable {
+class Block: Equatable, Codable {
 
     private var numbers: [[Number]];
 
@@ -17,7 +17,7 @@ class Block: Equatable {
     }
 
     func insert(number: Int, position: Position, note: Bool) -> Bool {
-        return numbers[position.row][position.column].insert(number: number, note: note)
+        numbers[position.row][position.column].insert(number: number, note: note)
     }
 
     func delete(position: Position) {
@@ -25,17 +25,17 @@ class Block: Equatable {
     }
 
     func getNumbers() -> [[Number]] {
-        return numbers;
+        numbers;
     }
 
     func getNumber(row: Int, column: Int) -> Number {
-        return numbers[row][column]
+        numbers[row][column]
     }
 
     func setNumber(row: Int, column: Int, number: Number) {
         numbers[row][column] = number;
     }
-    
+
     static func ==(a: Block, b: Block) -> Bool {
         for i in Range(0...3) {
             for j in Range(0...3) {

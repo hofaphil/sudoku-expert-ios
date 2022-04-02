@@ -9,36 +9,36 @@
 import SwiftUI
 
 struct SudokuBlockView: View {
-    
+
     var parent: Int
     var block: Block
     let padding: CGFloat = 2
-        
+
     @EnvironmentObject var main: MainModel
-    
+
     init(parent: Int, block: Block) {
         self.parent = parent
         self.block = block
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                SudokuFieldView(model: main.fields[parent][0][0], parentPadding: self.padding)
-                SudokuFieldView(model: main.fields[parent][0][1], parentPadding: self.padding)
-                SudokuFieldView(model: main.fields[parent][0][2], parentPadding: self.padding)
+                SudokuFieldView(Position(block: parent, row: 0, column: 0), padding)
+                SudokuFieldView(Position(block: parent, row: 0, column: 1), padding)
+                SudokuFieldView(Position(block: parent, row: 0, column: 2), padding)
             }
             HStack(spacing: 0) {
-                SudokuFieldView(model: main.fields[parent][1][0], parentPadding: self.padding)
-                SudokuFieldView(model: main.fields[parent][1][1], parentPadding: self.padding)
-                SudokuFieldView(model: main.fields[parent][1][2], parentPadding: self.padding)
+                SudokuFieldView(Position(block: parent, row: 1, column: 0), padding)
+                SudokuFieldView(Position(block: parent, row: 1, column: 1), padding)
+                SudokuFieldView(Position(block: parent, row: 1, column: 2), padding)
             }
             HStack(spacing: 0) {
-                SudokuFieldView(model: main.fields[parent][2][0], parentPadding: self.padding)
-                SudokuFieldView(model: main.fields[parent][2][1], parentPadding: self.padding)
-                SudokuFieldView(model: main.fields[parent][2][2], parentPadding: self.padding)
+                SudokuFieldView(Position(block: parent, row: 2, column: 0), padding)
+                SudokuFieldView(Position(block: parent, row: 2, column: 1), padding)
+                SudokuFieldView(Position(block: parent, row: 2, column: 2), padding)
             }
-        }.border(Color.black, width: 2).padding(self.padding)
+        }.border(Color.black, width: 2).padding(padding)
     }
 }
 

@@ -9,19 +9,19 @@
 import SwiftUI
 
 struct EndCardStatistics: View {
-    
+
     let time: String
     let difficulty: Difficulty
-    
+
     let bestTime: String
     let width = UIScreen.main.bounds.width - 8
 
     init(time: String, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty
-        self.bestTime = MainModel.timeToString(UserDefaults.standard.integer(forKey: Data.STATISTICS_BESTTIME + "\(difficulty.rawValue)"))
+        bestTime = MainModel.timeToString(UserDefaults.standard.integer(forKey: Data.STATISTICS_BEST_TIME + "\(difficulty.rawValue)"))
     }
-    
+
     var body: some View {
         VStack {
             Text("Difficulty: \(difficulty.asString)").frame(maxWidth: .infinity, alignment: .leading).padding()

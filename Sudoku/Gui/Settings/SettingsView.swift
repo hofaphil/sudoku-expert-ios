@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct SettingsView: View {
-    
+
     @EnvironmentObject var main: MainModel
-    
+
     @State var alert = false
     @State var colorChooser = false
-    
+
     var colorChooserActionSheet: ActionSheet {
         ActionSheet(title: Text("Choose your color"), message: Text("Choose your favorite color for the app"), buttons: [
             .default(Text("Green")) {
@@ -36,7 +36,7 @@ struct SettingsView: View {
             .cancel()
         ])
     }
-    
+
     var body: some View {
         List {
             Section(header: Text("Game settings")) {
@@ -51,23 +51,19 @@ struct SettingsView: View {
             Section(header: Text("Support"), footer: Text("Support the developer to unlock different colors and never see any ads again")) {
                 SettingsButton(title: "Color of the app", action: { colorChooser = true })
                 SettingsButton(title: "Give support", action: {}) // TODO link google pay system
-            }
-            .actionSheet(isPresented: self.$colorChooser) {
-                return colorChooserActionSheet
+            }.actionSheet(isPresented: self.$colorChooser) {
+                colorChooserActionSheet
             }
             Section(header: Text("More")) {
                 SettingsButton(title: "Reset your statistics", action: { alert = true })
                 SettingsButton(title: "Contact", action: { UIApplication.shared.open(URL(string: "https://philipphofer.de/contact")!) })
-            }
-            .alert(isPresented: self.$alert) {
+            }.alert(isPresented: self.$alert) {
                 Alert(title: Text("Delete Statistics"),
-                      message: Text("Do you want to delete all you statistics?"),
-                      primaryButton: .destructive(Text("Delete"), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
-                      secondaryButton: .default(Text("Cancel")))
+                        message: Text("Do you want to delete all you statistics?"),
+                        primaryButton: .destructive(Text("Delete"), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
+                        secondaryButton: .default(Text("Cancel")))
             }
-        }
-        .listStyle(GroupedListStyle())
-        .navigationBarTitle("Settings")
+        }.listStyle(GroupedListStyle()).navigationBarTitle("Settings")
     }
 }
 

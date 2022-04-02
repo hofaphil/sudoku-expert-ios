@@ -9,26 +9,26 @@
 import SwiftUI
 
 struct StatisticsCard: View {
-    
+
     let difficulty: Difficulty
     let width = UIScreen.main.bounds.width - 8
-    
+
     // TODO: l d from userdefaults
     var averageTime: Int = 0
     let bestTime: Int
     let numberOfGames: Int
-    
+
     init(difficulty: Difficulty) {
         self.difficulty = difficulty
-        bestTime = UserDefaults.standard.integer(forKey: Data.STATISTICS_BESTTIME + "\(difficulty.rawValue)")
-        numberOfGames = UserDefaults.standard.integer(forKey: Data.STATISTICS_TIMESPLAYED + "\(difficulty.rawValue)")
+        bestTime = UserDefaults.standard.integer(forKey: Data.STATISTICS_BEST_TIME + "\(difficulty.rawValue)")
+        numberOfGames = UserDefaults.standard.integer(forKey: Data.STATISTICS_TIMES_PLAYED + "\(difficulty.rawValue)")
         if numberOfGames != 0 {
-            averageTime = UserDefaults.standard.integer(forKey: Data.STATISTICS_TIMEOVERALL + "\(difficulty.rawValue)") / numberOfGames
+            averageTime = UserDefaults.standard.integer(forKey: Data.STATISTICS_TIME_OVERALL + "\(difficulty.rawValue)") / numberOfGames
         }
     }
-    
+
     var body: some View {
-        
+
         Section(header: Text(difficulty.asString)) {
             VStack {
                 Text("Average: \(MainModel.timeToString(averageTime))").frame(maxWidth: .infinity, alignment: .leading).padding()

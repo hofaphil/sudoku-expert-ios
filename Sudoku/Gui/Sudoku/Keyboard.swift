@@ -56,7 +56,7 @@ struct Keyboard: View {
                     }
                 }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
                 Button(action: {
-                        main.selected?.delete()
+                        main.delete()
                 }) {
                     HStack {
                         Image(systemName: "delete.left").imageScale(.small)
@@ -78,12 +78,10 @@ struct Keyboard: View {
     private func button(_ number: Int) -> some View {
         return Button(action: { self.insert(number) })
             { Text(String(number)).font(.system(size: 30)).bold() }
-            .disabled(main.numberCount.numberCount[number] >= 9)
-            .opacity(main.numberCount.numberCount[number] >= 9 ? 0 : 1)
     }
     
     private func insert(_ number: Int) {
-        main.selected?.insert(number)
+        main.insert(number: number)
     }
 }
 

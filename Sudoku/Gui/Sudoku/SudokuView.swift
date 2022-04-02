@@ -18,10 +18,10 @@ struct SudokuView: View {
         NavigationView {
             ZStack {
                 Rectangle().frame(maxHeight: .infinity, alignment: .topLeading).foregroundColor(main.appColor).edgesIgnoringSafeArea(.top)
-                if (main.errorCheck != nil && ((main.numberCount.finished && main.errorCheck!.activeErrors == 0) ||
+                /* if (main.errorCheck != nil && ((main.numberCount.finished && main.errorCheck!.activeErrors == 0) ||
                     (main.errorCheck!.overallErrors >= 3 && main.showErrors))) {
                     NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3, time: main.timeInt, difficulty: main.difficulty).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
-                } else {
+                } else { */
                     VStack(spacing: 0){
                         StatusBar()
                         if(main.pause) {
@@ -29,7 +29,7 @@ struct SudokuView: View {
                         } else if (main.loading){
                             ActivityIndicator(shouldAnimate: $animate).frame(height: UIScreen.main.bounds.width)
                         } else {
-                            SudokuGridView(sudoku: main.sudoku)
+                            SudokuGridView(sudoku: main.game)
                         }
                         Spacer()
                         Keyboard()
@@ -39,7 +39,7 @@ struct SudokuView: View {
                     }).onAppear(perform: {
                         main.timerRun = true
                     }).background(MainModel.unSelectedColor)
-                }
+                // }
             }
         }.accentColor(.black)
     }

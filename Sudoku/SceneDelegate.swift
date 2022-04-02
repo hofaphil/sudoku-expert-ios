@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if let urlContext = connectionOptions.urlContexts.first {
+        /* if let urlContext = connectionOptions.urlContexts.first {
             
             let sendingAppID = urlContext.options.sourceApplication
             let url = urlContext.url
@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 //TODO Error
                 print("error")
             }
-        }
+        } */
         
         // Create the SwiftUI view that provides the window contents.
         
@@ -52,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         print("i am here")
-        if let urlContext = URLContexts.first {
+        /* if let urlContext = URLContexts.first {
             
             let sendingAppID = urlContext.options.sourceApplication
             let url = urlContext.url
@@ -68,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 //TODO Error
                 print("error")
             }
-        }
+        } */
         print("ready")
         // TODO
         main.startNewGame(difficulty: Difficulty.init(rawValue: 0)!)

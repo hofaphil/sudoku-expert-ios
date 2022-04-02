@@ -10,29 +10,33 @@ import SwiftUI
 
 struct SudokuFieldView: View {
     
-    @ObservedObject var model: SudokuFieldModel
+    @ObservedObject var model: Number
     @EnvironmentObject var main: MainModel
-    
+    var color: Color {
+        main.getFieldColor(position: position)
+    }
+
     var position: Position
-    
+
     let fontSize: CGFloat = 12
     
     var fieldSize: CGFloat
     var noteSize: CGFloat
     
-    init(model: SudokuFieldModel, parentPadding: CGFloat) {
-        self.model = model
-        self.position = model.position
-        self.fieldSize = (UIScreen.main.bounds.width - (6 * parentPadding)) / 9
-        self.noteSize = fieldSize / 3
+    init(_ position: Position, _ parentPadding: CGFloat) {
+        self.position = position
+        fieldSize = (500 - (6 * parentPadding)) / 9
+        noteSize = fieldSize / 3
+        model = Number()
+        model = main.game.getNumber(position: position)
     }
     
     var body: some View {
         ZStack {
             Button(action: {
-                self.main.select(model: self.model)
+                main.select(position: position)
             }, label: {
-                if self.model.isNotes {
+                if model.isNotes {
                     VStack(spacing: 0) {
                         HStack(spacing: 0) {
                             note(1)
@@ -51,7 +55,7 @@ struct SudokuFieldView: View {
                         }
                     }
                 } else {
-                    if (model.changeable) {
+                    if (model.isChangeable) {
                         Text(model.number == 0 ? " " : String(model.number))
                             .font(.system(size: 22))
                             .italic()
@@ -63,18 +67,17 @@ struct SudokuFieldView: View {
                     }
                     
                 }
-            }).frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5).background(model.color).padding(0)
+            }).frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5).background(color).padding(0)
         }
     }
     
     func note(_ number: Int) -> some View {
-        return Text(self.model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
-
+        Text(model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
     }
 }
 
 struct SudokuFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuFieldView(model: SudokuFieldModel(main: MainModel(), position: Position(row: 0, column: 0, parent: 0), number: 1, error: false), parentPadding: 2)
+        SudokuFieldView(Position(block: 0, row: 0, column: 0), 2)
     }
 }

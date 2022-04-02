@@ -9,91 +9,33 @@
 import Foundation
 
 extension MainModel {
-    
-    func checkNotes(sudokuField: SudokuFieldModel, number: Int) {
-        
+
+    static let partnerBlockLookup: [[Int]] = [
+        [1, 2, 3, 6],
+        [0, 2, 4, 7],
+        [0, 1, 5, 8],
+        [4, 5, 0, 6],
+        [3, 5, 1, 7],
+        [3, 4, 2, 8],
+        [7, 8, 0, 3],
+        [6, 8, 1, 4],
+        [6, 7, 2, 5],
+    ];
+
+    func checkNotes(position: Position, number: Int) {
         if UserDefaults.standard.bool(forKey: Data.SETTINGS_CHECK_NOTES) && !isNotes {
+            var gameBlock: [Block] = game.getSudoku()
             for i in 0..<3 {
                 for j in 0..<3 {
-                    fields[sudokuField.position.parent][i][j].checkNotes(number: number)
+                    gameBlock[position.block].getNumbers()[i][j].checkNote(number: number)
                 }
             }
 
-            switch sudokuField.position.parent {
-            case 0:
-                for i in 0..<3 {
-                    fields[1][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[2][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[3][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[6][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 1:
-                for i in 0..<3 {
-                    fields[0][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[2][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[4][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[7][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 2:
-                for i in 0..<3 {
-                    fields[0][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[1][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[5][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[8][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 3:
-                for i in 0..<3 {
-                    fields[4][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[5][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[0][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[6][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 4:
-                for i in 0..<3 {
-                    fields[3][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[5][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[1][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[7][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 5:
-                for i in 0..<3 {
-                    fields[3][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[4][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[2][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[8][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 6:
-                for i in 0..<3 {
-                    fields[7][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[8][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[0][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[3][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 7:
-                for i in 0..<3 {
-                    fields[6][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[8][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[1][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[4][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            case 8:
-                for i in 0..<3 {
-                    fields[6][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[7][sudokuField.position.row][i].checkNotes(number: number);
-                    fields[2][i][sudokuField.position.column].checkNotes(number: number);
-                    fields[5][i][sudokuField.position.column].checkNotes(number: number);
-                }
-                break;
-            default:
-                break;
+            for i in 0..<3 {
+                gameBlock[MainModel.partnerBlockLookup[position.block][0]].getNumbers()[position.row][i].checkNote(number: number)
+                gameBlock[MainModel.partnerBlockLookup[position.block][1]].getNumbers()[position.row][i].checkNote(number: number);
+                gameBlock[MainModel.partnerBlockLookup[position.block][2]].getNumbers()[i][position.column].checkNote(number: number);
+                gameBlock[MainModel.partnerBlockLookup[position.block][3]].getNumbers()[i][position.column].checkNote(number: number);
             }
         }
     }

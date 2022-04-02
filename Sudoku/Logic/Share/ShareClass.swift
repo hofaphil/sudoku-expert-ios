@@ -12,7 +12,7 @@ class ShareClass {
     
     static let websiteURL = "https://philipphofer.de/"
     
-    static func generateShareLink(main: MainModel, sudoku: SudokuClass) -> URL? {
+    /* static func generateShareLink(main: MainModel, sudoku: SudokuClass) -> URL? {
         
         var id = ""
         id.append(String(main.difficulty.rawValue))
@@ -68,11 +68,11 @@ class ShareClass {
         main.sudoku.setSudoku(blocks: block)
         let solution = SudokuClass.solve(blocks: main.sudoku.getSudoku())
         main.sudoku.setSolution(blocks: solution)
-    }
+    } */
 }
 
 extension String {
     subscript(i: Int) -> String {
-        return String(self[index(startIndex, offsetBy: i)])
+        String(self[index(startIndex, offsetBy: i)])
     }
 }

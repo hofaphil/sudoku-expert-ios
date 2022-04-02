@@ -9,9 +9,9 @@
 import Foundation
 
 enum Difficulty: Int {
-    
+
     case BEGINNER = 0, ADVANCED = 1, EXPERT = 2
-    
+
     var asString: String {
         switch self {
         case .BEGINNER:
@@ -22,7 +22,7 @@ enum Difficulty: Int {
             return "Expert"
         }
     }
-    
+
     static func getDifficutly(intVal: Int) -> Difficulty {
         switch intVal {
         case 0:

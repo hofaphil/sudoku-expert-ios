@@ -10,91 +10,88 @@ import Foundation
 import SwiftUI
 
 class MainModel: ObservableObject {
-    
-    @Published var selected: SudokuFieldModel?
+
+    @Published var game = Sudoku()
+
+    @Published var selected: Position?
     @Published var isNotes: Bool = false
-    
-    var fields = [[[SudokuFieldModel]]]()
-    
+    @Published var pause = false
+
     @Published var difficulty = Difficulty.ADVANCED
-    
-    @Published var numberCount = NumberCount()
-    
-    @Published var errorCheck: ErrorCheck?
+
     @Published var showErrors = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS)
-    
+
     var timer = Timer()
     var timeInt = 0
     var timerRun = true
     @Published var time = "00:00"
     @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
-    
-    @Published var pause = false
+
     @Published var loading = false
     @Published var appColor = Color(UserDefaults.standard.string(forKey: Data.SETTINGS_COLOR)!)
-    
+
     static let unSelectedColor = Color.white
     static let lightSelectedColor = Color("DimGray")
     static let errorColor = Color("Red")
-    
-    var sudoku = SudokuClass()
 
     init(difficulty: Int = 0) {
         if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
-            print("load game")
-            Data.instance.loadGame(main: self)
+            do {
+                try Data.instance.loadGame(main: self)
+            } catch {
+                // TODO error handling
+            }
             startTimer(time: timeInt)
         } else {
-            print("start game")
             startNewGame(difficulty: Difficulty.ADVANCED)
         }
     }
-    
+
     func startNewGame(difficulty: Difficulty) {
         if loading {
             return
         }
-        self.loading = true
-        
+        loading = true
+
         DispatchQueue.main.async {
-            self.numberCount = NumberCount()
             self.difficulty = difficulty
-            
-            self.sudoku.generate(difficulty: difficulty.rawValue)
+
+            self.game = Generator.createSudoku(freeFields: Int32(difficulty.rawValue))
+
             self.startNewGame()
             self.loading = false
         }
     }
-    
+
     private func startNewGame() {
-        numberCount = NumberCount()
-        
-        errorCheck = ErrorCheck(solution: sudoku.getSolution())
-        
-        fields = [[[SudokuFieldModel]]]()
-        for i in 0...8 {
-            fields.append([[SudokuFieldModel]]())
-            for j in 0...2 {
-                fields[i].append([SudokuFieldModel]())
-                for a in 0...2 {
-                    fields[i][j].append(SudokuFieldModel(main: self, position: Position(row: j, column: a, parent: i),number: Int(sudoku.getSudoku()[i].getNumbers()[j][a]), error: false))
-                }
-            }
-        }
-        
         showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
         showErrors = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS)
         print(showErrors)
-        
+
         startTimer(time: 0)
         UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
     }
-    
-    func select(model: SudokuFieldModel) {
-        selected = model
-        setFieldColors(position: model.position)
+
+    func select(position: Position) {
+        selected = position
+        // setFieldColors(position: position)
     }
-    
+
+    func insert(number: Int) {
+        if ((selected) != nil) {
+            checkNotes(position: selected!, number: number)
+            game.insert(number: number, position: selected!, note: isNotes)
+            // TODO: check if game is solved
+        }
+    }
+
+    func delete() {
+        if ((selected) != nil) {
+            game.delete(position: selected!)
+            // TODO: check if error-limit is reached
+        }
+    }
+
     func changeColor(_ color: Color) {
         appColor = color
     }

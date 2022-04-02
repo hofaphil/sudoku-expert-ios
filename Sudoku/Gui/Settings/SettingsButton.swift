@@ -9,17 +9,17 @@
 import SwiftUI
 
 struct SettingsButton: View {
-    
+
     let title: String
     let action: () -> Void
-    
+
     @State var state: Bool = false
-    
+
     init(title: String, action: @escaping () -> Void) {
         self.title = title
         self.action = action
     }
-    
+
     var body: some View {
         Button(action: { action() }, label: {
             Text(title).foregroundColor(Color.black)

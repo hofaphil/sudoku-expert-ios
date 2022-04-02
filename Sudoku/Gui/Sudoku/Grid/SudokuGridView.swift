@@ -10,10 +10,10 @@ import SwiftUI
 
 struct SudokuGridView: View {
     
-    let sudoku: SudokuClass
+    let sudoku: Sudoku
     var blocks: [SudokuBlockView]
     
-    init(sudoku: SudokuClass) {
+    init(sudoku: Sudoku) {
         self.sudoku = sudoku
         blocks = [SudokuBlockView]()
         for i in 0...8 {
@@ -44,6 +44,6 @@ struct SudokuGridView: View {
 
 struct SudokuGrid_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuGridView(sudoku: SudokuClass()).environmentObject(MainModel())
+        SudokuGridView(sudoku: Sudoku()).environmentObject(MainModel())
     }
 }

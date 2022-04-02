@@ -31,12 +31,12 @@ struct StatusBar: View {
         ActionSheet(title: Text("More"), buttons: [
             .default(Text("Share")) {
                 // TODO hier noch den richtigen link und das richtige share-verhalten einfügen!
-                let data = ShareClass.generateShareLink(main: main, sudoku: main.sudoku)
-                if data == nil {
+                // let data = ShareClass.generateShareLink(main: main, sudoku: main.sudoku)
+                // if data == nil {
                     // TODO show error
-                }
+                /*
                 let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
-                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil) */
             },
             .default(Text("Statistics")) { statistics = true },
             .default(Text("Rate")) {
@@ -68,7 +68,8 @@ struct StatusBar: View {
                 Spacer()
                 Text(main.difficulty.asString).foregroundColor(.black)
                 Spacer()
-                Text(main.showErrors ? "\(main.errorCheck!.overallErrors) / 3 Errors" : "- / 3 Errors")
+                // TODO show errors
+                Text(main.showErrors ? "0 / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }.padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $actionSheet) {

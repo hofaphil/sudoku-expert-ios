@@ -14,9 +14,7 @@ struct StatisticsView: View {
             StatisticsCard(difficulty: Difficulty.BEGINNER)
             StatisticsCard(difficulty: Difficulty.ADVANCED)
             StatisticsCard(difficulty: Difficulty.EXPERT)
-        }
-        .listStyle(GroupedListStyle())
-        .navigationBarTitle("Statistics")
+        }.listStyle(GroupedListStyle()).navigationBarTitle("Statistics")
     }
 }
 

@@ -20,7 +20,7 @@ struct SettingsSwitch: View {
     init(title: String, key: String) {
         self.title = title
         self.key = key
-        self.state = Binding<Bool>(
+        state = Binding<Bool>(
             get: { UserDefaults.standard.bool(forKey: key) },
             set: { UserDefaults.standard.set($0, forKey: key) })
     }
@@ -37,6 +37,6 @@ struct SettingsSwitch: View {
 
 struct SettingsSwitch_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsSwitch(title: "Test Title", key: Data.FIELD_IS_NOTES)
+        SettingsSwitch(title: "Test Title", key: Data.SETTINGS_CHECK_NOTES)
     }
 }
