@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Number: Equatable {
+class Number: Equatable, ObservableObject {
     
     var number: Int
     var solution: Int
     var notes = [Bool](repeating: false, count: 9)
     
-    private var isChangeable: Bool
-    private var isNotes: Bool
+    private(set) var isChangeable: Bool
+    private(set) var isNotes: Bool
     
     init() {
         number = 0
@@ -76,7 +76,7 @@ class Number: Equatable {
             notes[number - 1] = false
         }
     }
-    
+
     func isError() -> Bool {
         return number != 0 && number != solution
     }

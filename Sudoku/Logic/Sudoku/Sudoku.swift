@@ -27,7 +27,7 @@ class Sudoku: Equatable {
         blocks[position.block].delete(position: position)
     }
 
-    func freeFields() -> Int{
+    func freeFields() -> Int {
         var freeFields = 0;
         for k in Range(0...9) {
             for i in Range(0...3) {
