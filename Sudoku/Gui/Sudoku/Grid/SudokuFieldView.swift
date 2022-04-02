@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SudokuFieldView: View {
     
-    @ObservedObject var model: Number
+    @ObservedObject var model: Number = Number()
     @EnvironmentObject var main: MainModel
     var color: Color {
         main.getFieldColor(position: position)
@@ -28,8 +28,11 @@ struct SudokuFieldView: View {
         fieldSize = (500 - (6 * parentPadding)) / 9
         noteSize = fieldSize / 3
         model = Number()
-        model = main.game.getNumber(position: position)
     }
+    
+    /* mutating func initModel() {
+        model = main.game.getNumber(position: position)
+    } */
     
     var body: some View {
         ZStack {

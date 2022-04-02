@@ -19,7 +19,7 @@ class Generator {
         let blocks = getBlockArray(block: s!.pointee.blocks)
         let solution = getBlockArray(block: s!.pointee.blocks)
 
-        for b in 0...9 {
+        for b in 0..<9 {
             let numbers = getNumberArray(number: blocks[b].numbers)
             let solutions = getNumberArray(number: solution[b].numbers)
             for r in 0...3 {
@@ -41,10 +41,10 @@ class Generator {
 
         let blocks = getBlockArray(block: s!.pointee.blocks)
 
-        for b in 0...9 {
+        for b in 0..<9 {
             var numbers = getNumberArray(number: blocks[b].numbers)
-            for r in 0...3 {
-                for c in 0...3 {
+            for r in 0..<3 {
+                for c in 0..<3 {
                     let pos = Position(block: b, row: r, column: c)
                     numbers[r][c] = Int32(sudoku.getNumber(position: pos).number)
                 }
@@ -55,10 +55,10 @@ class Generator {
 
         let solution = getBlockArray(block: s!.pointee.blocks)
 
-        for b in 0...9 {
+        for b in 0..<9 {
             let solutions = getNumberArray(number: solution[b].numbers)
-            for r in 0...3 {
-                for c in 0...3 {
+            for r in 0..<3 {
+                for c in 0..<3 {
                     let solution = solutions[r][c]
                     let pos = Position(block: b, row: r, column: c)
                     let n = sudoku.getNumber(position: pos)

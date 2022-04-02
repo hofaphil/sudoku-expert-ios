@@ -29,9 +29,9 @@ class Sudoku: Equatable, Codable {
 
     func freeFields() -> Int {
         var freeFields = 0;
-        for k in Range(0...9) {
-            for i in Range(0...3) {
-                for j in Range(0...3) {
+        for k in 0..<9 {
+            for i in 0..<3 {
+                for j in 0..<3 {
                     if (getNumber(position: Position(block: k, row: i, column: j)).number == 0) {
                         freeFields += 1;
                     }
@@ -43,9 +43,9 @@ class Sudoku: Equatable, Codable {
 
     func currentErrors() -> Int {
         var currentErrors = 0;
-        for k in Range(0...9) {
-            for i in Range(0...3) {
-                for j in Range(0...3) {
+        for k in 0..<9 {
+            for i in 0..<3 {
+                for j in 0..<3 {
                     if (getNumber(position: Position(block: k, row: i, column: j)).isError()) {
                         currentErrors += 1;
                     }
@@ -68,7 +68,7 @@ class Sudoku: Equatable, Codable {
     }
 
     static func ==(a: Sudoku, b: Sudoku) -> Bool {
-        for block in Range(0...9) {
+        for block in 0..<9 {
             if (!(a.blocks[block] == b.blocks[block])) {
                 return false
             }

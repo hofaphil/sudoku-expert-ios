@@ -82,7 +82,7 @@ class Number: Equatable, ObservableObject, Codable {
     }
 
     static func ==(a: Number, b: Number) -> Bool {
-        for i in Range(0...9) {
+        for i in 0..<9 {
             if (a.notes[i] != b.notes[i]) {
                 return false;
             }

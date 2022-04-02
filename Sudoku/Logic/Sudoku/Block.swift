@@ -37,8 +37,8 @@ class Block: Equatable, Codable {
     }
 
     static func ==(a: Block, b: Block) -> Bool {
-        for i in Range(0...3) {
-            for j in Range(0...3) {
+        for i in 0..<3 {
+            for j in 0..<3 {
                 if (!(a.numbers[i][j] == b.numbers[i][j])) {
                     return false
                 }
