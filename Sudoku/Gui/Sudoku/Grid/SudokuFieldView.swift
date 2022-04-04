@@ -12,9 +12,6 @@ struct SudokuFieldView: View {
     
     @ObservedObject var model: Number = Number()
     @EnvironmentObject var main: MainModel
-    var color: Color {
-        main.getFieldColor(position: position)
-    }
 
     var position: Position
 
@@ -66,7 +63,7 @@ struct SudokuFieldView: View {
                     }
                     
                 }
-            }).frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5).background(color).padding(0)
+            }).frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5).background(main.colors[position.block][position.row][position.column]).padding(0)
         }
     }
     

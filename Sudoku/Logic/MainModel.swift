@@ -16,6 +16,7 @@ class MainModel: ObservableObject {
     @Published var selected: Position?
     @Published var isNotes: Bool = false
     @Published var pause = false
+    @Published var colors: [[[Color]]] = []
 
     @Published var difficulty = Difficulty.ADVANCED
 
@@ -35,6 +36,7 @@ class MainModel: ObservableObject {
     static let errorColor = Color("Red")
 
     init(difficulty: Int = 0) {
+        initColorArray()
         if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             do {
                 try Data.instance.loadGame(main: self)
@@ -74,6 +76,7 @@ class MainModel: ObservableObject {
 
     func select(position: Position) {
         selected = position
+        setFieldColors()
         // setFieldColors(position: position)
     }
 
@@ -81,6 +84,7 @@ class MainModel: ObservableObject {
         if ((selected) != nil) {
             checkNotes(position: selected!, number: number)
             game.insert(number: number, position: selected!, note: isNotes)
+            setFieldColors()
             // TODO: check if game is solved
         }
     }
@@ -88,6 +92,7 @@ class MainModel: ObservableObject {
     func delete() {
         if ((selected) != nil) {
             game.delete(position: selected!)
+            setFieldColors()
             // TODO: check if error-limit is reached
         }
     }
