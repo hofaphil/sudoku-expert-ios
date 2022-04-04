@@ -34,6 +34,12 @@ struct SudokuView: View {
                     }
                     if (main.wonGame || main.lostGame) {
                         EndCardView(won: main.wonGame, time: main.timeInt, difficulty: main.difficulty)
+                        .onDisappear(perform: {
+                            main.timerRun = true
+                        })
+                        .onAppear(perform: {
+                            main.timerRun = false
+                        })
                     }
                 }
                 .navigationBarHidden(true)

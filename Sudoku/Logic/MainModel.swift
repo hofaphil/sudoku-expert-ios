@@ -102,6 +102,9 @@ class MainModel: ObservableObject {
     func checkGameStatus() {
         if (game.freeFields() == 0 && game.currentErrors() == 0) {
             wonGame = true;
+            let stats = Data().loadStatistics()
+            stats.addGame(difficulty: difficulty, time: timeInt)
+            Data().saveStatistics(statistics: stats)
         }
         if (UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) && game.overallErrors >= 3) {
             lostGame = true;

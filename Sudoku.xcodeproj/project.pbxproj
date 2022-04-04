@@ -43,6 +43,7 @@
 		19F6BFE227ED020D005558D4 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFE127ED020D005558D4 /* Number.swift */; };
 		19F8E2D7247D46D400DB8EBD /* FieldColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2D6247D46D400DB8EBD /* FieldColor.swift */; };
 		1EC0D559A5F6853997501FBE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DC481CF518F3B1ACA0C6 /* MainModel.swift */; };
+		1EC0D727715CC530E8847A62 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0D037539C66440171D4F7 /* Statistics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		19F6BFDF27ED0203005558D4 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		19F6BFE127ED020D005558D4 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
 		19F8E2D6247D46D400DB8EBD /* FieldColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldColor.swift; sourceTree = "<group>"; };
+		1EC0D037539C66440171D4F7 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		1EC0DC481CF518F3B1ACA0C6 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +142,7 @@
 			children = (
 				1971837224744D850031B501 /* Position.swift */,
 				19741F8925C5611100FA94CB /* Difficulty.swift */,
+				1EC0D037539C66440171D4F7 /* Statistics.swift */,
 			);
 			path = Help;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				1936CA8624742D6800B5F5B4 /* SudokuGridView.swift in Sources */,
 				19F8E2D7247D46D400DB8EBD /* FieldColor.swift in Sources */,
 				1EC0D559A5F6853997501FBE /* MainModel.swift in Sources */,
+				1EC0D727715CC530E8847A62 /* Statistics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

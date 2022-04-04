@@ -18,7 +18,7 @@ struct EndCardStatistics: View {
     init(time: String, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty
-        bestTime = MainModel.timeToString(UserDefaults.standard.integer(forKey: Data.STATISTICS_BEST_TIME + "\(difficulty.rawValue)"))
+        bestTime = MainModel.timeToString(Data().loadStatistics().getBestTime(difficulty: difficulty))
     }
     
     func textItem(_ first: String, _ second: String) -> some View {

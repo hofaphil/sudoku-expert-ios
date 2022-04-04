@@ -32,16 +32,11 @@ class Data {
     static let SETTINGS_COLOR = "settings_color"
 
     // for statistics
-    static let STATISTICS_BEST_TIME = "best_time"
-    static let STATISTICS_TIME_OVERALL = "time_overall"
-    static let STATISTICS_TIMES_PLAYED = "times_played"
+    static let STATISTICS = "statistics"
 
     static let instance = Data()
 
     let storage = UserDefaults.standard
-
-    private init() {
-    }
 
     func saveGame(main: MainModel) {
         storage.set(main.difficulty.rawValue, forKey: Data.GAME_DIFFICULTY)
@@ -73,8 +68,26 @@ class Data {
             } catch {
                 // TODO error handling
             }
-        } else {
+        }
+    }
+
+    func saveStatistics(statistics: Statistics) {
+        do {
+            try storage.set(JSONEncoder().encode(statistics), forKey: Data.STATISTICS)
+        } catch {
             // TODO error handling
         }
+    }
+
+    func loadStatistics() -> Statistics {
+        let jsonString = storage.data(forKey: Data.STATISTICS)
+        if ((jsonString) != nil) {
+            do {
+                return try JSONDecoder().decode(Statistics.self, from: jsonString!)
+            } catch {
+                // TODO error handling
+            }
+        }
+        return Statistics()
     }
 }
