@@ -14,20 +14,26 @@ struct EndCardStatistics: View {
     let difficulty: Difficulty
 
     let bestTime: String
-    let width = UIScreen.main.bounds.width - 8
 
     init(time: String, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty
         bestTime = MainModel.timeToString(UserDefaults.standard.integer(forKey: Data.STATISTICS_BEST_TIME + "\(difficulty.rawValue)"))
     }
+    
+    func textItem(_ first: String, _ second: String) -> some View {
+        HStack {
+            Text("\(first):")
+            Text(second).fontWeight(.light)
+        }.frame(maxWidth: .infinity, alignment: .leading).padding(5).padding(.leading)
+    }
 
     var body: some View {
-        VStack {
-            Text("Difficulty: \(difficulty.asString)").frame(maxWidth: .infinity, alignment: .leading).padding()
-            Text("Your Time: \(time)").frame(maxWidth: .infinity, alignment: .leading).padding(.leading)
-            Text("Best time: \(bestTime)").frame(maxWidth: .infinity, alignment: .leading).padding()
-        }.frame(width: width).border(Color.black, width: 2)
+        VStack(spacing: 0) {
+            textItem("Difficulty", difficulty.asString)
+            textItem("Your Time", time)
+            textItem("Best Time", bestTime)
+        }
     }
 }
 

@@ -21,6 +21,7 @@ extension MainModel {
                 }
             }
         }
+        setFieldColors()
     }
 
     func setFieldColors() {

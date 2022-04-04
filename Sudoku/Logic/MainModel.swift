@@ -28,6 +28,9 @@ class MainModel: ObservableObject {
     @Published var time = "00:00"
     @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
 
+    @Published var wonGame = false
+    @Published var lostGame = false
+
     @Published var loading = false
     @Published var appColor = Color(UserDefaults.standard.string(forKey: Data.SETTINGS_COLOR)!)
 
@@ -50,6 +53,8 @@ class MainModel: ObservableObject {
             return
         }
         loading = true
+        wonGame = false;
+        lostGame = false;
 
         DispatchQueue.main.async {
             self.difficulty = difficulty
@@ -80,6 +85,7 @@ class MainModel: ObservableObject {
         if ((selected) != nil) {
             checkNotes(position: selected!, number: number)
             game.insert(number: number, position: selected!, note: isNotes)
+            checkGameStatus()
             setFieldColors()
             // TODO: check if game is solved
         }
@@ -90,6 +96,15 @@ class MainModel: ObservableObject {
             game.delete(position: selected!)
             setFieldColors()
             // TODO: check if error-limit is reached
+        }
+    }
+
+    func checkGameStatus() {
+        if (game.freeFields() == 0 && game.currentErrors() == 0) {
+            wonGame = true;
+        }
+        if (UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) && game.overallErrors >= 3) {
+            lostGame = true;
         }
     }
 

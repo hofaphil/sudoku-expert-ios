@@ -9,24 +9,21 @@
 import SwiftUI
 
 struct SudokuView: View {
-    
+
     @EnvironmentObject var main: MainModel
-    
+
     @State var animate = true
-        
+
     var body: some View {
         NavigationView {
             ZStack {
                 Rectangle().frame(maxHeight: .infinity, alignment: .topLeading).foregroundColor(main.appColor).edgesIgnoringSafeArea(.top)
-                /* if (main.errorCheck != nil && ((main.numberCount.finished && main.errorCheck!.activeErrors == 0) ||
-                    (main.errorCheck!.overallErrors >= 3 && main.showErrors))) {
-                    NavigationLink("", destination: EndCardView(won: main.errorCheck!.overallErrors < 3, time: main.timeInt, difficulty: main.difficulty).environmentObject(main), isActive: /*@START_MENU_TOKEN@*/.constant(true)/*@END_MENU_TOKEN@*/)
-                } else { */
-                    VStack(spacing: 0){
+                ZStack {
+                    VStack(spacing: 0) {
                         StatusBar()
-                        if(main.pause) {
+                        if (main.pause) {
                             Text("").frame(height: UIScreen.main.bounds.width)
-                        } else if (main.loading){
+                        } else if (main.loading) {
                             ActivityIndicator(shouldAnimate: $animate).frame(height: UIScreen.main.bounds.width)
                         } else {
                             SudokuGridView(sudoku: main.game)
@@ -34,14 +31,22 @@ struct SudokuView: View {
                         Spacer()
                         Keyboard()
                         Spacer()
-                    }.navigationBarHidden(true).onDisappear(perform: {
-                        main.timerRun = false
-                    }).onAppear(perform: {
-                        main.timerRun = true
-                    }).background(MainModel.unSelectedColor)
-                // }
+                    }
+                    if (main.wonGame || main.lostGame) {
+                        EndCardView(won: main.wonGame, time: main.timeInt, difficulty: main.difficulty)
+                    }
+                }
+                .navigationBarHidden(true)
+                .onDisappear(perform: {
+                    main.timerRun = false
+                })
+                .onAppear(perform: {
+                    main.timerRun = true
+                })
+                .background(MainModel.unSelectedColor)
             }
-        }.accentColor(.black)
+        }
+        .accentColor(.black)
     }
 }
 
@@ -52,16 +57,16 @@ struct SudokuView_Previews: PreviewProvider {
 }
 
 struct ActivityIndicator: UIViewRepresentable {
-    
+
     @Binding var shouldAnimate: Bool
-    
+
     func makeUIView(context: Context) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView()
+        UIActivityIndicatorView()
     }
 
     func updateUIView(_ uiView: UIActivityIndicatorView,
                       context: Context) {
-        if self.shouldAnimate {
+        if shouldAnimate {
             uiView.startAnimating()
         } else {
             uiView.stopAnimating()

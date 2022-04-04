@@ -10,7 +10,6 @@ import SwiftUI
 
 struct EndCardView: View {
 
-    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @EnvironmentObject var main: MainModel
 
     let won: Bool
@@ -18,38 +17,42 @@ struct EndCardView: View {
     let difficulty: Difficulty
 
     let title: String
-    let description: String
 
     init(won: Bool, time: Int, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty
         self.won = won
 
-        if won {
-            title = "You won!"
-            description = "It took you \(time) to solve this Sudoku."
-            UserDefaults.standard.set(time + UserDefaults.standard.integer(forKey: Data.STATISTICS_TIME_OVERALL + "\(difficulty.rawValue)"), forKey: Data.STATISTICS_TIME_OVERALL + "\(difficulty.rawValue)")
-            UserDefaults.standard.set(1 + UserDefaults.standard.integer(forKey: Data.STATISTICS_TIMES_PLAYED + "\(difficulty.rawValue)"), forKey: Data.STATISTICS_TIMES_PLAYED + "\(difficulty.rawValue)")
-            if time < UserDefaults.standard.integer(forKey: Data.STATISTICS_BEST_TIME + "\(difficulty.rawValue)") || UserDefaults.standard.integer(forKey: Data.STATISTICS_BEST_TIME + "\(difficulty.rawValue)") == 0 {
-                UserDefaults.standard.set(time, forKey: Data.STATISTICS_BEST_TIME + "\(difficulty.rawValue)")
-            }
-        } else {
-            title = "You lost..."
-            description = "You did not solve this one, try again!"
-        }
-
+        title = won ? "You Won" : "You Lost"
     }
 
     var body: some View {
-        VStack {
-            Text(description).padding().font(.system(size: 30))
-            EndCardStatistics(time: won ? MainModel.timeToString(time) : "--:--", difficulty: difficulty)
-            Spacer()
-        }.navigationBarTitle(title).onDisappear(perform: {
-            main.startNewGame(difficulty: main.difficulty)
-        })
+        ZStack {
+            Rectangle().foregroundColor(Color.black.opacity(0.6))
+            VStack {
+                HStack {
+                    Text(title).padding()
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
+                .background(Color.yellow)
+                
+                EndCardStatistics(time: won ? MainModel.timeToString(time) : "--:--", difficulty: difficulty)
+                
+                Button(action: okButtonAction) {
+                    HStack {
+                        Text("Ok").foregroundColor(Color.black)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .contentShape(Rectangle())
+                }.padding().background(Color.yellow)
+            }.background(Rectangle().foregroundColor(.white)).padding()
+        }.edgesIgnoringSafeArea([.top, .bottom])
     }
 
+    func okButtonAction() {
+        main.startNewGame(difficulty: Difficulty.getDifficutly(intVal: UserDefaults.standard.integer(forKey: Data.GAME_DIFFICULTY)))
+    }
 }
 
 struct EndCardView_Previews: PreviewProvider {
