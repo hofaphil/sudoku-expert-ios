@@ -68,8 +68,7 @@ struct StatusBar: View {
                 Spacer()
                 Text(main.difficulty.asString).foregroundColor(.black)
                 Spacer()
-                // TODO show errors
-                Text(main.showErrors ? "0 / 3 Errors" : "- / 3 Errors")
+                Text(main.showErrors ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }.padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $actionSheet) {

@@ -24,10 +24,6 @@ extension MainModel {
     }
 
     func setFieldColors() {
-        if (selected == nil) {
-            return;
-        }
-
         for b in 0...8 {
             for r in 0...2 {
                 for c in 0...2 {
@@ -38,37 +34,39 @@ extension MainModel {
                         continue
                     }
 
-                    if (selected == pos) {
-                        colors[b][r][c] = Color.yellow
-                        continue
-                    }
-
-                    if (UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_NUMBERS)) {
-                        if (game.getNumber(position: pos).number == game.getNumber(position: selected!).number) {
-                            colors[b][r][c] = MainModel.lightSelectedColor
+                    if (selected != nil) {
+                        if (selected == pos) {
+                            colors[b][r][c] = Color.yellow
                             continue
                         }
-                    }
 
-                    if (UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_LINES)) {
-                        if (MainModel.partnerBlockLookup[selected!.block].contains(pos.block)) {
-                            // it's a col-partner
-                            if (pos.block >= selected!.block + 3 || pos.block <= selected!.block - 3) {
-                                if (pos.column == selected!.column) {
-                                    colors[b][r][c] = MainModel.lightSelectedColor
-                                    continue
-                                }
-                            // its a row-partner
-                            } else {
-                                if (pos.row == selected!.row) {
-                                    colors[b][r][c] = MainModel.lightSelectedColor
-                                    continue
-                                }
-                            }
-                        } else if (pos.block == selected!.block) {
-                            if (pos.column == selected!.column || pos.row == selected!.row) {
+                        if (UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_NUMBERS) && game.getNumber(position: pos).number != 0) {
+                            if (game.getNumber(position: pos).number == game.getNumber(position: selected!).number) {
                                 colors[b][r][c] = MainModel.lightSelectedColor
                                 continue
+                            }
+                        }
+
+                        if (UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_LINES)) {
+                            if (MainModel.partnerBlockLookup[selected!.block].contains(pos.block)) {
+                                // it's a col-partner
+                                if (pos.block >= selected!.block + 3 || pos.block <= selected!.block - 3) {
+                                    if (pos.column == selected!.column) {
+                                        colors[b][r][c] = MainModel.lightSelectedColor
+                                        continue
+                                    }
+                                    // its a row-partner
+                                } else {
+                                    if (pos.row == selected!.row) {
+                                        colors[b][r][c] = MainModel.lightSelectedColor
+                                        continue
+                                    }
+                                }
+                            } else if (pos.block == selected!.block) {
+                                if (pos.column == selected!.column || pos.row == selected!.row) {
+                                    colors[b][r][c] = MainModel.lightSelectedColor
+                                    continue
+                                }
                             }
                         }
                     }
