@@ -9,71 +9,32 @@
 import Foundation
 
 extension MainModel {
-    
+
     func startTimer(time: Int) {
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
         self.timeInt = time
         setTime(time)
     }
-    
+
     @objc func timerAction() {
         if timerRun && !pause {
             timeInt += 1
             setTime(timeInt)
         }
     }
-    
-    // input time in sec!
+
+    // input time in seconds
     func setTime(_ time: Int) {
-        var t = time
-        var hours: Int = 0, min10: Int = 0, min: Int = 0, sec10: Int = 0, sec: Int = 0
-        while t - 3600 >= 0 {
-            hours += 1
-            t -= 3600
-        }
-        while t - 600 >= 0 {
-            min10 += 1
-            t -= 600
-        }
-        while t - 60 >= 0 {
-            min += 1
-            t -= 60
-        }
-        while t - 10 >= 0 {
-            sec10 += 1
-            t -= 10
-        }
-        sec = t
-        if hours > 0 {
-            self.time = String(hours) + ":" + String(min10) + "" + String(min) + ":" + String(sec10) + "" + String(sec)
-        }
-        self.time = String(min10) + "" + String(min) + ":" + String(sec10) + "" + String(sec)
+        self.time = MainModel.timeToString(time)
     }
-    
+
     static func timeToString(_ time: Int) -> String {
-        var t = time
-        var hours: Int = 0, min10: Int = 0, min: Int = 0, sec10: Int = 0, sec: Int = 0
-        while t - 3600 >= 0 {
-            hours += 1
-            t -= 3600
-        }
-        while t - 600 >= 0 {
-            min10 += 1
-            t -= 600
-        }
-        while t - 60 >= 0 {
-            min += 1
-            t -= 60
-        }
-        while t - 10 >= 0 {
-            sec10 += 1
-            t -= 10
-        }
-        sec = t
-        if hours > 0 {
-            return String(hours) + ":" + String(min10) + "" + String(min) + ":" + String(sec10) + "" + String(sec)
-        }
-        return String(min10) + "" + String(min) + ":" + String(sec10) + "" + String(sec)
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = .positional
+        formatter.zeroFormattingBehavior = .pad
+
+        return formatter.string(from: TimeInterval(time))!
     }
 }

@@ -38,11 +38,7 @@ class MainModel: ObservableObject {
     init(difficulty: Int = 0) {
         initColorArray()
         if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
-            do {
-                try Data.instance.loadGame(main: self)
-            } catch {
-                // TODO error handling
-            }
+            Data.instance.loadGame(main: self)
             startTimer(time: timeInt)
         } else {
             startNewGame(difficulty: Difficulty.ADVANCED)
