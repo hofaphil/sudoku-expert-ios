@@ -24,24 +24,31 @@ struct SudokuBlockView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                SudokuFieldView(Position(block: parent, row: 0, column: 0), padding)
-                SudokuFieldView(Position(block: parent, row: 0, column: 1), padding)
-                SudokuFieldView(Position(block: parent, row: 0, column: 2), padding)
+                SudokuFieldView(getModel(p(parent, 0, 0)), p(parent, 0, 0), padding)
+                SudokuFieldView(getModel(p(parent, 0, 1)), p(parent, 0, 1), padding)
+                SudokuFieldView(getModel(p(parent, 0, 2)), p(parent, 0, 2), padding)
             }
             HStack(spacing: 0) {
-                SudokuFieldView(Position(block: parent, row: 1, column: 0), padding)
-                SudokuFieldView(Position(block: parent, row: 1, column: 1), padding)
-                SudokuFieldView(Position(block: parent, row: 1, column: 2), padding)
+                SudokuFieldView(getModel(p(parent, 1, 0)), p(parent, 1, 0), padding)
+                SudokuFieldView(getModel(p(parent, 1, 1)), p(parent, 1, 1), padding)
+                SudokuFieldView(getModel(p(parent, 1, 2)), p(parent, 1, 2), padding)
             }
             HStack(spacing: 0) {
-                SudokuFieldView(Position(block: parent, row: 2, column: 0), padding)
-                SudokuFieldView(Position(block: parent, row: 2, column: 1), padding)
-                SudokuFieldView(Position(block: parent, row: 2, column: 2), padding)
+                SudokuFieldView(getModel(p(parent, 2, 0)), p(parent, 2, 0), padding)
+                SudokuFieldView(getModel(p(parent, 2, 1)), p(parent, 2, 1), padding)
+                SudokuFieldView(getModel(p(parent, 2, 2)), p(parent, 2, 2), padding)
             }
         }.border(Color.black, width: 2).padding(padding)
     }
-}
 
+    private func getModel(_ position: Position) -> Number {
+        main.game.getNumber(position: position)
+    }
+
+    private func p(_ block: Int, _ row: Int, _ col: Int) -> Position {
+        Position(block: block, row: row, column: col)
+    }
+}
 
 struct SudokuBlock_Previews: PreviewProvider {
     static var previews: some View {

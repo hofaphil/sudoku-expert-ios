@@ -73,7 +73,7 @@ struct StatusBar: View {
                 Spacer()
             }.padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
         }.actionSheet(isPresented: $actionSheet) {
-            return options ? optionSheet : newGameSheet
+            options ? optionSheet : newGameSheet
         }.background(main.appColor)
     }
 }

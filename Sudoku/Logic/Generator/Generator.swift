@@ -17,18 +17,18 @@ class Generator {
         let game = Sudoku()
 
         let blocks = getBlockArray(block: s!.pointee.blocks)
-        let solution = getBlockArray(block: s!.pointee.blocks)
+        let solution = getBlockArray(block: s!.pointee.solution)
 
         for b in 0..<9 {
             let numbers = getNumberArray(number: blocks[b].numbers)
             let solutions = getNumberArray(number: solution[b].numbers)
-            for r in 0...3 {
-                for c in 0...3 {
+            for r in 0..<3 {
+                for c in 0..<3 {
                     let number = numbers[r][c]
                     let solution = solutions[r][c]
-                    let changeable = number == 0 ? true: false
+                    let changeable = number == 0
                     let n = Number(number: Int(number), solution: Int(solution), isChangeable: changeable)
-                    game.blocks[b].setNumber(row: r, column: c, number: n)
+                    game.setNumber(position: Position(block: b, row: r, column: c), number: n)
                 }
             }
         }

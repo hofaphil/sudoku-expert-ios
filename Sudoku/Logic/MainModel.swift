@@ -56,7 +56,7 @@ class MainModel: ObservableObject {
         DispatchQueue.main.async {
             self.difficulty = difficulty
 
-            self.game = Generator.createSudoku(freeFields: Int32(difficulty.rawValue))
+            self.game = Generator.createSudoku(freeFields: Int32(Difficulty.getFreeFields(difficulty: difficulty)))
 
             self.startNewGame()
             self.loading = false

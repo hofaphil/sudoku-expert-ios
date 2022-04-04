@@ -23,16 +23,12 @@ struct SudokuFieldView: View {
     var fieldSize: CGFloat
     var noteSize: CGFloat
     
-    init(_ position: Position, _ parentPadding: CGFloat) {
+    init(_ model: Number, _ position: Position, _ parentPadding: CGFloat) {
         self.position = position
-        fieldSize = (500 - (6 * parentPadding)) / 9
+        self.model = model
+        fieldSize = (UIScreen.main.bounds.size.width - (6 * parentPadding)) / 9
         noteSize = fieldSize / 3
-        model = Number()
     }
-    
-    /* mutating func initModel() {
-        model = main.game.getNumber(position: position)
-    } */
     
     var body: some View {
         ZStack {
@@ -81,6 +77,6 @@ struct SudokuFieldView: View {
 
 struct SudokuFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuFieldView(Position(block: 0, row: 0, column: 0), 2)
+        SudokuFieldView(Number(), Position(block: 0, row: 0, column: 0), 2)
     }
 }

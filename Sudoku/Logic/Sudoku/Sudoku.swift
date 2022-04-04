@@ -10,16 +10,19 @@ import Foundation
 
 class Sudoku: Equatable, Codable {
 
-    var blocks: [Block];
-    var overallErrors: Int = 0;
+    var blocks: [Block]
+    var overallErrors: Int = 0
 
     init() {
-        blocks = [Block](repeating: Block(), count: 9)
+        blocks = []
+        for _ in 0...8 {
+            blocks.append(Block())
+        }
     }
 
     func insert(number: Int, position: Position, note: Bool) {
         if (!blocks[position.block].insert(number: number, position: position, note: note)) {
-            overallErrors += 1;
+            overallErrors += 1
         }
     }
 
@@ -33,7 +36,7 @@ class Sudoku: Equatable, Codable {
             for i in 0..<3 {
                 for j in 0..<3 {
                     if (getNumber(position: Position(block: k, row: i, column: j)).number == 0) {
-                        freeFields += 1;
+                        freeFields += 1
                     }
                 }
             }
@@ -47,7 +50,7 @@ class Sudoku: Equatable, Codable {
             for i in 0..<3 {
                 for j in 0..<3 {
                     if (getNumber(position: Position(block: k, row: i, column: j)).isError()) {
-                        currentErrors += 1;
+                        currentErrors += 1
                     }
                 }
             }
@@ -56,15 +59,15 @@ class Sudoku: Equatable, Codable {
     }
 
     func getNumber(position: Position) -> Number {
-        blocks[position.block].getNumber(row: position.row, column: position.column);
+        blocks[position.block].getNumber(row: position.row, column: position.column)
     }
 
     func setNumber(position: Position, number: Number) {
-        blocks[position.block].setNumber(row: position.row, column: position.column, number: number);
+        blocks[position.block].setNumber(row: position.row, column: position.column, number: number)
     }
 
     func getSudoku() -> [Block] {
-        blocks;
+        blocks
     }
 
     static func ==(a: Sudoku, b: Sudoku) -> Bool {
@@ -73,6 +76,6 @@ class Sudoku: Equatable, Codable {
                 return false
             }
         }
-        return a.overallErrors == b.overallErrors;
+        return a.overallErrors == b.overallErrors
     }
 }

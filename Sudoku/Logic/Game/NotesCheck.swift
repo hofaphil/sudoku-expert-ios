@@ -24,7 +24,7 @@ extension MainModel {
 
     func checkNotes(position: Position, number: Int) {
         if UserDefaults.standard.bool(forKey: Data.SETTINGS_CHECK_NOTES) && !isNotes {
-            var gameBlock: [Block] = game.getSudoku()
+            let gameBlock: [Block] = game.getSudoku()
             for i in 0..<3 {
                 for j in 0..<3 {
                     gameBlock[position.block].getNumbers()[i][j].checkNote(number: number)

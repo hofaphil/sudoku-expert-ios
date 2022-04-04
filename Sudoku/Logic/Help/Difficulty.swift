@@ -33,4 +33,15 @@ enum Difficulty: Int {
             return Difficulty.ADVANCED
         }
     }
+
+    static func getFreeFields(difficulty: Difficulty) -> Int {
+        switch difficulty {
+        case .BEGINNER:
+            return 42
+        case .ADVANCED:
+            return 49
+        case .EXPERT:
+            return 56
+        }
+    }
 }

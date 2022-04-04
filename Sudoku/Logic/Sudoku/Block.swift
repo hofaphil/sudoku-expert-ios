@@ -13,7 +13,13 @@ class Block: Equatable, Codable {
     private var numbers: [[Number]];
 
     init() {
-        numbers = Array(repeating: Array(repeating: Number(), count: 3), count: 3)
+        numbers = []
+        for i in 0...2 {
+            numbers.append([])
+            for _ in 0...2 {
+                numbers[i].append(Number())
+            }
+        }
     }
 
     func insert(number: Int, position: Position, note: Bool) -> Bool {
