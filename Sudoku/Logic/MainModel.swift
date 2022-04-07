@@ -69,7 +69,9 @@ class MainModel: ObservableObject {
     private func startNewGame() {
         showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
         showErrors = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS)
-        print(showErrors)
+
+        selected = nil;
+        setFieldColors();
 
         startTimer(time: 0)
         UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
