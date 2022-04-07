@@ -10,11 +10,17 @@ import SwiftUI
 
 struct StatisticsView: View {
     var body: some View {
-        List {
+        let list = List {
             StatisticsCard(difficulty: Difficulty.BEGINNER)
             StatisticsCard(difficulty: Difficulty.ADVANCED)
             StatisticsCard(difficulty: Difficulty.EXPERT)
-        }.listStyle(GroupedListStyle()).navigationBarTitle("Statistics")
+        }.navigationBarTitle("Statistics")
+
+        if #available(iOS 14.0, *) {
+            list.listStyle(.insetGrouped)
+        } else {
+            list.listStyle(.grouped)
+        }
     }
 }
 
