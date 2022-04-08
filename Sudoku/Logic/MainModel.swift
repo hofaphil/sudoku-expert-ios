@@ -32,8 +32,8 @@ class MainModel: ObservableObject {
     @Published var lostGame = false
 
     @Published var loading = false
-    @Published var appColor = Color(UserDefaults.standard.string(forKey: Data.SETTINGS_COLOR)!)
 
+    @Published var appColor = Color(UserDefaults.standard.string(forKey: Data.SETTINGS_COLOR)!)
     static let unSelectedColor = Color.white
     static let lightSelectedColor = Color("DimGray")
     static let errorColor = Color("Red")

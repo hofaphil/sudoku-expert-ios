@@ -9,11 +9,11 @@
 import Foundation
 
 class Generator {
-    
+
     static func createSudoku(freeFields: Int32) -> Sudoku {
         let s = new_sudoku()
         create(s, freeFields)
-        
+
         let game = Sudoku()
 
         let blocks = getBlockArray(block: s!.pointee.blocks)
@@ -36,20 +36,23 @@ class Generator {
         return game
     }
 
-    static func solveSudoku(sudoku: Sudoku) {
+    static func solveSudoku(sudoku: inout Sudoku) {
         let s = new_sudoku()
 
-        let blocks = getBlockArray(block: s!.pointee.blocks)
+        var blocks = getBlockArray(block: s!.pointee.blocks)
 
-        for b in 0..<9 {
-            var numbers = getNumberArray(number: blocks[b].numbers)
-            for r in 0..<3 {
-                for c in 0..<3 {
-                    let pos = Position(block: b, row: r, column: c)
-                    numbers[r][c] = Int32(sudoku.getNumber(position: pos).number)
+        blocks.withUnsafeMutableBufferPointer({ (cBlocks: inout UnsafeMutableBufferPointer<block>) -> () in
+            for b in 0..<9 {
+                var numbers = Array(repeating: Array(repeating: Int32(0), count: 3), count: 3)
+                for r in 0..<3 {
+                    for c in 0..<3 {
+                        numbers[r][c] = Int32(sudoku.getNumber(position: Position(block: b, row: r, column: c)).number)
+                    }
                 }
+                cBlocks[b].numbers = getNumberTuple(numbers: numbers);
             }
-        }
+            set_sudoku(s, cBlocks.baseAddress)
+        })
 
         solve(s);
 
@@ -60,8 +63,7 @@ class Generator {
             for r in 0..<3 {
                 for c in 0..<3 {
                     let solution = solutions[r][c]
-                    let pos = Position(block: b, row: r, column: c)
-                    let n = sudoku.getNumber(position: pos)
+                    let n = sudoku.getNumber(position: Position(block: b, row: r, column: c))
                     n.solution = Int(solution)
                 }
             }
@@ -70,6 +72,10 @@ class Generator {
 
     private static func getNumberArray(number: ((Int32, Int32, Int32), (Int32, Int32, Int32), (Int32, Int32, Int32))) -> [[Int32]] {
         [[number.0.0, number.0.1, number.0.2], [number.1.0, number.1.1, number.1.2], [number.2.0, number.2.1, number.2.2]]
+    }
+
+    private static func getNumberTuple(numbers: [[Int32]]) -> ((Int32, Int32, Int32), (Int32, Int32, Int32), (Int32, Int32, Int32)) {
+        ((numbers[0][0], numbers[0][1], numbers[0][2]), (numbers[1][0], numbers[1][1], numbers[1][2]), (numbers[2][0], numbers[2][1], numbers[2][2]))
     }
 
     private static func getBlockArray(block: (block, block, block, block, block, block, block, block, block)) -> [block] {

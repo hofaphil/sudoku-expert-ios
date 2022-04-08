@@ -9,66 +9,67 @@
 import Foundation
 
 class ShareClass {
-    
+
     static let websiteURL = "https://philipphofer.de/"
-    
-    /* static func generateShareLink(main: MainModel, sudoku: SudokuClass) -> URL? {
-        
+
+    static func generateShareLink(main: MainModel, sudoku: Sudoku) -> URL? {
         var id = ""
         id.append(String(main.difficulty.rawValue))
-        
-        for i in 0..<9 {
-            for a in 0..<3 {
-                for b in 0..<3 {
-                    id.append(String(sudoku.getSudoku()[i].getNumbers()[a][b]))
+
+        for b in 0..<9 {
+            for r in 0..<3 {
+                for c in 0..<3 {
+                    let pos = Position(block: b, row: r, column: c)
+                    id.append(String(sudoku.getNumber(position: pos).number))
                 }
             }
         }
-        
+
         return URL(string: websiteURL + "share?id=" + LinkShorter.getLink(id: id))
     }
-    
+
     static func load(main: MainModel, url: URL) throws {
-        main.sudoku = SudokuClass()
+        main.game = Sudoku()
 
         let urlComponents = URLComponents(string: url.absoluteString)
         let link = urlComponents?.queryItems?.first(where: { $0.name == "id" })?.value
-        
+
         if link == nil {
-            // TODO throw exception
+            // TODO error handling
         }
-        
+
         let id = LinkShorter.getId(link: link!)
         let difficulty = Int(String(id.first!))
-        
+
         if difficulty == nil {
-            // TODO throw exception
+            // TODO error handling
         }
-        
+
         if difficulty! < 0 || difficulty! > 3 {
-            // TODO throw exception
+            // TODO error handling
         }
 
         main.difficulty = Difficulty(rawValue: difficulty!)!
 
-        var block = [Block]()
-        var numbers = [[Int32]](repeating: [Int32](repeating: 0, count: 3), count: 3)
-        
         var k = 1
-        
-        for _ in 0..<9 {
-            for a in 0..<3 {
-                for b in 0..<3 {
-                    numbers[a][b] = Int32(String(id[k]))!
+
+        for b in 0..<9 {
+            for r in 0..<3 {
+                for c in 0..<3 {
+                    var p = Position(block: b, row: r, column: c);
+                    let number = Int(String(id[k]))!
+                    // TODO error handling if number cannot be parsed
+
                     k += 1
+
+                    let n = Number(number: number, solution: number, isChangeable: number == 0)
+                    main.game.setNumber(position: p, number: n)
                 }
             }
-            block.append(Block(numbers: numbers));
         }
-        main.sudoku.setSudoku(blocks: block)
-        let solution = SudokuClass.solve(blocks: main.sudoku.getSudoku())
-        main.sudoku.setSolution(blocks: solution)
-    } */
+
+        Generator.solveSudoku(sudoku: &main.game)
+    }
 }
 
 extension String {

@@ -37,7 +37,7 @@ extension MainModel {
 
                     if (selected != nil) {
                         if (selected == pos) {
-                            colors[b][r][c] = Color.yellow
+                            colors[b][r][c] = appColor
                             continue
                         }
 

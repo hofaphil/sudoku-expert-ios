@@ -30,13 +30,12 @@ struct StatusBar: View {
     var optionSheet: ActionSheet {
         ActionSheet(title: Text("More"), buttons: [
             .default(Text("Share")) {
-                // TODO hier noch den richtigen link und das richtige share-verhalten einfügen!
-                // let data = ShareClass.generateShareLink(main: main, sudoku: main.sudoku)
-                // if data == nil {
+                let data = ShareClass.generateShareLink(main: main, sudoku: main.game)
+                if data == nil {
                     // TODO show error
-                /*
+                }
                 let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
-                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil) */
+                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
             },
             .default(Text("Statistics")) { statistics = true },
             .default(Text("Rate")) {
@@ -55,7 +54,7 @@ struct StatusBar: View {
                     options = false
                 }) { Image(systemName: "plus").font(.title) }
                 Spacer()
-                Text(main.showTime ? main.time : "--:--").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                Text(main.showTime ? main.time : "--:--").font(.title)
                 Spacer()
                 Button(action: {
                     actionSheet = true

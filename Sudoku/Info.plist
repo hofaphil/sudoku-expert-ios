@@ -69,5 +69,7 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>LSMultipleInstancesProhibited</key>
+	<true/>
 </dict>
 </plist>
