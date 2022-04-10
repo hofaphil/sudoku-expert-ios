@@ -35,7 +35,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let urlContext = URLContexts.first
         if urlContext != nil {
             do {
-                try ShareClass.load(main: main, url: urlContext!.url)
+                let loadedItems = try ShareClass.load(url: urlContext!.url)
+                main.game = loadedItems.0
+                main.difficulty = loadedItems.1
             } catch {
                 //TODO error-handling
             }

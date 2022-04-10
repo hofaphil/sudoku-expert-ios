@@ -12,64 +12,69 @@ class ShareClass {
 
     static let websiteURL = "https://philipphofer.de/"
 
-    static func generateShareLink(main: MainModel, sudoku: Sudoku) -> URL? {
-        var id = ""
-        id.append(String(main.difficulty.rawValue))
+    static func generateShareLink(sudoku: Sudoku, difficulty: Difficulty) -> URL? {
+        var gameString = ""
+        gameString.append(String(difficulty.rawValue))
 
         for b in 0..<9 {
             for r in 0..<3 {
                 for c in 0..<3 {
                     let pos = Position(block: b, row: r, column: c)
-                    id.append(String(sudoku.getNumber(position: pos).number))
+                    gameString.append(String(sudoku.getNumber(position: pos).number))
                 }
             }
         }
 
-        return URL(string: websiteURL + "share?id=" + LinkShorter.getLink(id: id))
+        return URL(string: websiteURL + "share?id=" + LinkShortener.getLink(id: gameString))
     }
 
-    static func load(main: MainModel, url: URL) throws {
-        main.game = Sudoku()
+    static func load(url: URL) throws -> (Sudoku, Difficulty) {
+        var sudoku = Sudoku()
 
         let urlComponents = URLComponents(string: url.absoluteString)
-        let link = urlComponents?.queryItems?.first(where: { $0.name == "id" })?.value
-
-        if link == nil {
-            // TODO error handling
+        guard let link = urlComponents?.queryItems?.first(where: { $0.name == "id" })?.value else {
+            throw ShareError.SharingError
         }
 
-        let id = LinkShorter.getId(link: link!)
-        let difficulty = Int(String(id.first!))
+        let gameString = LinkShortener.getId(link: link)
 
-        if difficulty == nil {
-            // TODO error handling
+        guard let difficultyInt = gameString.first else {
+            throw ShareError.SharingError
         }
 
-        if difficulty! < 0 || difficulty! > 3 {
-            // TODO error handling
+        guard let difficulty = Int(String(difficultyInt)) else {
+            throw ShareError.SharingError
         }
 
-        main.difficulty = Difficulty(rawValue: difficulty!)!
+        if difficulty < 0 || difficulty > 3 {
+            throw ShareError.SharingError
+        }
 
         var k = 1
-
         for b in 0..<9 {
             for r in 0..<3 {
                 for c in 0..<3 {
-                    var p = Position(block: b, row: r, column: c);
-                    let number = Int(String(id[k]))!
-                    // TODO error handling if number cannot be parsed
+                    guard let number = Int(String(gameString[k])) else {
+                        throw ShareError.SharingError
+                    }
+
+                    let p = Position(block: b, row: r, column: c);
+                    let n = Number(number: number, solution: number, isChangeable: number == 0)
+                    sudoku.setNumber(position: p, number: n)
 
                     k += 1
-
-                    let n = Number(number: number, solution: number, isChangeable: number == 0)
-                    main.game.setNumber(position: p, number: n)
                 }
             }
         }
 
-        Generator.solveSudoku(sudoku: &main.game)
+        Generator.solveSudoku(sudoku: &sudoku)
+
+        return (sudoku, Difficulty(rawValue: difficulty) ?? Difficulty.BEGINNER)
     }
+}
+
+enum ShareError: Error {
+    case SharingError
 }
 
 extension String {

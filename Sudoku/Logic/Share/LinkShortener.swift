@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LinkShorter {
+struct LinkShortener {
 
     static func getLink(id: String) -> String {
         var link = id;

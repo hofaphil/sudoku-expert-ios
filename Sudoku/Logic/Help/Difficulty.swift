@@ -23,7 +23,7 @@ enum Difficulty: Int {
         }
     }
 
-    static func getDifficutly(intVal: Int) -> Difficulty {
+    static func getDifficulty(intVal: Int) -> Difficulty {
         switch intVal {
         case 0:
             return Difficulty.BEGINNER

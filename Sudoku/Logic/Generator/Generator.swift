@@ -56,7 +56,7 @@ class Generator {
 
         solve(s);
 
-        let solution = getBlockArray(block: s!.pointee.blocks)
+        let solution = getBlockArray(block: s!.pointee.solution)
 
         for b in 0..<9 {
             let solutions = getNumberArray(number: solution[b].numbers)

@@ -30,7 +30,7 @@ struct StatusBar: View {
     var optionSheet: ActionSheet {
         ActionSheet(title: Text("More"), buttons: [
             .default(Text("Share")) {
-                let data = ShareClass.generateShareLink(main: main, sudoku: main.game)
+                let data = ShareClass.generateShareLink(sudoku: main.game, difficulty: main.difficulty)
                 if data == nil {
                     // TODO show error
                 }

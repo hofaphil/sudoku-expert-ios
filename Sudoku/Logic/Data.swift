@@ -55,7 +55,7 @@ class Data {
     }
 
     func loadGame(main: MainModel) {
-        main.difficulty = Difficulty.getDifficutly(intVal: storage.integer(forKey: Data.GAME_DIFFICULTY))
+        main.difficulty = Difficulty.getDifficulty(intVal: storage.integer(forKey: Data.GAME_DIFFICULTY))
         main.timeInt = storage.integer(forKey: Data.GAME_TIME)
         main.showTime = storage.bool(forKey: Data.GAME_SHOW_TIME)
         main.showErrors = storage.bool(forKey: Data.GAME_SHOW_ERRORS)

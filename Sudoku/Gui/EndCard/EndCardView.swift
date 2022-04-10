@@ -51,7 +51,7 @@ struct EndCardView: View {
     }
 
     func okButtonAction() {
-        main.startNewGame(difficulty: Difficulty.getDifficutly(intVal: UserDefaults.standard.integer(forKey: Data.GAME_DIFFICULTY)))
+        main.startNewGame(difficulty: Difficulty.getDifficulty(intVal: UserDefaults.standard.integer(forKey: Data.GAME_DIFFICULTY)))
     }
 }
 
