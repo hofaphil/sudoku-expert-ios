@@ -7,9 +7,9 @@ import Foundation
 
 class Statistics: Codable {
 
-    var bestTime: [Int] = [0, 0, 0]
-    var timesPlayed: [Int] = [0, 0, 0]
-    var timeOverall: [Int] = [0, 0, 0]
+    private var bestTime: [Int] = [0, 0, 0]
+    private var timesPlayed: [Int] = [0, 0, 0]
+    private var timeOverall: [Int] = [0, 0, 0]
 
     func addGame(difficulty: Difficulty, time: Int) {
         let index = difficulty.rawValue

@@ -19,6 +19,6 @@ class Position: Equatable {
     }
 
     static func ==(a: Position, b: Position) -> Bool {
-        return a.row == b.row && a.column == b.column && a.block == b.block
+        a.row == b.row && a.column == b.column && a.block == b.block
     }
 }
