@@ -7,30 +7,94 @@
 //
 
 import XCTest
+@testable import Sudoku
 
-class Sudoku: XCTestCase {
+class SudokuTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let correctNumber = 3, wrongNumber = 4
+    let position = Position(block: 3, row: 2, column: 1)
+    let note = true, changeable = true
+
+    var number = Number()
+    var sudoku = Sudoku()
+
+    override func setUp() {
+        super.setUp()
+
+        number = Number(number: 0, solution: correctNumber, isChangeable: changeable)
+        sudoku.setNumber(position: position, number: number)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // insert
+    func testInsertNumber() {
+        XCTAssertEqual(sudoku.overallErrors, 0)
+
+        sudoku.insert(number: wrongNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.overallErrors, 1)
+
+        sudoku.insert(number: correctNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.overallErrors, 1)
+
+        sudoku.insert(number: wrongNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.overallErrors, 2)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testInsertNote() {
+        XCTAssertEqual(sudoku.overallErrors, 0)
+
+        sudoku.insert(number: wrongNumber, position: position, note: note)
+        XCTAssertEqual(sudoku.overallErrors, 0)
+
+        sudoku.insert(number: correctNumber, position: position, note: note)
+        XCTAssertEqual(sudoku.overallErrors, 0)
+
+        sudoku.insert(number: wrongNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.overallErrors, 1)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    // freeFields
+    func testFreeFields() {
+        XCTAssertEqual(sudoku.freeFields(), 81)
+
+        sudoku.insert(number: wrongNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.freeFields(), 80)
+
+        sudoku.insert(number: correctNumber, position: position, note: note)
+        XCTAssertEqual(sudoku.freeFields(), 81)
     }
 
+    // currentErrors
+    func testCurrentErrors() {
+        XCTAssertEqual(sudoku.currentErrors(), 0)
+
+        sudoku.insert(number: wrongNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.currentErrors(), 1)
+
+        sudoku.insert(number: correctNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.currentErrors(), 0)
+
+        sudoku.insert(number: wrongNumber, position: position, note: note)
+        XCTAssertEqual(sudoku.currentErrors(), 0)
+    }
+
+    // equals
+    func testEquality() {
+        let s = Sudoku()
+        XCTAssertTrue(s != sudoku)
+
+        s.setNumber(position: position, number: Number(number: 0, solution: correctNumber, isChangeable: changeable))
+        XCTAssertTrue(s == sudoku)
+
+        sudoku.insert(number: correctNumber, position: position, note: !note)
+        XCTAssertTrue(s != sudoku)
+
+        s.insert(number: correctNumber, position: position, note: !note)
+        XCTAssertTrue(s == sudoku)
+
+        s.insert(number: wrongNumber, position: position, note: !note)
+        XCTAssertTrue(s != sudoku)
+
+        s.insert(number: correctNumber, position: position, note: !note)
+        XCTAssertTrue(s != sudoku)
+    }
 }

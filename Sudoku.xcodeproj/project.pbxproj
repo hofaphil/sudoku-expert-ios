@@ -44,7 +44,6 @@
 		19F6BFE027ED0203005558D4 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFDF27ED0203005558D4 /* Block.swift */; };
 		19F6BFE227ED020D005558D4 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFE127ED020D005558D4 /* Number.swift */; };
 		19F8E2D7247D46D400DB8EBD /* FieldColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2D6247D46D400DB8EBD /* FieldColor.swift */; };
-		1EC0D0A9292968B682F506C4 /* BlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DD49436A418582004054 /* BlockTests.swift */; };
 		1EC0D559A5F6853997501FBE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DC481CF518F3B1ACA0C6 /* MainModel.swift */; };
 		1EC0D727715CC530E8847A62 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0D037539C66440171D4F7 /* Statistics.swift */; };
 		1EC0D9F842CDEBF89FCB39B5 /* NumberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DDDD3A7E7CC382D763CF /* NumberTests.swift */; };
@@ -108,7 +107,6 @@
 		19F8E2D6247D46D400DB8EBD /* FieldColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldColor.swift; sourceTree = "<group>"; };
 		1EC0D037539C66440171D4F7 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		1EC0DC481CF518F3B1ACA0C6 /* MainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
-		1EC0DD49436A418582004054 /* BlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTests.swift; sourceTree = "<group>"; };
 		1EC0DDDD3A7E7CC382D763CF /* NumberTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -315,7 +313,6 @@
 			isa = PBXGroup;
 			children = (
 				19AE0CFD2803148900D81B10 /* SudokuTests.swift */,
-				1EC0DD49436A418582004054 /* BlockTests.swift */,
 				1EC0DDDD3A7E7CC382D763CF /* NumberTests.swift */,
 			);
 			path = Sudoku;
@@ -466,7 +463,6 @@
 			files = (
 				19AE0CFE2803148900D81B10 /* SudokuTests.swift in Sources */,
 				19AE0CF72803143000D81B10 /* SudokuUnitTests.swift in Sources */,
-				1EC0D0A9292968B682F506C4 /* BlockTests.swift in Sources */,
 				1EC0D9F842CDEBF89FCB39B5 /* NumberTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
