@@ -39,13 +39,13 @@ class MainModel: ObservableObject {
     static let errorColor = Color("Red")
 
     init(difficulty: Int = 0) {
-        initColorArray()
         if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             Data.instance.loadGame(main: self)
             startTimer(time: timeInt)
         } else {
             startNewGame(difficulty: Difficulty.ADVANCED)
         }
+        initColorArray()
     }
 
     func startNewGame(difficulty: Difficulty) {

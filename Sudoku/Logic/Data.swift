@@ -10,10 +10,7 @@ import Foundation
 
 class Data {
 
-    static let LOAD_MODE = "loadmode"
-
-    // for the sudoku behind the game
-    static let GAME_SUDOKU = "game_sudoku"
+    static let LOAD_MODE = "load_mode"
 
     // for game
     static let GAME_ERRORS = "game_errors"
@@ -43,8 +40,6 @@ class Data {
         storage.set(main.timeInt, forKey: Data.GAME_TIME)
         storage.set(main.showTime, forKey: Data.GAME_SHOW_TIME)
         storage.set(main.showErrors, forKey: Data.GAME_SHOW_ERRORS)
-
-        // TODO errors
 
         // save the game itself
         do {
