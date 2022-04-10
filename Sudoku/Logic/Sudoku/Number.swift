@@ -46,7 +46,7 @@ class Number: Equatable, ObservableObject, Codable {
         return !isError()
     }
 
-    func insertNumber(_ number: Int) {
+    private func insertNumber(_ number: Int) {
         if (number == self.number) {
             delete()
         } else {
@@ -58,7 +58,7 @@ class Number: Equatable, ObservableObject, Codable {
         }
     }
 
-    func insertNote(_ number: Int) {
+    private func insertNote(_ number: Int) {
         self.number = 0
         isNotes = true
         notes[number - 1] = !notes[number - 1]

@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "19AE0CE62803134600D81B10"
+               BuildableName = "SudokuTests.xctest"
+               BlueprintName = "SudokuTests"
+               ReferencedContainer = "container:Sudoku.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "19AE0CF32803143000D81B10"
+               BuildableName = "SudokuUnitTests.xctest"
+               BlueprintName = "SudokuUnitTests"
+               ReferencedContainer = "container:Sudoku.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
