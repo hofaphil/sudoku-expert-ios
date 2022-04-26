@@ -1,5 +1,13 @@
+# Mac and AppCode
 .idea/
 .DS_Store
 
+# Build and Xcode-Data
 build/
 xcuserdata/
+
+# C-Files from Sudoku-Generator
+**/Generator/*
+!**/Generator/Bridging-Header.h
+!**/Generator/Generator.swift
+
