@@ -20,12 +20,14 @@ struct EndCardStatistics: View {
         self.difficulty = difficulty
         bestTime = MainModel.timeToString(Data().loadStatistics().getBestTime(difficulty: difficulty))
     }
-    
+
     func textItem(_ first: String, _ second: String) -> some View {
         HStack {
             Text("\(first):")
             Text(second).fontWeight(.light)
-        }.frame(maxWidth: .infinity, alignment: .leading).padding(5).padding(.leading)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(5).padding(.leading)
     }
 
     var body: some View {

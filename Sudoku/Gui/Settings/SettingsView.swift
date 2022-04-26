@@ -58,11 +58,12 @@ struct SettingsView: View {
             }
             .alert(isPresented: self.$alert) {
                 Alert(title: Text("Delete Statistics"),
-                        message: Text("Do you want to delete all you statistics?"),
-                        primaryButton: .destructive(Text("Delete"), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
-                        secondaryButton: .default(Text("Cancel")))
+                    message: Text("Do you want to delete all you statistics?"),
+                    primaryButton: .destructive(Text("Delete"), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
+                    secondaryButton: .default(Text("Cancel")))
             }
-        }.navigationBarTitle("Settings")
+        }
+        .navigationBarTitle("Settings")
 
         if #available(iOS 14.0, *) {
             list.listStyle(.insetGrouped)

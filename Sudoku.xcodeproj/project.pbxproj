@@ -30,7 +30,6 @@
 		199FF2902609F09900CB76F8 /* LinkShortener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FF28F2609F09900CB76F8 /* LinkShortener.swift */; };
 		199FF2942609F34400CB76F8 /* ShareClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FF2932609F34400CB76F8 /* ShareClass.swift */; };
 		199FF297260A20B700CB76F8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 199FF296260A20B700CB76F8 /* Colors.xcassets */; };
-		19AE0CF72803143000D81B10 /* SudokuUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AE0CF62803143000D81B10 /* SudokuUnitTests.swift */; };
 		19AE0CFE2803148900D81B10 /* SudokuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AE0CFD2803148900D81B10 /* SudokuTests.swift */; };
 		19F5D29A25C1AD52000C5B37 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29925C1AD52000C5B37 /* SettingsView.swift */; };
 		19F5D29F25C1ADEA000C5B37 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */; };
@@ -89,7 +88,6 @@
 		199FF2932609F34400CB76F8 /* ShareClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareClass.swift; sourceTree = "<group>"; };
 		199FF296260A20B700CB76F8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		19AE0CF42803143000D81B10 /* SudokuUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudokuUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19AE0CF62803143000D81B10 /* SudokuUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuUnitTests.swift; sourceTree = "<group>"; };
 		19AE0CFD2803148900D81B10 /* SudokuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuTests.swift; sourceTree = "<group>"; };
 		19BC106F27ECCEEA0019F8A5 /* cloneGenerator.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cloneGenerator.sh; sourceTree = "<group>"; };
 		19DDDFAF262C6C4600BB072B /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -251,7 +249,6 @@
 		19AE0CF52803143000D81B10 /* SudokuUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				19AE0CF62803143000D81B10 /* SudokuUnitTests.swift */,
 				1EC0DED4C1F74F9FBC6BA431 /* Sudoku */,
 				1EC0DED573B811F3CF88194E /* Help */,
 				1EC0D7AC109DC9146B424287 /* Share */,
@@ -487,7 +484,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				19AE0CFE2803148900D81B10 /* SudokuTests.swift in Sources */,
-				19AE0CF72803143000D81B10 /* SudokuUnitTests.swift in Sources */,
 				1EC0D9F842CDEBF89FCB39B5 /* NumberTests.swift in Sources */,
 				1EC0D0047731E178F073D7E1 /* StatisticsTests.swift in Sources */,
 				1EC0D69066D797E6DE2C6C41 /* LinkShortenerTests.swift in Sources */,

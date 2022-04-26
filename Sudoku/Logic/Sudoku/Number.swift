@@ -88,8 +88,8 @@ class Number: Equatable, ObservableObject, Codable {
             }
         }
         return a.number == b.number
-                && a.solution == b.solution
-                && a.isChangeable == b.isChangeable
-                && a.isNotes == b.isNotes
+            && a.solution == b.solution
+            && a.isChangeable == b.isChangeable
+            && a.isNotes == b.isNotes
     }
 }

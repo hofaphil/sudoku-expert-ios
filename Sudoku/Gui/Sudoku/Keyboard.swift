@@ -9,18 +9,18 @@
 import SwiftUI
 
 struct Keyboard: View {
-    
+
     @EnvironmentObject var main: MainModel
-    
+
     let padding: CGFloat = 10
     let width: CGFloat
     let borderWidth: CGFloat = 1
     let spacing: CGFloat = 5
-    
+
     init() {
         width = (UIScreen.main.bounds.width - (6 * (padding + borderWidth) + 2 * spacing)) / 3
     }
-    
+
     var body: some View {
         VStack {
             HStack {
@@ -45,8 +45,9 @@ struct Keyboard: View {
                     Spacer()
                     button(9)
                 }
-            }.padding()
-            HStack (spacing: spacing){
+            }
+            .padding()
+            HStack(spacing: spacing) {
                 Button(action: {
                     main.isNotes = !main.isNotes
                 }) {
@@ -54,15 +55,18 @@ struct Keyboard: View {
                         Image(systemName: "pencil").imageScale(.small)
                         Text("Notes").bold()
                     }
-                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
+                }
+                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                .background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
                 Button(action: {
-                        main.delete()
+                    main.delete()
                 }) {
                     HStack {
                         Image(systemName: "delete.left").imageScale(.small)
                         Text("Delete").bold()
                     }
-                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                }
+                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
                 Button(action: {
                     main.pause = !main.pause
                 }) {
@@ -70,16 +74,19 @@ struct Keyboard: View {
                         Image(systemName: "pause").imageScale(.small)
                         Text("Pause").bold()
                     }
-                }.frame(width: width).padding(padding).border(Color.black, width: borderWidth).background(main.pause ? main.appColor : MainModel.unSelectedColor)
+                }
+                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                .background(main.pause ? main.appColor : MainModel.unSelectedColor)
             }
         }
     }
-    
+
     private func button(_ number: Int) -> some View {
-        return Button(action: { self.insert(number) })
-            { Text(String(number)).font(.system(size: 30)).bold() }
+        Button(action: { insert(number) }) {
+            Text(String(number)).font(.system(size: 30)).bold()
+        }
     }
-    
+
     private func insert(_ number: Int) {
         main.insert(number: number)
     }

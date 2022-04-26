@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct SudokuGridView: View {
-    
+
     let sudoku: Sudoku
     var blocks: [SudokuBlockView]
-    
+
     init(sudoku: Sudoku) {
         self.sudoku = sudoku
         blocks = [SudokuBlockView]()
@@ -20,7 +20,7 @@ struct SudokuGridView: View {
             blocks.append(SudokuBlockView(parent: i, block: sudoku.getSudoku()[i]))
         }
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {

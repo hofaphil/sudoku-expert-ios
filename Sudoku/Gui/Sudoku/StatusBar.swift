@@ -9,24 +9,30 @@
 import SwiftUI
 
 struct StatusBar: View {
-    
+
     @EnvironmentObject var main: MainModel
-    
+
     @State var actionSheet = false
     @State var options = false
-    
+
     @State var settings = false
     @State var statistics = false
-    
+
     var newGameSheet: ActionSheet {
         ActionSheet(title: Text("New Game"), message: Text("Select Difficulty"), buttons: [
-            .default(Text(Difficulty.BEGINNER.asString)) {self.main.startNewGame(difficulty: Difficulty.BEGINNER)},
-            .default(Text(Difficulty.ADVANCED.asString)) {self.main.startNewGame(difficulty: Difficulty.ADVANCED)},
-            .default(Text(Difficulty.EXPERT.asString)) {self.main.startNewGame(difficulty: Difficulty.EXPERT)},
+            .default(Text(Difficulty.BEGINNER.asString)) {
+                main.startNewGame(difficulty: Difficulty.BEGINNER)
+            },
+            .default(Text(Difficulty.ADVANCED.asString)) {
+                main.startNewGame(difficulty: Difficulty.ADVANCED)
+            },
+            .default(Text(Difficulty.EXPERT.asString)) {
+                main.startNewGame(difficulty: Difficulty.EXPERT)
+            },
             .cancel()
         ])
     }
-    
+
     var optionSheet: ActionSheet {
         ActionSheet(title: Text("More"), buttons: [
             .default(Text("Share")) {
@@ -37,42 +43,54 @@ struct StatusBar: View {
                 let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
                 UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
             },
-            .default(Text("Statistics")) { statistics = true },
+            .default(Text("Statistics")) {
+                statistics = true
+            },
             .default(Text("Rate")) {
                 // TODO link to appstore
             },
-            .default(Text("Settings")) { settings = true },
+            .default(Text("Settings")) {
+                settings = true
+            },
             .cancel()
         ])
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Button(action: {
                     actionSheet = true
                     options = false
-                }) { Image(systemName: "plus").font(.title) }
+                }) {
+                    Image(systemName: "plus").font(.title)
+                }
                 Spacer()
                 Text(main.showTime ? main.time : "--:--").font(.title)
                 Spacer()
                 Button(action: {
                     actionSheet = true
                     options = true
-                }) { Image(systemName: "ellipsis").font(.title) }
+                }) {
+                    Image(systemName: "ellipsis").font(.title)
+                }
                 NavigationLink("", destination: SettingsView(), isActive: $settings)
                 NavigationLink("", destination: StatisticsView(), isActive: $statistics)
-            }.padding()
+            }
+            .padding()
             HStack {
                 Spacer()
                 Text(main.difficulty.asString).foregroundColor(.black)
                 Spacer()
                 Text(main.showErrors ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
-            }.padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
-        }.actionSheet(isPresented: $actionSheet) {
+            }
+            .padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
+        }
+        .actionSheet(isPresented: $actionSheet) {
             options ? optionSheet : newGameSheet
-        }.background(main.appColor)
+        }
+        .background(main.appColor)
     }
 }
 

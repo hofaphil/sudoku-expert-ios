@@ -36,18 +36,21 @@ struct EndCardView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .contentShape(Rectangle())
                 .background(Color.yellow)
-                
+
                 EndCardStatistics(time: won ? MainModel.timeToString(time) : "--:--", difficulty: difficulty)
-                
+
                 Button(action: okButtonAction) {
                     HStack {
                         Text("Ok").foregroundColor(Color.black)
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .contentShape(Rectangle())
-                }.padding().background(Color.yellow)
-            }.background(Rectangle().foregroundColor(.white)).padding()
-        }.edgesIgnoringSafeArea([.top, .bottom])
+                }
+                .padding().background(Color.yellow)
+            }
+            .background(Rectangle().foregroundColor(.white)).padding()
+        }
+        .edgesIgnoringSafeArea([.top, .bottom])
     }
 
     func okButtonAction() {

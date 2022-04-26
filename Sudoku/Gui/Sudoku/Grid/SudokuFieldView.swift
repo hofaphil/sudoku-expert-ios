@@ -9,24 +9,24 @@
 import SwiftUI
 
 struct SudokuFieldView: View {
-    
+
     @ObservedObject var model: Number = Number()
     @EnvironmentObject var main: MainModel
 
     var position: Position
 
     let fontSize: CGFloat = 12
-    
+
     var fieldSize: CGFloat
     var noteSize: CGFloat
-    
+
     init(_ model: Number, _ position: Position, _ parentPadding: CGFloat) {
         self.position = position
         self.model = model
         fieldSize = (UIScreen.main.bounds.size.width - (6 * parentPadding)) / 9
         noteSize = fieldSize / 3
     }
-    
+
     var body: some View {
         ZStack {
             Button(action: {
@@ -53,20 +53,19 @@ struct SudokuFieldView: View {
                 } else {
                     if (model.isChangeable) {
                         Text(model.number == 0 ? " " : String(model.number))
-                            .font(.system(size: 22))
-                            .italic()
-                            .fontWeight(.light)
+                        .font(.system(size: 22)).italic().fontWeight(.light)
                     } else {
                         Text(model.number == 0 ? " " : String(model.number))
-                            .font(.system(size: 22))
-                            .bold()
+                        .font(.system(size: 22)).bold()
                     }
-                    
+
                 }
-            }).frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5).background(main.colors[position.block][position.row][position.column]).padding(0)
+            })
+            .frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5)
+            .background(main.colors[position.block][position.row][position.column]).padding(0)
         }
     }
-    
+
     func note(_ number: Int) -> some View {
         Text(model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
     }
