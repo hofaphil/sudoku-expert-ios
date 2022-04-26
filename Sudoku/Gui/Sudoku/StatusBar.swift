@@ -37,17 +37,17 @@ struct StatusBar: View {
         ActionSheet(title: Text("More"), buttons: [
             .default(Text("Share")) {
                 let data = ShareClass.generateShareLink(sudoku: main.game, difficulty: main.difficulty)
-                if data == nil {
-                    // TODO show error
+                if data != nil {
+                    let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
+                    UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
                 }
-                let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
-                UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
             },
             .default(Text("Statistics")) {
                 statistics = true
             },
             .default(Text("Rate")) {
                 // TODO link to appstore
+                UIApplication.shared.open(URL(string: "https://philipphofer.de/")!)
             },
             .default(Text("Settings")) {
                 settings = true

@@ -80,7 +80,6 @@ class MainModel: ObservableObject {
     func select(position: Position) {
         selected = position
         setFieldColors()
-        // setFieldColors(position: position)
     }
 
     func insert(number: Int) {
@@ -89,7 +88,6 @@ class MainModel: ObservableObject {
             game.insert(number: number, position: selected!, note: isNotes)
             checkGameStatus()
             setFieldColors()
-            // TODO: check if game is solved
         }
     }
 
@@ -97,19 +95,18 @@ class MainModel: ObservableObject {
         if ((selected) != nil) {
             game.delete(position: selected!)
             setFieldColors()
-            // TODO: check if error-limit is reached
         }
     }
 
     func checkGameStatus() {
         if (game.freeFields() == 0 && game.currentErrors() == 0) {
-            wonGame = true;
+            wonGame = true
             let stats = Data().loadStatistics()
             stats.addGame(difficulty: difficulty, time: timeInt)
             Data().saveStatistics(statistics: stats)
         }
         if (UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) && game.overallErrors >= 3) {
-            lostGame = true;
+            lostGame = true
         }
     }
 
