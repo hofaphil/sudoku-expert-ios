@@ -66,7 +66,7 @@ struct StatusBar: View {
                     Image(systemName: "plus").font(.title)
                 }
                 Spacer()
-                Text(main.showTime ? main.time : "--:--").font(.title)
+                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME) ? main.time : "--:--").font(.title)
                 Spacer()
                 Button(action: {
                     actionSheet = true
@@ -82,7 +82,7 @@ struct StatusBar: View {
                 Spacer()
                 Text(main.difficulty.asString).foregroundColor(.black)
                 Spacer()
-                Text(main.showErrors ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
+                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }
             .padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))

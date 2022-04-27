@@ -23,8 +23,8 @@ class Data {
     // for settings
     static let SETTINGS_MARK_LINES = "settings_mark_lines"
     static let SETTINGS_MARK_NUMBERS = "settings_mark_numbers"
-    static let SETTINGS_MARK_ERRORS = "settings_mark_errors"
     static let SETTINGS_CHECK_NOTES = "settings_check_notes"
+    static let SETTINGS_SHOW_ERRORS = "settings_mark_errors"
     static let SETTINGS_SHOW_TIME = "settings_show_time"
     static let SETTINGS_COLOR = "settings_color"
 
@@ -38,8 +38,8 @@ class Data {
     func saveGame(main: MainModel) {
         storage.set(main.difficulty.rawValue, forKey: Data.GAME_DIFFICULTY)
         storage.set(main.timeInt, forKey: Data.GAME_TIME)
-        storage.set(main.showTime, forKey: Data.GAME_SHOW_TIME)
-        storage.set(main.showErrors, forKey: Data.GAME_SHOW_ERRORS)
+        storage.set(storage.bool(forKey: Data.SETTINGS_SHOW_TIME), forKey: Data.GAME_SHOW_TIME)
+        storage.set(storage.bool(forKey: Data.SETTINGS_SHOW_ERRORS), forKey: Data.GAME_SHOW_ERRORS)
 
         // save the game itself
         do {
@@ -52,8 +52,6 @@ class Data {
     func loadGame(main: MainModel) {
         main.difficulty = Difficulty.getDifficulty(intVal: storage.integer(forKey: Data.GAME_DIFFICULTY))
         main.timeInt = storage.integer(forKey: Data.GAME_TIME)
-        main.showTime = storage.bool(forKey: Data.GAME_SHOW_TIME)
-        main.showErrors = storage.bool(forKey: Data.GAME_SHOW_ERRORS)
 
         // load the game itself
         let jsonString = storage.data(forKey: Data.GAME)

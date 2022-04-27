@@ -45,7 +45,7 @@ struct SettingsView: View {
                 SettingsSwitch(title: "Check notes", key: Data.SETTINGS_CHECK_NOTES)
             }
             Section(footer: Text("Changes when you start a new game")) {
-                SettingsSwitch(title: "Show Errors", key: Data.SETTINGS_MARK_ERRORS)
+                SettingsSwitch(title: "Show Errors", key: Data.SETTINGS_SHOW_ERRORS)
                 SettingsSwitch(title: "Play with Timer", key: Data.SETTINGS_SHOW_TIME)
             }
             Section(header: Text("More")) {

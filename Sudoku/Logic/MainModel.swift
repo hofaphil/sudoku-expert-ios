@@ -20,13 +20,10 @@ class MainModel: ObservableObject {
 
     @Published var difficulty = Difficulty.ADVANCED
 
-    @Published var showErrors = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS)
-
     var timer = Timer()
     var timeInt = 0
     var timerRun = true
     @Published var time = "00:00"
-    @Published var showTime = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME)
 
     @Published var wonGame = false
     @Published var lostGame = false
@@ -67,8 +64,8 @@ class MainModel: ObservableObject {
     }
 
     private func startNewGame() {
-        showTime = UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME)
-        showErrors = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_ERRORS)
+        UserDefaults.standard.set(UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME), forKey: Data.GAME_SHOW_TIME)
+        UserDefaults.standard.set(UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_ERRORS), forKey: Data.GAME_SHOW_ERRORS)
 
         selected = nil;
         setFieldColors();
