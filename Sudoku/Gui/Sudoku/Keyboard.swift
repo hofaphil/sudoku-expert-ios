@@ -48,33 +48,28 @@ struct Keyboard: View {
             }
             .padding()
             HStack(spacing: spacing) {
-                Button(action: {
-                    main.isNotes = !main.isNotes
-                }) {
-                    HStack {
-                        Image(systemName: "pencil").imageScale(.small)
-                        Text("Notes").bold()
-                    }
+                HStack {
+                    Image(systemName: "pencil").imageScale(.small)
+                    Text("Notes").bold()
                 }
+                .onTapGesture(perform: { main.isNotes = !main.isNotes })
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
                 .background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
-                Button(action: {
-                    main.delete()
-                }) {
-                    HStack {
-                        Image(systemName: "delete.left").imageScale(.small)
-                        Text("Delete").bold()
-                    }
+
+
+                HStack {
+                    Image(systemName: "delete.left").imageScale(.small)
+                    Text("Delete").bold()
                 }
+                .onTapGesture(perform: { main.delete() })
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-                Button(action: {
-                    main.pause = !main.pause
-                }) {
-                    HStack {
-                        Image(systemName: "pause").imageScale(.small)
-                        Text("Pause").bold()
-                    }
+
+
+                HStack {
+                    Image(systemName: "pause").imageScale(.small)
+                    Text("Pause").bold()
                 }
+                .onTapGesture(perform: { main.pause = !main.pause })
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
                 .background(main.pause ? main.appColor : MainModel.unSelectedColor)
             }

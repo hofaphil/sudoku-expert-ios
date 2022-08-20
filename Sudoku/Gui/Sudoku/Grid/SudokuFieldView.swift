@@ -29,46 +29,44 @@ struct SudokuFieldView: View {
 
     var body: some View {
         ZStack {
-            Button(action: {
-                main.select(position: position)
-            }, label: {
-                if model.isNotes {
-                    VStack(spacing: 0) {
-                        HStack(spacing: 0) {
-                            note(1)
-                            note(2)
-                            note(3)
-                        }
-                        HStack(spacing: 0) {
-                            note(4)
-                            note(5)
-                            note(6)
-                        }
-                        HStack(spacing: 0) {
-                            note(7)
-                            note(8)
-                            note(9)
-                        }
+            if model.isNotes {
+                VStack(spacing: 0) {
+                    HStack(spacing: 0) {
+                        note(1)
+                        note(2)
+                        note(3)
                     }
-                } else {
-                    if (model.isChangeable) {
-                        Text(model.number == 0 ? " " : String(model.number))
-                        .font(.system(size: 22)).italic().fontWeight(.light)
-                    } else {
-                        Text(model.number == 0 ? " " : String(model.number))
-                        .font(.system(size: 22)).bold()
+                    HStack(spacing: 0) {
+                        note(4)
+                        note(5)
+                        note(6)
                     }
-
+                    HStack(spacing: 0) {
+                        note(7)
+                        note(8)
+                        note(9)
+                    }
                 }
-            })
-            .frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5)
-            .background(main.colors[position.block][position.row][position.column]).padding(0)
+            } else {
+                if (model.isChangeable) {
+                    Text(model.number == 0 ? " " : String(model.number))
+                    .font(.system(size: 22)).italic().fontWeight(.light)
+                } else {
+                    Text(model.number == 0 ? " " : String(model.number))
+                    .font(.system(size: 22)).bold()
+                }
+
+            }
         }
+        .onTapGesture(perform: { main.select(position: position) })
+        .frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5)
+        .background(main.colors[position.block][position.row][position.column]).padding(0)
     }
 
     func note(_ number: Int) -> some View {
         Text(model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
     }
+
 }
 
 struct SudokuFieldView_Previews: PreviewProvider {

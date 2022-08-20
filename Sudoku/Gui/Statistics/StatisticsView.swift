@@ -16,12 +16,7 @@ struct StatisticsView: View {
             StatisticsCard(difficulty: Difficulty.EXPERT)
         }
         .navigationBarTitle("Statistics")
-
-        if #available(iOS 14.0, *) {
-            list.listStyle(.insetGrouped)
-        } else {
-            list.listStyle(.grouped)
-        }
+        list.listStyle(.insetGrouped)
     }
 }
 

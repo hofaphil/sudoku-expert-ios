@@ -64,12 +64,7 @@ struct SettingsView: View {
             }
         }
         .navigationBarTitle("Settings")
-
-        if #available(iOS 14.0, *) {
-            list.listStyle(.insetGrouped)
-        } else {
-            list.listStyle(.grouped)
-        }
+        list.listStyle(.insetGrouped)
     }
 }
 
