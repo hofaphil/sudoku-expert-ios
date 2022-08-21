@@ -14,15 +14,40 @@ struct Keyboard: View {
 
     let padding: CGFloat = 10
     let width: CGFloat
-    let borderWidth: CGFloat = 1
-    let spacing: CGFloat = 5
+    let borderWidth: CGFloat = 2
+    let spacing: CGFloat = 4
 
     init() {
-        width = (UIScreen.main.bounds.width - (6 * (padding + borderWidth) + 2 * spacing)) / 3
+        width = (UIScreen.main.bounds.width - (6 * (padding + borderWidth))) / 3
     }
 
     var body: some View {
         VStack {
+            Spacer()
+            HStack(spacing: spacing) {
+                HStack {
+                    Image(systemName: "pencil").imageScale(.small)
+                    Text("Notes").bold()
+                }
+                .onTapGesture(perform: { main.isNotes = !main.isNotes })
+                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                .background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
+
+                HStack {
+                    Image(systemName: "delete.left").imageScale(.small)
+                    Text("Delete").bold()
+                }
+                .onTapGesture(perform: { main.delete() })
+                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+
+                HStack {
+                    Image(systemName: "pause").imageScale(.small)
+                    Text("Pause").bold()
+                }
+                .onTapGesture(perform: { main.pause = !main.pause })
+                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
+                .background(main.pause ? main.appColor : MainModel.unSelectedColor)
+            }
             HStack {
                 Group {
                     button(1)
@@ -46,33 +71,9 @@ struct Keyboard: View {
                     button(9)
                 }
             }
-            .padding()
-            HStack(spacing: spacing) {
-                HStack {
-                    Image(systemName: "pencil").imageScale(.small)
-                    Text("Notes").bold()
-                }
-                .onTapGesture(perform: { main.isNotes = !main.isNotes })
-                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-                .background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
-
-
-                HStack {
-                    Image(systemName: "delete.left").imageScale(.small)
-                    Text("Delete").bold()
-                }
-                .onTapGesture(perform: { main.delete() })
-                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-
-
-                HStack {
-                    Image(systemName: "pause").imageScale(.small)
-                    Text("Pause").bold()
-                }
-                .onTapGesture(perform: { main.pause = !main.pause })
-                .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-                .background(main.pause ? main.appColor : MainModel.unSelectedColor)
-            }
+            .padding().padding(.top, 10)
+            Spacer()
+            Spacer()
         }
     }
 

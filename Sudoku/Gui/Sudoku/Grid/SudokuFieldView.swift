@@ -58,9 +58,10 @@ struct SudokuFieldView: View {
 
             }
         }
-        .onTapGesture(perform: { main.select(position: position) })
+        .padding(0)
         .frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5)
-        .background(main.colors[position.block][position.row][position.column]).padding(0)
+        .background(main.colors[position.block][position.row][position.column])
+        .onTapGesture(perform: { main.select(position: position) })
     }
 
     func note(_ number: Int) -> some View {

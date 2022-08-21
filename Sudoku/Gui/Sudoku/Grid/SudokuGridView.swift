@@ -38,7 +38,7 @@ struct SudokuGridView: View {
                 blocks[7]
                 blocks[8]
             }
-        }.animation(nil)
+        }
     }
 }
 

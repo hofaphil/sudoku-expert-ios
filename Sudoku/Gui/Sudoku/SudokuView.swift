@@ -28,9 +28,7 @@ struct SudokuView: View {
                         } else {
                             SudokuGridView(sudoku: main.game)
                         }
-                        Spacer()
                         Keyboard()
-                        Spacer()
                     }
                     if (main.wonGame || main.lostGame) {
                         EndCardView(won: main.wonGame, time: main.timeInt, difficulty: main.difficulty)

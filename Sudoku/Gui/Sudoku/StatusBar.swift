@@ -18,63 +18,61 @@ struct StatusBar: View {
     @State var settings = false
     @State var statistics = false
 
-    var newGameSheet: ActionSheet {
-        ActionSheet(title: Text("New Game"), message: Text("Select Difficulty"), buttons: [
-            .default(Text(Difficulty.BEGINNER.asString)) {
-                main.startNewGame(difficulty: Difficulty.BEGINNER)
-            },
-            .default(Text(Difficulty.ADVANCED.asString)) {
-                main.startNewGame(difficulty: Difficulty.ADVANCED)
-            },
-            .default(Text(Difficulty.EXPERT.asString)) {
-                main.startNewGame(difficulty: Difficulty.EXPERT)
-            },
-            .cancel()
-        ])
+    var newGameMenu: some View {
+        Menu {
+            Button(action: { main.startNewGame(difficulty: Difficulty.BEGINNER) }) {
+                Label(Difficulty.BEGINNER.asString, systemImage: "1.square.fill")
+            }
+            Button(action: { main.startNewGame(difficulty: Difficulty.ADVANCED) }) {
+                Label(Difficulty.ADVANCED.asString, systemImage: "2.square.fill")
+            }
+            Button(action: { main.startNewGame(difficulty: Difficulty.EXPERT) }) {
+                Label(Difficulty.EXPERT.asString, systemImage: "3.square.fill")
+            }
+        } label: {
+            Image(systemName: "plus").font(.title)
+        }
     }
 
-    var optionSheet: ActionSheet {
-        ActionSheet(title: Text("More"), buttons: [
-            .default(Text("Share")) {
+    var optionMenu: some View {
+        Menu {
+            Button(action: {
                 let data = ShareClass.generateShareLink(sudoku: main.game, difficulty: main.difficulty)
                 if data != nil {
                     let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
                     UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
                 }
-            },
-            .default(Text("Statistics")) {
-                statistics = true
-            },
-            .default(Text("Rate")) {
+            }) {
+                Label("Challenge", systemImage: "person.2.fill")
+            }
+            Button(action: { statistics = true }) {
+                Label("Statistics", systemImage: "chart.bar.xaxis")
+            }
+            Button(action: {
                 // TODO link to appstore
                 UIApplication.shared.open(URL(string: "https://philipphofer.de/")!)
-            },
-            .default(Text("Settings")) {
+            }) {
+                Label("Rate", systemImage: "star.fill")
+            }
+            Button(action: {
                 settings = true
-            },
-            .cancel()
-        ])
+            }) {
+                Label("Settings", systemImage: "gearshape.fill")
+            }
+        } label: {
+            Image(systemName: "ellipsis").font(.title)
+        }
     }
 
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Button(action: {
-                    actionSheet = true
-                    options = false
-                }) {
-                    Image(systemName: "plus").font(.title)
-                }
+                NavigationLink("", destination: SettingsView(), isActive: $settings)
+                newGameMenu
                 Spacer()
                 Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME) ? main.time : "--:--").font(.title)
                 Spacer()
-                Button(action: {
-                    actionSheet = true
-                    options = true
-                }) {
-                    Image(systemName: "ellipsis").font(.title)
-                }
-                NavigationLink("", destination: SettingsView(), isActive: $settings)
+                optionMenu
                 NavigationLink("", destination: StatisticsView(), isActive: $statistics)
             }
             .padding()
@@ -85,10 +83,7 @@ struct StatusBar: View {
                 Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }
-            .padding(.top, 3).padding(.bottom, 3).border(Color.black, width: 1).padding(EdgeInsets(top: 0, leading: 3, bottom: 3, trailing: 3))
-        }
-        .actionSheet(isPresented: $actionSheet) {
-            options ? optionSheet : newGameSheet
+            .padding(.top, 6).padding(.bottom, 6).border(Color.black, width: 2).padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 2))
         }
         .background(main.appColor)
     }
