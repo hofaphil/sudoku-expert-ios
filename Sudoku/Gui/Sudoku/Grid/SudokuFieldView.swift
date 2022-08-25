@@ -72,6 +72,6 @@ struct SudokuFieldView: View {
 
 struct SudokuFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        SudokuFieldView(Number(), Position(block: 0, row: 0, column: 0), 2)
+        SudokuFieldView(Number(), Position(block: 0, row: 0, column: 0), 2).environmentObject(MainModel())
     }
 }

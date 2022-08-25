@@ -22,8 +22,30 @@ struct Keyboard: View {
     }
 
     var body: some View {
-        VStack {
-            Spacer()
+        VStack(spacing: 0) {
+            HStack {
+                Group {
+                    button(1)
+                    Spacer()
+                    button(2)
+                    Spacer()
+                    button(3)
+                    Spacer()
+                    button(4)
+                    Spacer()
+                }
+                Group {
+                    button(5)
+                    Spacer()
+                    button(6)
+                    Spacer()
+                    button(7)
+                    Spacer()
+                    button(8)
+                    Spacer()
+                    button(9)
+                }
+            }.padding().padding(.top, 10).padding(.bottom, 10)
             HStack(spacing: spacing) {
                 HStack {
                     Image(systemName: "pencil").imageScale(.small)
@@ -48,31 +70,6 @@ struct Keyboard: View {
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
                 .background(main.pause ? main.appColor : MainModel.unSelectedColor)
             }
-            HStack {
-                Group {
-                    button(1)
-                    Spacer()
-                    button(2)
-                    Spacer()
-                    button(3)
-                    Spacer()
-                    button(4)
-                    Spacer()
-                }
-                Group {
-                    button(5)
-                    Spacer()
-                    button(6)
-                    Spacer()
-                    button(7)
-                    Spacer()
-                    button(8)
-                    Spacer()
-                    button(9)
-                }
-            }
-            .padding().padding(.top, 10)
-            Spacer()
             Spacer()
         }
     }

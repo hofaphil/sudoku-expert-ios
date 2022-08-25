@@ -30,7 +30,7 @@ struct StatusBar: View {
                 Label(Difficulty.EXPERT.asString, systemImage: "3.square.fill")
             }
         } label: {
-            Image(systemName: "plus").font(.title)
+            Image(systemName: "plus").font(.title).frame(width: 40, height: 40)
         }
     }
 
@@ -60,7 +60,7 @@ struct StatusBar: View {
                 Label("Settings", systemImage: "gearshape.fill")
             }
         } label: {
-            Image(systemName: "ellipsis").font(.title)
+            Image(systemName: "ellipsis").font(.title).frame(width: 40, height: 40)
         }
     }
 
