@@ -29,9 +29,23 @@ struct StatisticsCard: View {
     var body: some View {
         Section(header: Text(difficulty.asString)) {
             VStack {
-                Text("Average: \(MainModel.timeToString(averageTime))").frame(maxWidth: .infinity, alignment: .leading).padding()
-                Text("Best time: \(MainModel.timeToString(bestTime))").frame(maxWidth: .infinity, alignment: .leading).padding(.leading)
-                Text("Number of games: \(timesPlayed)").frame(maxWidth: .infinity, alignment: .leading).padding()
+                HStack {
+                    Text(LocalizedStringKey("average"))
+                    Text(MainModel.timeToString(averageTime))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                HStack {
+                    Text(LocalizedStringKey("best-time"))
+                    Text(MainModel.timeToString(bestTime))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                HStack {
+                    Text(LocalizedStringKey("number-of-games"))
+                    Text("\(timesPlayed)")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }

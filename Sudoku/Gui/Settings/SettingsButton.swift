@@ -10,12 +10,12 @@ import SwiftUI
 
 struct SettingsButton: View {
 
-    let title: String
+    let title: LocalizedStringKey
     let action: () -> Void
 
     @State var state: Bool = false
 
-    init(title: String, action: @escaping () -> Void) {
+    init(title: LocalizedStringKey, action: @escaping () -> Void) {
         self.title = title
         self.action = action
     }

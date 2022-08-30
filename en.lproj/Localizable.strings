@@ -1,0 +1,35 @@
+// More Menu
+"challenge" = "Challenge";
+"statistics" = "Statistics";
+"rate" = "Rate";
+"settings" = "Settings";
+
+// Settings
+"game-settings" = "Game settings";
+"mark-same-numbers" = "Mark same numbers";
+"highlight-lines" = "Highlight lines";
+"check-notes" = "Check notes";
+"changes-on-new-game" = "Changes when you start a new game";
+"show-errors" = "Show Errors";
+"play-with-timer" = "Play with Timer";
+"more" = "More";
+"color-of-the-app" = "Color of the app";
+"reset-statistics" = "Reset your statistics";
+"contact" = "Contact";
+"delete-statistics" = "Delete Statistics";
+"delete-all-statistics" = "Do you want to delete all your statistics?";
+"delete" ="Delete";
+"cancel" = "Cancel";
+
+// Color-Chooser
+"choose-your-color" = "Choose your color";
+"choose-your-color-details" = "Choose your favorite color for the app";
+"green" = "Green";
+"yellow" = "Yellow";
+"blue" = "Blue";
+"orange" = "Orange";
+
+// Statistics
+"average"= "Average time:";
+"best-time" = "Best time:";
+"number-of-games" = "Number of games:";

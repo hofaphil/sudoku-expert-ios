@@ -12,6 +12,7 @@
 		1936CA8624742D6800B5F5B4 /* SudokuGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */; };
 		1954D09325C42A3B00FD5235 /* SettingsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1954D09225C42A3B00FD5235 /* SettingsSwitch.swift */; };
 		1954D09825C44B5F00FD5235 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1954D09725C44B5F00FD5235 /* SettingsButton.swift */; };
+		1963DC6028BE9D35003334EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1963DC6228BE9D35003334EE /* Localizable.strings */; };
 		1971836B247430F20031B501 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971836A247430F20031B501 /* Keyboard.swift */; };
 		1971836D247441FF0031B501 /* SudokuBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971836C247441FF0031B501 /* SudokuBlockView.swift */; };
 		1971836F247442D00031B501 /* SudokuFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1971836E247442D00031B501 /* SudokuFieldView.swift */; };
@@ -67,6 +68,8 @@
 		1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGridView.swift; sourceTree = "<group>"; };
 		1954D09225C42A3B00FD5235 /* SettingsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitch.swift; sourceTree = "<group>"; };
 		1954D09725C44B5F00FD5235 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
+		1963DC6128BE9D35003334EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1963DC6328BE9D5E003334EE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1971836A247430F20031B501 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		1971836C247441FF0031B501 /* SudokuBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuBlockView.swift; sourceTree = "<group>"; };
 		1971836E247442D00031B501 /* SudokuFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuFieldView.swift; sourceTree = "<group>"; };
@@ -197,6 +200,7 @@
 		198356422469ADDC00A718BF = {
 			isa = PBXGroup;
 			children = (
+				1963DC6228BE9D35003334EE /* Localizable.strings */,
 				19BC106F27ECCEEA0019F8A5 /* cloneGenerator.sh */,
 				1983564D2469ADDC00A718BF /* Sudoku */,
 				19AE0CF52803143000D81B10 /* SudokuUnitTests */,
@@ -405,6 +409,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 198356422469ADDC00A718BF;
 			productRefGroup = 1983564C2469ADDC00A718BF /* Products */;
@@ -423,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1983565B2469ADDD00A718BF /* LaunchScreen.storyboard in Resources */,
+				1963DC6028BE9D35003334EE /* Localizable.strings in Resources */,
 				199FF297260A20B700CB76F8 /* Colors.xcassets in Resources */,
 				198356582469ADDD00A718BF /* Preview Assets.xcassets in Resources */,
 				198356552469ADDD00A718BF /* Assets.xcassets in Resources */,
@@ -502,6 +508,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1963DC6228BE9D35003334EE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1963DC6128BE9D35003334EE /* en */,
+				1963DC6328BE9D5E003334EE /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		198356592469ADDD00A718BF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -517,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -578,6 +594,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

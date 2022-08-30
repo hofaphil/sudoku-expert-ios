@@ -12,12 +12,12 @@ struct SettingsSwitch: View {
 
     @EnvironmentObject var main: MainModel
 
-    var title: String
+    var title: LocalizedStringKey
     var key: String
 
     var state: Binding<Bool>
 
-    init(title: String, key: String) {
+    init(title: LocalizedStringKey, key: String) {
         self.title = title
         self.key = key
         state = Binding<Bool>(

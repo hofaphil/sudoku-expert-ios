@@ -1,0 +1,35 @@
+// More Menu
+"challenge" = "Challenge";
+"statistics" = "Statistik";
+"rate" = "Bewerten";
+"settings" = "Einstellungen";
+
+// Settings
+"game-settings" = "Spieleinstellungen";
+"mark-same-numbers" = "Gleiche Zahlen hervorheben";
+"highlight-lines" = "Linien hervorheben";
+"check-notes" = "Notizen automatisch prüfen";
+"changes-on-new-game" = "Wird erst im nächsten Spiel übernommen";
+"show-errors" = "Fehler anzeigen";
+"play-with-timer" = "Mit Stoppuhr spielen";
+"more" = "Mehr";
+"color-of-the-app" = "Farbe der App";
+"reset-statistics" = "Statistik zurücksetzen";
+"contact" = "Kontakt";
+"delete-statistics" = "Statistik löschen";
+"delete-all-statistics" = "Willst du wirklich deine gesamte Statistik zurücksetzen?";
+"delete" ="Löschen";
+"cancel" = "Abbruch";
+
+// Color-Chooser
+"choose-your-color" = "Wähle deine Farbe";
+"choose-your-color-details" = "Wähle deine Lieblingsfarbe für die App";
+"green" = "Grün";
+"yellow" = "Gelb";
+"blue" = "Blau";
+"orange" = "Orange";
+
+// Statistics
+"average"= "Durchschnitt:";
+"best-time" = "Bestzeit:";
+"number-of-games" = "Anzahl an Spielen:";

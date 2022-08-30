@@ -16,20 +16,20 @@ struct SettingsView: View {
     @State var colorChooser = false
 
     var colorChooserActionSheet: ActionSheet {
-        ActionSheet(title: Text("Choose your color"), message: Text("Choose your favorite color for the app"), buttons: [
-            .default(Text("Green")) {
+        ActionSheet(title: Text(LocalizedStringKey("choose-your-color")), message: Text(LocalizedStringKey("choose-your-color-details")), buttons: [
+            .default(Text(LocalizedStringKey("green"))) {
                 main.appColor = Color("Green")
                 UserDefaults.standard.set("Green", forKey: Data.SETTINGS_COLOR)
             },
-            .default(Text("Yellow")) {
+            .default(Text(LocalizedStringKey("yellow"))) {
                 main.appColor = Color("Yellow")
                 UserDefaults.standard.set("Yellow", forKey: Data.SETTINGS_COLOR)
             },
-            .default(Text("Blue")) {
+            .default(Text(LocalizedStringKey("blue"))) {
                 main.appColor = Color("Blue")
                 UserDefaults.standard.set("Blue", forKey: Data.SETTINGS_COLOR)
             },
-            .default(Text("Orange")) {
+            .default(Text(LocalizedStringKey("orange"))) {
                 main.appColor = Color("Orange")
                 UserDefaults.standard.set("Orange", forKey: Data.SETTINGS_COLOR)
             },
@@ -39,31 +39,31 @@ struct SettingsView: View {
 
     var body: some View {
         let list = List {
-            Section(header: Text("Game settings")) {
-                SettingsSwitch(title: "Mark same numbers", key: Data.SETTINGS_MARK_NUMBERS)
-                SettingsSwitch(title: "Highlight lines", key: Data.SETTINGS_MARK_LINES)
-                SettingsSwitch(title: "Check notes", key: Data.SETTINGS_CHECK_NOTES)
+            Section(header: Text(LocalizedStringKey("game-settings"))) {
+                SettingsSwitch(title: "mark-same-numbers", key: Data.SETTINGS_MARK_NUMBERS)
+                SettingsSwitch(title: "highlight-lines", key: Data.SETTINGS_MARK_LINES)
+                SettingsSwitch(title: "check-notes", key: Data.SETTINGS_CHECK_NOTES)
             }
-            Section(footer: Text("Changes when you start a new game")) {
-                SettingsSwitch(title: "Show Errors", key: Data.SETTINGS_SHOW_ERRORS)
-                SettingsSwitch(title: "Play with Timer", key: Data.SETTINGS_SHOW_TIME)
+            Section(footer: Text(LocalizedStringKey("changes-on-new-game"))) {
+                SettingsSwitch(title: "show-errors", key: Data.SETTINGS_SHOW_ERRORS)
+                SettingsSwitch(title: "play-with-timer", key: Data.SETTINGS_SHOW_TIME)
             }
-            Section(header: Text("More")) {
-                SettingsButton(title: "Color of the app", action: { colorChooser = true })
-                SettingsButton(title: "Reset your statistics", action: { alert = true })
-                SettingsButton(title: "Contact", action: { UIApplication.shared.open(URL(string: "https://philipphofer.de/contact")!) })
+            Section(header: Text(LocalizedStringKey("more"))) {
+                SettingsButton(title: "color-of-the-app", action: { colorChooser = true })
+                SettingsButton(title: "reset-statistics", action: { alert = true })
+                SettingsButton(title: "contact", action: { UIApplication.shared.open(URL(string: "https://philipphofer.de/contact")!) })
             }
             .actionSheet(isPresented: self.$colorChooser) {
                 colorChooserActionSheet
             }
             .alert(isPresented: self.$alert) {
-                Alert(title: Text("Delete Statistics"),
-                    message: Text("Do you want to delete all you statistics?"),
-                    primaryButton: .destructive(Text("Delete"), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
-                    secondaryButton: .default(Text("Cancel")))
+                Alert(title: Text(LocalizedStringKey("delete-statistics")),
+                    message: Text(LocalizedStringKey("delete-all-statistics")),
+                    primaryButton: .destructive(Text(LocalizedStringKey("delete")), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
+                    secondaryButton: .default(Text(LocalizedStringKey("cancel"))))
             }
         }
-        .navigationBarTitle("Settings")
+        .navigationBarTitle(LocalizedStringKey("settings"))
         list.listStyle(.insetGrouped)
     }
 }

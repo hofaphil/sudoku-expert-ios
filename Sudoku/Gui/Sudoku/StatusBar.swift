@@ -43,21 +43,21 @@ struct StatusBar: View {
                     UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
                 }
             }) {
-                Label("Challenge", systemImage: "person.2.fill")
+                Label("challenge", systemImage: "person.2.fill")
             }
             Button(action: { statistics = true }) {
-                Label("Statistics", systemImage: "chart.bar.xaxis")
+                Label("statistics", systemImage: "chart.bar.xaxis")
             }
             Button(action: {
                 // TODO link to appstore
                 UIApplication.shared.open(URL(string: "https://philipphofer.de/")!)
             }) {
-                Label("Rate", systemImage: "star.fill")
+                Label("rate", systemImage: "star.fill")
             }
             Button(action: {
                 settings = true
             }) {
-                Label("Settings", systemImage: "gearshape.fill")
+                Label("settings", systemImage: "gearshape.fill")
             }
         } label: {
             Image(systemName: "ellipsis").font(.title).frame(width: 40, height: 40)
