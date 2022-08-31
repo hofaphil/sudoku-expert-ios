@@ -49,8 +49,7 @@ struct StatusBar: View {
                 Label("statistics", systemImage: "chart.bar.xaxis")
             }
             Button(action: {
-                // TODO link to appstore
-                UIApplication.shared.open(URL(string: "https://philipphofer.de/")!)
+                UIApplication.shared.open(URL(string: "https://apps.apple.com/de/app/sudoku-expert/id1641677021")!)
             }) {
                 Label("rate", systemImage: "star.fill")
             }
