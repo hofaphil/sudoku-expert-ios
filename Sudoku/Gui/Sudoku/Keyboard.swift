@@ -49,7 +49,7 @@ struct Keyboard: View {
             HStack(spacing: spacing) {
                 HStack {
                     Image(systemName: "pencil").imageScale(.small)
-                    Text("test").bold()
+                    Text("Notes").bold()
                 }
                 .onTapGesture(perform: { main.isNotes = !main.isNotes })
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)

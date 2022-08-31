@@ -22,6 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let mainView = SudokuView().environmentObject(main)
 
+        if let activity = connectionOptions.userActivities.first, let url = activity.webpageURL {
+            loadGame(url: url)
+        }
+
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
@@ -31,18 +35,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        let urlContext = URLContexts.first
-        if urlContext != nil {
-            do {
-                let loadedItems = try ShareClass.load(url: urlContext!.url)
-                main.game = loadedItems.0
-                main.difficulty = loadedItems.1
-            } catch {
-                //TODO error-handling
-            }
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if (userActivity.webpageURL != nil) {
+            loadGame(url: userActivity.webpageURL!)
+        }
+    }
 
-            main.startTimer(time: 0)
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        if let urlContext = URLContexts.first {
+            loadGame(url: urlContext.url)
         } else {
             main.startNewGame(difficulty: Difficulty.init(rawValue: 0)!)
         }
@@ -78,7 +79,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    func loadGame(url: URL) {
+        do {
+            let loadedItems = try ShareClass.load(url: url)
+            main.game = loadedItems.0
+            main.difficulty = loadedItems.1
+        } catch {
+            //TODO error-handling
+        }
 
+        main.startTimer(time: 0)
+    }
 }
 
 struct SceneDelegate_Previews: PreviewProvider {

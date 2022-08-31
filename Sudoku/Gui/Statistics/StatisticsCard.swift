@@ -33,19 +33,19 @@ struct StatisticsCard: View {
                     Text(LocalizedStringKey("average"))
                     Text(MainModel.timeToString(averageTime))
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading).padding()
 
                 HStack {
                     Text(LocalizedStringKey("best-time"))
                     Text(MainModel.timeToString(bestTime))
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading).padding(.leading)
 
                 HStack {
                     Text(LocalizedStringKey("number-of-games"))
                     Text("\(timesPlayed)")
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading).padding()
             }
         }
     }
