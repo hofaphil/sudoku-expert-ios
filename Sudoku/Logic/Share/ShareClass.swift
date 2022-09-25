@@ -20,7 +20,8 @@ class ShareClass {
             for r in 0..<3 {
                 for c in 0..<3 {
                     let pos = Position(block: b, row: r, column: c)
-                    gameString.append(String(sudoku.getNumber(position: pos).number))
+                    let number = sudoku.getNumber(position: pos)
+                    gameString.append(number.isChangeable ? "0" : String(number.number))
                 }
             }
         }

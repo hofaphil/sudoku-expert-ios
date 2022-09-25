@@ -35,7 +35,7 @@ struct EndCardView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .contentShape(Rectangle())
-                .background(Color.yellow)
+                .background(main.appColor)
 
                 EndCardStatistics(time: won ? MainModel.timeToString(time) : "--:--", difficulty: difficulty)
 
@@ -46,7 +46,7 @@ struct EndCardView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .contentShape(Rectangle())
                 }
-                .padding().background(Color.yellow)
+                .padding().background(main.appColor)
             }
             .background(Rectangle().foregroundColor(.white)).padding()
         }
