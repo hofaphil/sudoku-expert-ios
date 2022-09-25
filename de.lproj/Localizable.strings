@@ -33,3 +33,10 @@
 "average"= "Durchschnitt:";
 "best-time" = "Bestzeit:";
 "number-of-games" = "Anzahl an Spielen:";
+
+// End-Card
+"endcard-difficulty" = "Schwierigkeit:";
+"endcard-your-time" = "Deine Zeit:";
+"endcard-best-time" = "Deine Bestzeit:";
+"endcard-win" = "Du gewinnst";
+"endcard-lose" = "Du verlierst";

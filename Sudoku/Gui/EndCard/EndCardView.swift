@@ -16,14 +16,14 @@ struct EndCardView: View {
     let time: Int
     let difficulty: Difficulty
 
-    let title: String
+    let title: LocalizedStringKey
 
     init(won: Bool, time: Int, difficulty: Difficulty) {
         self.time = time
         self.difficulty = difficulty
         self.won = won
 
-        title = won ? "You Won" : "You Lost"
+        title = won ? "endcard-win" : "endcard-lose"
     }
 
     var body: some View {

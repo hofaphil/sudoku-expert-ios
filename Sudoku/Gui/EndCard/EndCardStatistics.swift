@@ -21,9 +21,9 @@ struct EndCardStatistics: View {
         bestTime = MainModel.timeToString(Data().loadStatistics().getBestTime(difficulty: difficulty))
     }
 
-    func textItem(_ first: String, _ second: String) -> some View {
+    func textItem(_ first: LocalizedStringKey, _ second: String) -> some View {
         HStack {
-            Text("\(first):")
+            Text(first)
             Text(second).fontWeight(.light)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -32,9 +32,9 @@ struct EndCardStatistics: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            textItem("Difficulty", difficulty.asString)
-            textItem("Your Time", time)
-            textItem("Best Time", bestTime)
+            textItem("endcard-difficulty", difficulty.asString)
+            textItem("endcard-your-time", time)
+            textItem("endcard-best-time", bestTime)
         }
     }
 }
