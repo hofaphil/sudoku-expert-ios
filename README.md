@@ -17,6 +17,12 @@ A app to play free and unlimited Sudoku with three difficulties to choose. The a
 - [x] **Statistics**: Find information about your last games.
 - [x] **Sharing**: Share your Sudoku with a friend.
 
+<p align="center">
+  <a href="https://apps.apple.com/app/sudoku-expert/id1641677021">
+    <img src="https://philipphofer.de/img/apple-badge.png" width="25%">
+  </a>
+</p>
+
 ### :hammer: Build
 To build this project yourself you need to follow this steps:
 1. Install Xcode from the Mac AppStore
