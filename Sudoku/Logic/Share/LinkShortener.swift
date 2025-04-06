@@ -1,11 +1,3 @@
-//
-//  LinkShorter.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 23.03.21.
-//  Copyright © 2021 Philipp Hofer. All rights reserved.
-//
-
 import Foundation
 
 struct LinkShortener {

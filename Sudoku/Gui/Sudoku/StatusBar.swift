@@ -1,11 +1,3 @@
-//
-//  SwiftUIView.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 19.05.20.
-//  Copyright © 2020 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct StatusBar: View {
@@ -30,7 +22,7 @@ struct StatusBar: View {
                 Label(Difficulty.EXPERT.asString, systemImage: "3.square.fill")
             }
         } label: {
-            Image(systemName: "plus").font(.title).frame(width: 40, height: 40)
+            Image(systemName: "plus").font(.title).frame(width: 40, height: 40).foregroundStyle(Color.tertiary)
         }
     }
 
@@ -59,7 +51,7 @@ struct StatusBar: View {
                 Label("settings", systemImage: "gearshape.fill")
             }
         } label: {
-            Image(systemName: "ellipsis").font(.title).frame(width: 40, height: 40)
+            Image(systemName: "ellipsis").font(.title).frame(width: 40, height: 40).foregroundStyle(Color.tertiary)
         }
     }
 
@@ -69,7 +61,7 @@ struct StatusBar: View {
                 NavigationLink("", destination: SettingsView(), isActive: $settings)
                 newGameMenu
                 Spacer()
-                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME) ? main.time : "--:--").font(.title)
+                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME) ? main.time : "--:--").font(.largeTitle).bold()
                 Spacer()
                 optionMenu
                 NavigationLink("", destination: StatisticsView(), isActive: $statistics)
@@ -84,7 +76,7 @@ struct StatusBar: View {
             }
             .padding(.top, 6).padding(.bottom, 6).border(Color.black, width: 2).padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 2))
         }
-        .background(main.appColor)
+        .background(Color.primary)
     }
 }
 

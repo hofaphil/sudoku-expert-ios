@@ -1,11 +1,3 @@
-//
-//  SceneDelegate.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 11.05.20.
-//  Copyright © 2020 Philipp Hofer. All rights reserved.
-//
-
 import UIKit
 import SwiftUI
 

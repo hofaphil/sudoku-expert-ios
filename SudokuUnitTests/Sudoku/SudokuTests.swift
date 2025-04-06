@@ -1,11 +1,3 @@
-//
-//  Sudoku.swift
-//  SudokuUnitTests
-//
-//  Created by Philipp Hofer on 10.04.22.
-//  Copyright © 2022 Philipp Hofer. All rights reserved.
-//
-
 import XCTest
 @testable import Sudoku
 

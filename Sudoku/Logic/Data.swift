@@ -1,11 +1,3 @@
-//
-//  Data.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 08.07.20.
-//  Copyright © 2020 Philipp Hofer. All rights reserved.
-//
-
 import Foundation
 
 class Data {

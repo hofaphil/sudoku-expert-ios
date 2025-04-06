@@ -1,11 +1,3 @@
-//
-//  Keyboard.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 19.05.20.
-//  Copyright © 2020 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct Keyboard: View {
@@ -48,12 +40,12 @@ struct Keyboard: View {
             }.padding().padding(.top, 10).padding(.bottom, 10)
             HStack(spacing: spacing) {
                 HStack {
-                    Image(systemName: "pencil").imageScale(.small)
+                    Image(systemName: "pencil.tip.crop.circle").imageScale(.small)
                     Text("Notes").bold()
                 }
                 .onTapGesture(perform: { main.isNotes = !main.isNotes })
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-                .background(main.isNotes ? main.appColor : MainModel.unSelectedColor)
+                .background(main.isNotes ? Color.primary : Color.white)
 
                 HStack {
                     Image(systemName: "delete.left").imageScale(.small)
@@ -63,12 +55,12 @@ struct Keyboard: View {
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
 
                 HStack {
-                    Image(systemName: "pause").imageScale(.small)
+                    Image(systemName: "pause.rectangle").imageScale(.small)
                     Text("Pause").bold()
                 }
                 .onTapGesture(perform: { main.pause = !main.pause })
                 .frame(width: width).padding(padding).border(Color.black, width: borderWidth)
-                .background(main.pause ? main.appColor : MainModel.unSelectedColor)
+                .background(main.pause ? Color.primary : Color.white)
             }
             Spacer()
         }

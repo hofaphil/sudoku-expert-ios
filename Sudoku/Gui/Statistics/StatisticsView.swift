@@ -1,11 +1,3 @@
-//
-//  StatisticsView.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 27.01.21.
-//  Copyright © 2021 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct StatisticsView: View {

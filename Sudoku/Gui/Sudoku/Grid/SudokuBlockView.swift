@@ -1,11 +1,3 @@
-//
-//  SudokuBlock.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 19.05.20.
-//  Copyright © 2020 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct SudokuBlockView: View {

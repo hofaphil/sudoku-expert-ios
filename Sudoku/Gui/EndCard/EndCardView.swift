@@ -1,11 +1,3 @@
-//
-//  EndCardView.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 30.01.21.
-//  Copyright © 2021 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct EndCardView: View {
@@ -30,23 +22,26 @@ struct EndCardView: View {
         ZStack {
             Rectangle().foregroundColor(Color.black.opacity(0.6))
             VStack {
-                HStack {
-                    Text(title).padding()
+                VStack {
+                    Image(systemName: "gamecontroller.fill").font(.title).padding().foregroundStyle(Color.tertiary)
+                    Text(title).font(.title2).padding(.bottom)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity)
                 .contentShape(Rectangle())
-                .background(main.appColor)
+                .background(Color.primary)
 
                 EndCardStatistics(time: won ? MainModel.timeToString(time) : "--:--", difficulty: difficulty)
 
                 Button(action: okButtonAction) {
                     HStack {
-                        Text("Ok").foregroundColor(Color.black)
+                        Text("OK").foregroundColor(Color.black)
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .contentShape(Rectangle())
+                    .padding()
+                    .border(Color.black, width: 2)
                 }
-                .padding().background(main.appColor)
+                .padding().background(Color.primary)
             }
             .background(Rectangle().foregroundColor(.white)).padding()
         }
