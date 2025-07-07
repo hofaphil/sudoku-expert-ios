@@ -2,7 +2,7 @@ import Foundation
 
 class ShareClass {
 
-    static let websiteURL = "https://philipphofer.de/"
+    static let websiteURL = "https://sudoku-expert.com/"
 
     static func generateShareLink(sudoku: Sudoku, difficulty: Difficulty) -> URL? {
         var gameString = ""

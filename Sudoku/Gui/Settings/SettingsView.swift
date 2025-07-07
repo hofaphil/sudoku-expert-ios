@@ -19,7 +19,7 @@ struct SettingsView: View {
             }
             Section(header: Text(LocalizedStringKey("more"))) {
                 SettingsButton(title: "reset-statistics", action: { alert = true })
-                SettingsButton(title: "contact", action: { UIApplication.shared.open(URL(string: "https://philipphofer.de/contact")!) })
+                SettingsButton(title: "about", action: { UIApplication.shared.open(URL(string: "https://sudoku-expert.com")!) })
             }
             .alert(isPresented: self.$alert) {
                 Alert(title: Text(LocalizedStringKey("delete-statistics")),
