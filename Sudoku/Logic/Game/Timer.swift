@@ -1,11 +1,3 @@
-//
-//  Timer.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 19.06.20.
-//  Copyright © 2020 Philipp Hofer. All rights reserved.
-//
-
 import Foundation
 
 extension MainModel {

@@ -1,11 +1,3 @@
-//
-//  SettingsSwitch.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 29.01.21.
-//  Copyright © 2021 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct SettingsSwitch: View {
@@ -27,12 +19,7 @@ struct SettingsSwitch: View {
     }
 
     var body: some View {
-        if #available(iOS 14.0, *) {
-            Toggle(title, isOn: state).toggleStyle(SwitchToggleStyle(tint: main.appColor))
-        } else {
-            Toggle(title, isOn: state)
-        }
-
+        Toggle(title, isOn: state).toggleStyle(SwitchToggleStyle(tint: Color.primary))
     }
 }
 

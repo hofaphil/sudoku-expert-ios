@@ -32,6 +32,7 @@
 		199FF2942609F34400CB76F8 /* ShareClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FF2932609F34400CB76F8 /* ShareClass.swift */; };
 		199FF297260A20B700CB76F8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 199FF296260A20B700CB76F8 /* Colors.xcassets */; };
 		19AE0CFE2803148900D81B10 /* SudokuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19AE0CFD2803148900D81B10 /* SudokuTests.swift */; };
+		19DC70582DA26CF500DDD461 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DC70572DA26CF000DDD461 /* Color.swift */; };
 		19F5D29A25C1AD52000C5B37 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29925C1AD52000C5B37 /* SettingsView.swift */; };
 		19F5D29F25C1ADEA000C5B37 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */; };
 		19F5D2AB25C1B179000C5B37 /* SudokuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F5D2AA25C1B179000C5B37 /* SudokuView.swift */; };
@@ -94,6 +95,7 @@
 		19AE0CF42803143000D81B10 /* SudokuUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SudokuUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19AE0CFD2803148900D81B10 /* SudokuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuTests.swift; sourceTree = "<group>"; };
 		19BC106F27ECCEEA0019F8A5 /* cloneGenerator.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = cloneGenerator.sh; sourceTree = "<group>"; };
+		19DC70572DA26CF000DDD461 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		19DDDFAF262C6C4600BB072B /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		19F5D29925C1AD52000C5B37 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		19F5D29E25C1ADEA000C5B37 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		1970CF2B2469FD3A000C8722 /* Logic */ = {
 			isa = PBXGroup;
 			children = (
+				19DC70572DA26CF000DDD461 /* Color.swift */,
 				19BC106E27ECCED20019F8A5 /* Generator */,
 				1978974B260C7D26009FFBDE /* Game */,
 				199FF2922609F33800CB76F8 /* Share */,
@@ -454,6 +457,7 @@
 			files = (
 				19F5D2AB25C1B179000C5B37 /* SudokuView.swift in Sources */,
 				19F6BFDE27ED01FB005558D4 /* Sudoku.swift in Sources */,
+				19DC70582DA26CF500DDD461 /* Color.swift in Sources */,
 				19F6BFDA27ED0065005558D4 /* Number.c in Sources */,
 				19F5D29A25C1AD52000C5B37 /* SettingsView.swift in Sources */,
 				1983564F2469ADDC00A718BF /* AppDelegate.swift in Sources */,
@@ -582,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -638,7 +642,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -655,7 +659,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Sudoku/Sudoku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Sudoku/Preview Content\"";
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				ENABLE_PREVIEWS = YES;
@@ -664,7 +668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philipphofer.Sudoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sudoku/Logic/Generator/Bridging-Header.h";
@@ -681,7 +685,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Sudoku/Sudoku.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Sudoku/Preview Content\"";
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				ENABLE_PREVIEWS = YES;
@@ -690,7 +694,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philipphofer.Sudoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Sudoku/Logic/Generator/Bridging-Header.h";
@@ -708,7 +712,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philpphofer.SudokuUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -728,7 +732,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.philpphofer.SudokuUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

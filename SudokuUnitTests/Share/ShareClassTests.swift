@@ -1,8 +1,3 @@
-//
-// Created by Philipp Hofer on 10.04.22.
-// Copyright (c) 2022 Philipp Hofer. All rights reserved.
-//
-
 import XCTest
 @testable import Sudoku
 
@@ -19,7 +14,7 @@ class ShareClassTests: XCTestCase {
     // 0 0 0   0 0 0   0 0 2         9 3 1   8 7 6   5 4 2
     // 6 0 0   4 0 0   0 0 0         6 2 7   4 5 1   3 8 9
     // 0 4 0   9 0 0   6 0 0         8 4 5   9 3 2   6 7 1
-    static let link = "https://philipphofer.de/share?id=m6i9o8jk7la5qa58k63d4595293p6on491a23b6b4c4a9c2b6a";
+    static let link = "https://sudoku-expert.com/share?id=m6i9o8jk7la5qa58k63d4595293p6on491a23b6b4c4a9c2b6a";
 
     let game = [
         [[5, 6, 0], [1, 9, 0], [7, 8, 0]],

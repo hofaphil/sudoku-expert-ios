@@ -1,11 +1,3 @@
-//
-//  EndCardStatistics.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 01.02.21.
-//  Copyright © 2021 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct EndCardStatistics: View {

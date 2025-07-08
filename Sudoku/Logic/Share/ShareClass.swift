@@ -1,16 +1,8 @@
-//
-//  ShareClass.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 23.03.21.
-//  Copyright © 2021 Philipp Hofer. All rights reserved.
-//
-
 import Foundation
 
 class ShareClass {
 
-    static let websiteURL = "https://philipphofer.de/"
+    static let websiteURL = "https://sudoku-expert.com/"
 
     static func generateShareLink(sudoku: Sudoku, difficulty: Difficulty) -> URL? {
         var gameString = ""

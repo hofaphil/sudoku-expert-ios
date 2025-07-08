@@ -1,11 +1,3 @@
-//
-//  SudokuModel.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 26.05.20.
-//  Copyright © 2020 Philipp Hofer. All rights reserved.
-//
-
 import Foundation
 import SwiftUI
 
@@ -29,11 +21,6 @@ class MainModel: ObservableObject {
     @Published var lostGame = false
 
     @Published var loading = false
-
-    @Published var appColor = Color(UserDefaults.standard.string(forKey: Data.SETTINGS_COLOR)!)
-    static let unSelectedColor = Color.white
-    static let lightSelectedColor = Color("DimGray")
-    static let errorColor = Color("Red")
 
     init(difficulty: Int = 0) {
         if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
@@ -105,9 +92,5 @@ class MainModel: ObservableObject {
         if (UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) && game.overallErrors >= 3) {
             lostGame = true
         }
-    }
-
-    func changeColor(_ color: Color) {
-        appColor = color
     }
 }

@@ -1,52 +1,43 @@
-//
-//  StatisticsCard.swift
-//  Sudoku
-//
-//  Created by Philipp Hofer on 01.02.21.
-//  Copyright © 2021 Philipp Hofer. All rights reserved.
-//
-
 import SwiftUI
 
 struct StatisticsCard: View {
-
+    
     let difficulty: Difficulty
-    let width = UIScreen.main.bounds.width - 8
-
+    
     var averageTime: Int
     let bestTime: Int
     let timesPlayed: Int
-
+    
     init(difficulty: Difficulty) {
         self.difficulty = difficulty
         let stats = Data().loadStatistics()
-
+        
         bestTime = stats.getBestTime(difficulty: difficulty)
         timesPlayed = stats.getTimesPlayed(difficulty: difficulty)
         averageTime = stats.getAverageTime(difficulty: difficulty)
     }
-
+    
+    func statistic(key: LocalizedStringKey, value: String) -> some View {
+        return HStack {
+            Text(key)
+            Text(value)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    
     var body: some View {
         Section(header: Text(difficulty.asString)) {
-            VStack {
-                HStack {
-                    Text(LocalizedStringKey("average"))
-                    Text(MainModel.timeToString(averageTime))
-                }
-                .frame(maxWidth: .infinity, alignment: .leading).padding()
-
-                HStack {
-                    Text(LocalizedStringKey("best-time"))
-                    Text(MainModel.timeToString(bestTime))
-                }
-                .frame(maxWidth: .infinity, alignment: .leading).padding(.leading)
-
-                HStack {
-                    Text(LocalizedStringKey("number-of-games"))
-                    Text("\(timesPlayed)")
-                }
-                .frame(maxWidth: .infinity, alignment: .leading).padding()
-            }
+            statistic(
+                key: LocalizedStringKey("average"),
+                value: MainModel.timeToString(averageTime))
+            
+            statistic(
+                key: LocalizedStringKey("best-time"),
+                value: MainModel.timeToString(bestTime))
+            
+            statistic(
+                key: LocalizedStringKey("number-of-games"),
+                value:"\(timesPlayed)")
         }
     }
 }

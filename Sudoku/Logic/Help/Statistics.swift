@@ -1,8 +1,3 @@
-//
-// Created by Philipp Hofer on 04.04.22.
-// Copyright (c) 2022 Philipp Hofer. All rights reserved.
-//
-
 import Foundation
 
 class Statistics: Codable {
