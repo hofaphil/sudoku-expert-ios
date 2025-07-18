@@ -1,12 +1,13 @@
 <p align="center">
-  <img src="https://philipphofer.de/img/logo.png" width="7%" alt="SudokuExpert Logo">
+  <img src="https://sudoku-expert.com/logo-text.svg" width="100%" alt="SudokuExpert Logo">
 </p>
-<h1 align="center" style="margin-top: 0px;">SudokuExpert</h1>
 
-### A Sudoku app for iOS.
+# A Sudoku app for iOS.
+
 A app to play free and unlimited Sudoku with three difficulties to choose. The app is not published yet.
 
-#### Features:
+## :sparkles: Features:
+
 - [x] **Unlimited games**: An algorithm creates unique sudokus, so you get a new one each try!
 - [x] **Three difficulties**: Beginner, intermediate and expert.
 - [x] **Minimalistic**: Simple and clean look!
@@ -19,13 +20,14 @@ A app to play free and unlimited Sudoku with three difficulties to choose. The a
 
 <p align="center">
   <a href="https://apps.apple.com/app/sudoku-expert/id1641677021">
-    <img src="https://philipphofer.de/img/apple-badge.png" width="25%">
+    <img src="https://sudoku-expert.com/download-ios.svg" width="25%">
   </a>
 </p>
 
-### :hammer: Build
+## :hammer: Build
+
 To build this project yourself you need to follow this steps:
-1. Install Xcode from the Mac AppStore
+1. Install Xcode
 2. Clone the project
 3. Open the project with Xcode
 4. Run the `cloneGenerator.sh` script to clone the necessary C-files for Sudoku-generation from the [sudoku-expert-generator](https://github.com/hofaphil/sudoku-expert-generator) repo
