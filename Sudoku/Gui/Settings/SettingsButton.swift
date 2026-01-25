@@ -14,7 +14,7 @@ struct SettingsButton: View {
 
     var body: some View {
         Button(action: { action() }, label: {
-            Text(title).foregroundColor(Color.black)
+            Text(title).foregroundColor(Color.foreground)
         })
     }
 }

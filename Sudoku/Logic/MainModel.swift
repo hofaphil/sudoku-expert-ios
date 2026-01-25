@@ -55,7 +55,7 @@ class MainModel: ObservableObject {
         UserDefaults.standard.set(UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_ERRORS), forKey: Data.GAME_SHOW_ERRORS)
 
         selected = nil;
-        setFieldColors();
+        setFieldTypes();
 
         startTimer(time: 0)
         UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
@@ -63,7 +63,7 @@ class MainModel: ObservableObject {
 
     func select(position: Position) {
         selected = position
-        setFieldColors()
+        setFieldTypes()
     }
 
     func insert(number: Int) {
@@ -71,14 +71,14 @@ class MainModel: ObservableObject {
             checkNotes(position: selected!, number: number)
             game.insert(number: number, position: selected!, note: isNotes)
             checkGameStatus()
-            setFieldColors()
+            setFieldTypes()
         }
     }
 
     func delete() {
         if ((selected) != nil) {
             game.delete(position: selected!)
-            setFieldColors()
+            setFieldTypes()
         }
     }
 

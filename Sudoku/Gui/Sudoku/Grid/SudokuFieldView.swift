@@ -1,14 +1,15 @@
 import SwiftUI
 
 struct SudokuFieldView: View {
-
+    
     @ObservedObject var model: Number = Number()
     @EnvironmentObject var main: MainModel
-
+    @Environment(\.colorScheme) var colorScheme
+    
     var position: Position
-
+    
     let fontSize: CGFloat = 12
-
+    
     var fieldSize: CGFloat
     var noteSize: CGFloat
     
@@ -18,7 +19,7 @@ struct SudokuFieldView: View {
         fieldSize = (UIScreen.main.bounds.size.width - (6 * parentPadding)) / 9
         noteSize = fieldSize / 3
     }
-
+    
     var body: some View {
         ZStack {
             if model.isNotes {
@@ -42,12 +43,12 @@ struct SudokuFieldView: View {
             } else {
                 if (model.isChangeable) {
                     Text(model.number == 0 ? " " : String(model.number))
-                    .font(.system(size: 22)).italic().fontWeight(.light).foregroundStyle(getTextColor())
+                        .font(.system(size: 22)).italic().fontWeight(.light).foregroundStyle(getTextColor())
                 } else {
                     Text(model.number == 0 ? " " : String(model.number))
-                    .font(.system(size: 22)).bold().foregroundStyle(getTextColor())
+                        .font(.system(size: 22)).bold().foregroundStyle(getTextColor())
                 }
-
+                
             }
         }
         .padding(0)
@@ -55,7 +56,7 @@ struct SudokuFieldView: View {
         .background(getBackgroundColor())
         .onTapGesture(perform: { main.select(position: position) })
     }
-
+    
     func note(_ number: Int) -> some View {
         Text(model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize).foregroundStyle(getTextColor())
     }
@@ -64,30 +65,36 @@ struct SudokuFieldView: View {
         return main.fieldTypes[position.block][position.row][position.column]
     }
     
-    func getBackgroundColor () -> Color {
-        switch(getFieldType()) {
-        case FieldType.current:
-            return Color.fieldCurrentBackground
-        case FieldType.error:
-            return Color.fieldErrorBackground
-        case FieldType.selected:
-            return Color.fieldSelectedBackground
-        case FieldType.unselected:
-            return Color.fieldUnselectedBackground
-        }
+    func isDarkMode() -> Bool {
+        return colorScheme == .dark
     }
-
-    func getTextColor () -> Color {
-        switch(getFieldType()) {
-        case FieldType.current:
-            return Color.fieldCurrentText
-        case FieldType.error:
-            return Color.fieldErrorText
-        case FieldType.selected:
-            return Color.fieldSelectedText
-        case FieldType.unselected:
-            return Color.fieldUnselectedText
+    
+    func getBackgroundColor () -> Color {
+        let fieldType = getFieldType()
+        if (fieldType.error && !isDarkMode()) {
+            return Color.fieldErrorBackground
         }
+        if (fieldType.selected) {
+            return Color.fieldSelectedBackground
+        }
+        if (fieldType.coSelected) {
+            return Color.fieldCoSelectedBackground
+        }
+        return Color.fieldUnselectedBackground
+    }
+    
+    func getTextColor() -> Color {
+        let fieldType = getFieldType()
+        if (fieldType.error) {
+            return Color.fieldErrorText
+        }
+        if (fieldType.selected) {
+            return Color.fieldSelectedText
+        }
+        if (fieldType.coSelected) {
+            return Color.fieldCoSelectedText
+        }
+        return Color.fieldUnselectedText
     }
 }
 

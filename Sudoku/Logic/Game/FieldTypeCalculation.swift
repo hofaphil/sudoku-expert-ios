@@ -9,14 +9,14 @@ extension MainModel {
             for r in 0...2 {
                 fieldTypes[b].append([])
                 for _ in 0...2 {
-                    fieldTypes[b][r].append(FieldType.unselected)
+                    fieldTypes[b][r].append(FieldType())
                 }
             }
         }
-        setFieldColors()
+        setFieldTypes()
     }
     
-    func setFieldColors() {
+    func setFieldTypes() {
         let showErrors = UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS);
         let markNumbers = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_NUMBERS);
         let markLines = UserDefaults.standard.bool(forKey: Data.SETTINGS_MARK_LINES)
@@ -24,22 +24,22 @@ extension MainModel {
         for b in 0...8 {
             for r in 0...2 {
                 for c in 0...2 {
+                    fieldTypes[b][r][c] = FieldType()
                     let pos = Position(block: b, row: r, column: c)
                     
-                    if (showErrors && game.getNumber(position: pos).isError()) {
-                        fieldTypes[b][r][c] = FieldType.error;
-                        continue
-                    }
+                    fieldTypes[b][r][c].error = showErrors && game.getNumber(position: pos).isError()
                     
                     if let selected = selected {
                         if (selected == pos) {
-                            fieldTypes[b][r][c] = FieldType.current
+                            fieldTypes[b][r][c].selected = true
                             continue
                         }
                         
-                        if (markNumbers && game.getNumber(position: pos).number != 0) {
-                            if (game.getNumber(position: pos).number == game.getNumber(position: selected).number) {
-                                fieldTypes[b][r][c] = FieldType.selected
+                        if (markNumbers){
+                            let fieldNumber = game.getNumber(position: pos).number;
+                            let fieldNumberIsSameAsSelectedNumber = fieldNumber != 0 && fieldNumber == game.getNumber(position: selected).number
+                            if (fieldNumberIsSameAsSelectedNumber) {
+                                fieldTypes[b][r][c].coSelected = true
                                 continue
                             }
                         }
@@ -49,27 +49,21 @@ extension MainModel {
                                 // it's a col-partner
                                 if (pos.block >= selected.block + 3 || pos.block <= selected.block - 3) {
                                     if (pos.column == selected.column) {
-                                        fieldTypes[b][r][c] = FieldType.selected
-                                        continue
+                                        fieldTypes[b][r][c].coSelected = true
                                     }
                                 }
                                 
-                                // its a row-partner
+                                // it's a row-partner
                                 else if (pos.row == selected.row) {
-                                    fieldTypes[b][r][c] = FieldType.selected
-                                    continue
-                                    
+                                    fieldTypes[b][r][c].coSelected = true
                                 }
                             } else if (pos.block == selected.block) {
                                 if (pos.column == selected.column || pos.row == selected.row) {
-                                    fieldTypes[b][r][c] = FieldType.selected
-                                    continue
+                                    fieldTypes[b][r][c].coSelected = true
                                 }
                             }
                         }
                     }
-                    
-                    fieldTypes[b][r][c] = FieldType.unselected
                 }
             }
         }
