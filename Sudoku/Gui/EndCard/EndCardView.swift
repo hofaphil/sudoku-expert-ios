@@ -28,22 +28,22 @@ struct EndCardView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .contentShape(Rectangle())
-                .background(Color.primary)
+                .background(Color.statusBarBackground)
 
                 EndCardStatistics(time: won ? MainModel.timeToString(time) : "--:--", difficulty: difficulty)
 
                 Button(action: okButtonAction) {
                     HStack {
-                        Text("OK").foregroundColor(Color.black)
+                        Text("OK").foregroundStyle(Color.foreground)
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     .contentShape(Rectangle())
                     .padding()
-                    .border(Color.black, width: 2)
+                    .border(Color.foreground, width: 2)
                 }
-                .padding().background(Color.primary)
+                .padding().background(Color.statusBarBackground)
             }
-            .background(Rectangle().foregroundColor(.white)).padding()
+            .background(Color.background).foregroundStyle(Color.foreground).padding()
         }
         .edgesIgnoringSafeArea([.top, .bottom])
     }
