@@ -31,7 +31,7 @@ struct SudokuBlockView: View {
                 SudokuFieldView(getModel(p(parent, 2, 2)), p(parent, 2, 2), padding)
             }
         }
-        .border(Color.black, width: 2).padding(padding)
+        .border(Color.foreground, width: 2).padding(padding)
     }
 
     private func getModel(_ position: Position) -> Number {

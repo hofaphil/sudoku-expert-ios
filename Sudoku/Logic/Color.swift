@@ -4,9 +4,25 @@ extension Color {
     static let primary = Color("primary")
     static let secondary = Color("secondary")
     static let tertiary = Color("tertiary")
-    
-    static let error = Color("error")
-    
-    static let gray = Color("gray")
     static let dimgray = Color("dimgray")
+
+    static let error = Color("error")    
+    
+    static let foreground = Color("foreground")
+    static let background = Color("background")
+
+    static let keyboardButtonSelectedText = Color("keyboard-button-selected-text")
+    static let keyboardButtonSelectedBackground = Color("keyboard-button-selected-background")
+
+    static let statusBarBackground = Color("status-bar-background")
+    static let statusBarText = Color("status-bar-text")
+    
+    static let fieldSelectedText = Color("field-selected-text")
+    static let fieldSelectedBackground = Color("field-selected-background")
+    static let fieldUnselectedText = Color("field-unselected-text")
+    static let fieldUnselectedBackground = Color("field-unselected-background")
+    static let fieldErrorText = Color("field-error-text")
+    static let fieldErrorBackground = Color("field-error-background")
+    static let fieldCurrentText = Color("field-current-text")
+    static let fieldCurrentBackground = Color("field-current-background")
 }

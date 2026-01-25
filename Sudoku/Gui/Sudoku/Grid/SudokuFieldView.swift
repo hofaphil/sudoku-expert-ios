@@ -11,7 +11,7 @@ struct SudokuFieldView: View {
 
     var fieldSize: CGFloat
     var noteSize: CGFloat
-
+    
     init(_ model: Number, _ position: Position, _ parentPadding: CGFloat) {
         self.position = position
         self.model = model
@@ -42,24 +42,53 @@ struct SudokuFieldView: View {
             } else {
                 if (model.isChangeable) {
                     Text(model.number == 0 ? " " : String(model.number))
-                    .font(.system(size: 22)).italic().fontWeight(.light)
+                    .font(.system(size: 22)).italic().fontWeight(.light).foregroundStyle(getTextColor())
                 } else {
                     Text(model.number == 0 ? " " : String(model.number))
-                    .font(.system(size: 22)).bold()
+                    .font(.system(size: 22)).bold().foregroundStyle(getTextColor())
                 }
 
             }
         }
         .padding(0)
-        .frame(width: fieldSize, height: fieldSize).border(Color.black, width: 0.5)
-        .background(main.colors[position.block][position.row][position.column])
+        .frame(width: fieldSize, height: fieldSize).border(Color.foreground, width: 0.5)
+        .background(getBackgroundColor())
         .onTapGesture(perform: { main.select(position: position) })
     }
 
     func note(_ number: Int) -> some View {
-        Text(model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize)
+        Text(model.notes[number - 1] ? String(number) : "").font(.system(size: fontSize)).frame(width: noteSize, height: noteSize).foregroundStyle(getTextColor())
+    }
+    
+    func getFieldType () -> FieldType {
+        return main.fieldTypes[position.block][position.row][position.column]
+    }
+    
+    func getBackgroundColor () -> Color {
+        switch(getFieldType()) {
+        case FieldType.current:
+            return Color.fieldCurrentBackground
+        case FieldType.error:
+            return Color.fieldErrorBackground
+        case FieldType.selected:
+            return Color.fieldSelectedBackground
+        case FieldType.unselected:
+            return Color.fieldUnselectedBackground
+        }
     }
 
+    func getTextColor () -> Color {
+        switch(getFieldType()) {
+        case FieldType.current:
+            return Color.fieldCurrentText
+        case FieldType.error:
+            return Color.fieldErrorText
+        case FieldType.selected:
+            return Color.fieldSelectedText
+        case FieldType.unselected:
+            return Color.fieldUnselectedText
+        }
+    }
 }
 
 struct SudokuFieldView_Previews: PreviewProvider {

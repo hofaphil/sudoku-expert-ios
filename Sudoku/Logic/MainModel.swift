@@ -8,7 +8,7 @@ class MainModel: ObservableObject {
     @Published var selected: Position?
     @Published var isNotes: Bool = false
     @Published var pause = false
-    @Published var colors: [[[Color]]] = []
+    @Published var fieldTypes: [[[FieldType]]] = []
 
     @Published var difficulty = Difficulty.ADVANCED
 
@@ -21,7 +21,7 @@ class MainModel: ObservableObject {
     @Published var lostGame = false
 
     @Published var loading = false
-
+    
     init(difficulty: Int = 0) {
         if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
             Data.instance.loadGame(main: self)
@@ -29,7 +29,7 @@ class MainModel: ObservableObject {
         } else {
             startNewGame(difficulty: Difficulty.ADVANCED)
         }
-        initColorArray()
+        initFieldTypes()
     }
 
     func startNewGame(difficulty: Difficulty) {

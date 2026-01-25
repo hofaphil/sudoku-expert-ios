@@ -3,17 +3,13 @@ import SwiftUI
 
 extension MainModel {
     
-    static let selectedColor = Color.primary
-    static let lightSelectedColor = Color.dimgray
-    static let unselectedColor = Color.white
-    
-    func initColorArray() {
+    func initFieldTypes() {
         for b in 0...8 {
-            colors.append([])
+            fieldTypes.append([])
             for r in 0...2 {
-                colors[b].append([])
+                fieldTypes[b].append([])
                 for _ in 0...2 {
-                    colors[b][r].append(MainModel.unselectedColor)
+                    fieldTypes[b][r].append(FieldType.unselected)
                 }
             }
         }
@@ -31,19 +27,19 @@ extension MainModel {
                     let pos = Position(block: b, row: r, column: c)
                     
                     if (showErrors && game.getNumber(position: pos).isError()) {
-                        colors[b][r][c] = Color.error;
+                        fieldTypes[b][r][c] = FieldType.error;
                         continue
                     }
                     
                     if let selected = selected {
                         if (selected == pos) {
-                            colors[b][r][c] = MainModel.selectedColor
+                            fieldTypes[b][r][c] = FieldType.current
                             continue
                         }
                         
                         if (markNumbers && game.getNumber(position: pos).number != 0) {
                             if (game.getNumber(position: pos).number == game.getNumber(position: selected).number) {
-                                colors[b][r][c] = MainModel.lightSelectedColor
+                                fieldTypes[b][r][c] = FieldType.selected
                                 continue
                             }
                         }
@@ -53,27 +49,27 @@ extension MainModel {
                                 // it's a col-partner
                                 if (pos.block >= selected.block + 3 || pos.block <= selected.block - 3) {
                                     if (pos.column == selected.column) {
-                                        colors[b][r][c] = MainModel.lightSelectedColor
+                                        fieldTypes[b][r][c] = FieldType.selected
                                         continue
                                     }
                                 }
                                 
                                 // its a row-partner
                                 else if (pos.row == selected.row) {
-                                    colors[b][r][c] = MainModel.lightSelectedColor
+                                    fieldTypes[b][r][c] = FieldType.selected
                                     continue
                                     
                                 }
                             } else if (pos.block == selected.block) {
                                 if (pos.column == selected.column || pos.row == selected.row) {
-                                    colors[b][r][c] = MainModel.lightSelectedColor
+                                    fieldTypes[b][r][c] = FieldType.selected
                                     continue
                                 }
                             }
                         }
                     }
                     
-                    colors[b][r][c] = MainModel.unselectedColor
+                    fieldTypes[b][r][c] = FieldType.unselected
                 }
             }
         }

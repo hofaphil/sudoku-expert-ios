@@ -9,7 +9,6 @@ struct SudokuView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Rectangle().frame(maxHeight: .infinity, alignment: .topLeading).foregroundColor(Color.primary).edgesIgnoringSafeArea(.top)
                 ZStack {
                     VStack(spacing: 0) {
                         StatusBar()
@@ -39,10 +38,8 @@ struct SudokuView: View {
                 .onAppear(perform: {
                     main.timerRun = true
                 })
-                .background(Color.white)
             }
         }
-        .accentColor(.black)
     }
 }
 

@@ -61,7 +61,7 @@ struct StatusBar: View {
                 NavigationLink("", destination: SettingsView(), isActive: $settings)
                 newGameMenu
                 Spacer()
-                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME) ? main.time : "--:--").font(.largeTitle).bold()
+                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME) ? main.time : "--:--").font(.largeTitle).bold().foregroundStyle(Color.statusBarText)
                 Spacer()
                 optionMenu
                 NavigationLink("", destination: StatisticsView(), isActive: $statistics)
@@ -69,14 +69,14 @@ struct StatusBar: View {
             .padding()
             HStack {
                 Spacer()
-                Text(main.difficulty.asString).foregroundColor(.black)
+                Text(main.difficulty.asString)
                 Spacer()
                 Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }
-            .padding(.top, 6).padding(.bottom, 6).border(Color.black, width: 2).padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 2))
+            .padding(.top, 6).padding(.bottom, 6).border(Color.foreground, width: 2).padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 2))
         }
-        .background(Color.primary)
+        .background(Color.statusBarBackground)
     }
 }
 

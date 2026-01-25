@@ -28,6 +28,7 @@
 		1983565B2469ADDD00A718BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 198356592469ADDD00A718BF /* LaunchScreen.storyboard */; };
 		1989812A25C83C7C009BAAC3 /* EndCardStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989812925C83C7C009BAAC3 /* EndCardStatistics.swift */; };
 		1989812D25C84496009BAAC3 /* StatisticsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1989812C25C84496009BAAC3 /* StatisticsCard.swift */; };
+		199DEB152F26692F00E69E50 /* FieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DEB142F26692F00E69E50 /* FieldType.swift */; };
 		199FF2902609F09900CB76F8 /* LinkShortener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FF28F2609F09900CB76F8 /* LinkShortener.swift */; };
 		199FF2942609F34400CB76F8 /* ShareClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FF2932609F34400CB76F8 /* ShareClass.swift */; };
 		199FF297260A20B700CB76F8 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 199FF296260A20B700CB76F8 /* Colors.xcassets */; };
@@ -44,7 +45,7 @@
 		19F6BFDE27ED01FB005558D4 /* Sudoku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFDD27ED01FB005558D4 /* Sudoku.swift */; };
 		19F6BFE027ED0203005558D4 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFDF27ED0203005558D4 /* Block.swift */; };
 		19F6BFE227ED020D005558D4 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFE127ED020D005558D4 /* Number.swift */; };
-		19F8E2D7247D46D400DB8EBD /* FieldColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2D6247D46D400DB8EBD /* FieldColor.swift */; };
+		19F8E2D7247D46D400DB8EBD /* FieldTypeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */; };
 		1EC0D0047731E178F073D7E1 /* StatisticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0D1C1D256F1DCEE897514 /* StatisticsTests.swift */; };
 		1EC0D0722B86CAAFED1C5543 /* ShareClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DC693B72B4BAC81BDEB9 /* ShareClassTests.swift */; };
 		1EC0D559A5F6853997501FBE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DC481CF518F3B1ACA0C6 /* MainModel.swift */; };
@@ -89,6 +90,7 @@
 		1983565C2469ADDD00A718BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1989812925C83C7C009BAAC3 /* EndCardStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndCardStatistics.swift; sourceTree = "<group>"; };
 		1989812C25C84496009BAAC3 /* StatisticsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCard.swift; sourceTree = "<group>"; };
+		199DEB142F26692F00E69E50 /* FieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldType.swift; sourceTree = "<group>"; };
 		199FF28F2609F09900CB76F8 /* LinkShortener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkShortener.swift; sourceTree = "<group>"; };
 		199FF2932609F34400CB76F8 /* ShareClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareClass.swift; sourceTree = "<group>"; };
 		199FF296260A20B700CB76F8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -111,7 +113,7 @@
 		19F6BFDD27ED01FB005558D4 /* Sudoku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sudoku.swift; sourceTree = "<group>"; };
 		19F6BFDF27ED0203005558D4 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		19F6BFE127ED020D005558D4 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
-		19F8E2D6247D46D400DB8EBD /* FieldColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldColor.swift; sourceTree = "<group>"; };
+		19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\U0015FieldTypeCalculation.swift"; sourceTree = "<group>"; };
 		1EC0D037539C66440171D4F7 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		1EC0D1C1D256F1DCEE897514 /* StatisticsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTests.swift; sourceTree = "<group>"; };
 		1EC0D55ADE94D3C619A71D22 /* LinkShortenerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkShortenerTests.swift; sourceTree = "<group>"; };
@@ -194,7 +196,8 @@
 		1978974B260C7D26009FFBDE /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				19F8E2D6247D46D400DB8EBD /* FieldColor.swift */,
+				199DEB142F26692F00E69E50 /* FieldType.swift */,
+				19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */,
 				1977F75F249CF950008C0736 /* Timer.swift */,
 				1978974C260C7D9A009FFBDE /* NotesCheck.swift */,
 			);
@@ -481,11 +484,12 @@
 				19F6BFD827ED0065005558D4 /* Block.c in Sources */,
 				19F6BFD727ED0065005558D4 /* Sudoku.c in Sources */,
 				19F6BFE027ED0203005558D4 /* Block.swift in Sources */,
+				199DEB152F26692F00E69E50 /* FieldType.swift in Sources */,
 				1989812A25C83C7C009BAAC3 /* EndCardStatistics.swift in Sources */,
 				1971837324744D850031B501 /* Position.swift in Sources */,
 				1978974D260C7D9A009FFBDE /* NotesCheck.swift in Sources */,
 				1936CA8624742D6800B5F5B4 /* SudokuGridView.swift in Sources */,
-				19F8E2D7247D46D400DB8EBD /* FieldColor.swift in Sources */,
+				19F8E2D7247D46D400DB8EBD /* FieldTypeCalculation.swift in Sources */,
 				1EC0D559A5F6853997501FBE /* MainModel.swift in Sources */,
 				1EC0D727715CC530E8847A62 /* Statistics.swift in Sources */,
 			);
