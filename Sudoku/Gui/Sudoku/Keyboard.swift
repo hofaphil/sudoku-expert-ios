@@ -4,6 +4,7 @@ struct Keyboard: View {
 
     @EnvironmentObject var main: MainModel
     @Environment(\.boardWidth) var boardWidth
+    @AppStorage(Storage.SETTINGS_HIDE_COMPLETED) var hideCompleted = false
 
     let padding: CGFloat = 10
     let borderWidth: CGFloat = 2
@@ -69,9 +70,13 @@ struct Keyboard: View {
     }
 
     private func button(_ number: Int) -> some View {
-        Button(action: { insert(number) }) {
+        let hidden = hideCompleted && main.game.count(number: number) >= 9
+        return Button(action: { insert(number) }) {
             Text(String(number)).font(.system(size: 30)).bold().foregroundStyle(Color.foreground)
         }
+        // keep the space so the other keys do not move
+        .opacity(hidden ? 0 : 1)
+        .disabled(hidden)
     }
 
     private func insert(_ number: Int) {

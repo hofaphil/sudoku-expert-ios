@@ -90,6 +90,18 @@ class SudokuTests: XCTestCase {
         XCTAssertTrue(s != sudoku)
     }
 
+    // count
+    func testCount() {
+        XCTAssertEqual(sudoku.count(number: wrongNumber), 0)
+
+        sudoku.insert(number: wrongNumber, position: position, note: !note)
+        XCTAssertEqual(sudoku.count(number: wrongNumber), 1)
+
+        sudoku.insert(number: correctNumber, position: position, note: note)
+        XCTAssertEqual(sudoku.count(number: wrongNumber), 0)
+        XCTAssertEqual(sudoku.count(number: correctNumber), 0)
+    }
+
     // check notes
     func testCheckNotesOnlyAfterCorrectNumber() {
         UserDefaults.standard.set(true, forKey: Storage.SETTINGS_CHECK_NOTES)

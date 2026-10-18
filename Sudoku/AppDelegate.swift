@@ -11,6 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Storage.SETTINGS_SHOW_ERRORS: true,
             Storage.SETTINGS_CHECK_NOTES: true,
             Storage.SETTINGS_SHOW_TIME: true,
+            Storage.SETTINGS_HIDE_COMPLETED: false,
             Storage.SETTINGS_COLOR: "Yellow"
         ] as [String : Any]
         UserDefaults.standard.register(defaults: userdefaults)

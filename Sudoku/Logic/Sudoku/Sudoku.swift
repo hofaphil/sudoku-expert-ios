@@ -36,6 +36,21 @@ class Sudoku: Equatable, Codable {
         return freeFields
     }
 
+    // how often a number is placed, wrong placements included
+    func count(number: Int) -> Int {
+        var count = 0
+        for k in 0..<9 {
+            for i in 0..<3 {
+                for j in 0..<3 {
+                    if getNumber(position: Position(block: k, row: i, column: j)).number == number {
+                        count += 1
+                    }
+                }
+            }
+        }
+        return count
+    }
+
     func currentErrors() -> Int {
         var currentErrors = 0
         for k in 0..<9 {

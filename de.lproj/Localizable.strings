@@ -9,6 +9,7 @@
 "mark-same-numbers" = "Gleiche Zahlen hervorheben";
 "highlight-lines" = "Linien hervorheben";
 "check-notes" = "Notizen automatisch prüfen";
+"hide-completed" = "Fertige Zahlen ausblenden";
 "changes-on-new-game" = "Wird erst im nächsten Spiel übernommen";
 "show-errors" = "Fehler anzeigen";
 "play-with-timer" = "Mit Stoppuhr spielen";

@@ -12,6 +12,7 @@ struct SettingsView: View {
                 SettingsSwitch(title: "mark-same-numbers", key: Storage.SETTINGS_MARK_NUMBERS)
                 SettingsSwitch(title: "highlight-lines", key: Storage.SETTINGS_MARK_LINES)
                 SettingsSwitch(title: "check-notes", key: Storage.SETTINGS_CHECK_NOTES)
+                SettingsSwitch(title: "hide-completed", key: Storage.SETTINGS_HIDE_COMPLETED)
             }
             Section(footer: Text(LocalizedStringKey("changes-on-new-game"))) {
                 SettingsSwitch(title: "show-errors", key: Storage.SETTINGS_SHOW_ERRORS)

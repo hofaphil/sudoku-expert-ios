@@ -19,6 +19,7 @@ class Storage {
     static let SETTINGS_SHOW_ERRORS = "settings_mark_errors"
     static let SETTINGS_SHOW_TIME = "settings_show_time"
     static let SETTINGS_COLOR = "settings_color"
+    static let SETTINGS_HIDE_COMPLETED = "settings_hide_completed"
 
     // for statistics
     static let STATISTICS = "statistics"

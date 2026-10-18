@@ -9,6 +9,7 @@
 "mark-same-numbers" = "Mark same numbers";
 "highlight-lines" = "Highlight lines";
 "check-notes" = "Check notes";
+"hide-completed" = "Hide completed numbers";
 "changes-on-new-game" = "Changes when you start a new game";
 "show-errors" = "Show Errors";
 "play-with-timer" = "Play with Timer";
