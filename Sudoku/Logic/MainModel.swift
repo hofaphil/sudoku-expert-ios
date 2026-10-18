@@ -23,8 +23,8 @@ class MainModel: ObservableObject {
     @Published var loading = false
     
     init(difficulty: Int = 0) {
-        if (UserDefaults.standard.bool(forKey: Data.LOAD_MODE)) {
-            Data.instance.loadGame(main: self)
+        if UserDefaults.standard.bool(forKey: Storage.LOAD_MODE) {
+            Storage.instance.loadGame(main: self)
             startTimer(time: timeInt)
         } else {
             startNewGame(difficulty: Difficulty.ADVANCED)
@@ -37,8 +37,8 @@ class MainModel: ObservableObject {
             return
         }
         loading = true
-        wonGame = false;
-        lostGame = false;
+        wonGame = false
+        lostGame = false
 
         DispatchQueue.main.async {
             self.difficulty = difficulty
@@ -51,14 +51,14 @@ class MainModel: ObservableObject {
     }
 
     private func startNewGame() {
-        UserDefaults.standard.set(UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_TIME), forKey: Data.GAME_SHOW_TIME)
-        UserDefaults.standard.set(UserDefaults.standard.bool(forKey: Data.SETTINGS_SHOW_ERRORS), forKey: Data.GAME_SHOW_ERRORS)
+        UserDefaults.standard.set(UserDefaults.standard.bool(forKey: Storage.SETTINGS_SHOW_TIME), forKey: Storage.GAME_SHOW_TIME)
+        UserDefaults.standard.set(UserDefaults.standard.bool(forKey: Storage.SETTINGS_SHOW_ERRORS), forKey: Storage.GAME_SHOW_ERRORS)
 
-        selected = nil;
-        setFieldTypes();
+        selected = nil
+        setFieldTypes()
 
         startTimer(time: 0)
-        UserDefaults.standard.set(true, forKey: Data.LOAD_MODE)
+        UserDefaults.standard.set(true, forKey: Storage.LOAD_MODE)
     }
 
     func select(position: Position) {
@@ -67,29 +67,36 @@ class MainModel: ObservableObject {
     }
 
     func insert(number: Int) {
-        if ((selected) != nil) {
-            checkNotes(position: selected!, number: number)
-            game.insert(number: number, position: selected!, note: isNotes)
-            checkGameStatus()
-            setFieldTypes()
+        guard let selected = selected else {
+            return
         }
+        let field = game.getNumber(position: selected)
+        let canClearNotes = field.isChangeable && number != field.number
+        game.insert(number: number, position: selected, note: isNotes)
+        // only clear notes of related fields once the correct number was placed
+        if canClearNotes && field.number == number && !field.isError() {
+            checkNotes(position: selected, number: number)
+        }
+        checkGameStatus()
+        setFieldTypes()
     }
 
     func delete() {
-        if ((selected) != nil) {
-            game.delete(position: selected!)
-            setFieldTypes()
+        guard let selected = selected else {
+            return
         }
+        game.delete(position: selected)
+        setFieldTypes()
     }
 
     func checkGameStatus() {
-        if (game.freeFields() == 0 && game.currentErrors() == 0) {
+        if game.freeFields() == 0 && game.currentErrors() == 0 {
             wonGame = true
-            let stats = Data().loadStatistics()
+            let stats = Storage.instance.loadStatistics()
             stats.addGame(difficulty: difficulty, time: timeInt)
-            Data().saveStatistics(statistics: stats)
+            Storage.instance.saveStatistics(statistics: stats)
         }
-        if (UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) && game.overallErrors >= 3) {
+        if UserDefaults.standard.bool(forKey: Storage.GAME_SHOW_ERRORS) && game.overallErrors >= 3 {
             lostGame = true
         }
     }

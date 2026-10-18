@@ -27,6 +27,6 @@ extension MainModel {
         formatter.unitsStyle = .positional
         formatter.zeroFormattingBehavior = .pad
 
-        return formatter.string(from: TimeInterval(time))!
+        return formatter.string(from: TimeInterval(time)) ?? "00:00"
     }
 }

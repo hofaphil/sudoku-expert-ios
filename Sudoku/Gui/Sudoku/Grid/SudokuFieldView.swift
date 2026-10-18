@@ -5,19 +5,25 @@ struct SudokuFieldView: View {
     @ObservedObject var model: Number = Number()
     @EnvironmentObject var main: MainModel
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.boardWidth) var boardWidth
     
     var position: Position
     
     let fontSize: CGFloat = 12
     
-    var fieldSize: CGFloat
-    var noteSize: CGFloat
+    let parentPadding: CGFloat
+    
+    var fieldSize: CGFloat {
+        (boardWidth - (6 * parentPadding)) / 9
+    }
+    var noteSize: CGFloat {
+        fieldSize / 3
+    }
     
     init(_ model: Number, _ position: Position, _ parentPadding: CGFloat) {
         self.position = position
         self.model = model
-        fieldSize = (UIScreen.main.bounds.size.width - (6 * parentPadding)) / 9
-        noteSize = fieldSize / 3
+        self.parentPadding = parentPadding
     }
     
     var body: some View {
@@ -41,7 +47,7 @@ struct SudokuFieldView: View {
                     }
                 }
             } else {
-                if (model.isChangeable) {
+                if model.isChangeable {
                     Text(model.number == 0 ? " " : String(model.number))
                         .font(.system(size: 22)).italic().fontWeight(.light).foregroundStyle(getTextColor())
                 } else {
@@ -71,13 +77,13 @@ struct SudokuFieldView: View {
     
     func getBackgroundColor () -> Color {
         let fieldType = getFieldType()
-        if (fieldType.error && !isDarkMode()) {
+        if fieldType.error && !isDarkMode() {
             return Color.fieldErrorBackground
         }
-        if (fieldType.selected) {
+        if fieldType.selected {
             return Color.fieldSelectedBackground
         }
-        if (fieldType.coSelected) {
+        if fieldType.coSelected {
             return Color.fieldCoSelectedBackground
         }
         return Color.fieldUnselectedBackground
@@ -85,13 +91,13 @@ struct SudokuFieldView: View {
     
     func getTextColor() -> Color {
         let fieldType = getFieldType()
-        if (fieldType.error) {
+        if fieldType.error {
             return Color.fieldErrorText
         }
-        if (fieldType.selected) {
+        if fieldType.selected {
             return Color.fieldSelectedText
         }
-        if (fieldType.coSelected) {
+        if fieldType.coSelected {
             return Color.fieldCoSelectedText
         }
         return Color.fieldUnselectedText

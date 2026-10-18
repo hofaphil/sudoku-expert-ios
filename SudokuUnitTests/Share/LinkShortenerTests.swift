@@ -4,9 +4,9 @@ import XCTest
 class LinkShorterTests: XCTestCase {
 
     func test() {
-        let link = "02303049923333234322031030200000003040230420402302012303023";
-        let shortened = LinkShortener.getId(link: link);
+        let link = "02303049923333234322031030200000003040230420402302012303023"
+        let shortened = LinkShortener.getId(link: link)
 
-        XCTAssertEqual(link, LinkShortener.getId(link: shortened));
+        XCTAssertEqual(link, LinkShortener.getId(link: shortened))
     }
 }

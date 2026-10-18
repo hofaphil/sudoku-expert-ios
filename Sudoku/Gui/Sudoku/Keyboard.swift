@@ -3,14 +3,14 @@ import SwiftUI
 struct Keyboard: View {
 
     @EnvironmentObject var main: MainModel
+    @Environment(\.boardWidth) var boardWidth
 
     let padding: CGFloat = 10
-    let width: CGFloat
     let borderWidth: CGFloat = 2
     let spacing: CGFloat = 4
 
-    init() {
-        width = (UIScreen.main.bounds.width - (6 * (padding + borderWidth))) / 3
+    var width: CGFloat {
+        (boardWidth - (6 * (padding + borderWidth))) / 3
     }
 
     var body: some View {

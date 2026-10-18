@@ -11,13 +11,15 @@ import Foundation
 class Generator {
 
     static func createSudoku(freeFields: Int32) -> Sudoku {
-        let s = new_sudoku()
+        let game = Sudoku()
+        guard let s = new_sudoku() else {
+            return game
+        }
+        defer { free(s) }
         create(s, freeFields)
 
-        let game = Sudoku()
-
-        let blocks = getBlockArray(block: s!.pointee.blocks)
-        let solution = getBlockArray(block: s!.pointee.solution)
+        let blocks = getBlockArray(block: s.pointee.blocks)
+        let solution = getBlockArray(block: s.pointee.solution)
 
         for b in 0..<9 {
             let numbers = getNumberArray(number: blocks[b].numbers)
@@ -37,9 +39,12 @@ class Generator {
     }
 
     static func solveSudoku(sudoku: inout Sudoku) {
-        let s = new_sudoku()
+        guard let s = new_sudoku() else {
+            return
+        }
+        defer { free(s) }
 
-        var blocks = getBlockArray(block: s!.pointee.blocks)
+        var blocks = getBlockArray(block: s.pointee.blocks)
 
         blocks.withUnsafeMutableBufferPointer({ (cBlocks: inout UnsafeMutableBufferPointer<block>) -> () in
             for b in 0..<9 {
@@ -49,14 +54,14 @@ class Generator {
                         numbers[r][c] = Int32(sudoku.getNumber(position: Position(block: b, row: r, column: c)).number)
                     }
                 }
-                cBlocks[b].numbers = getNumberTuple(numbers: numbers);
+                cBlocks[b].numbers = getNumberTuple(numbers: numbers)
             }
             set_sudoku(s, cBlocks.baseAddress)
         })
 
-        solve(s);
+        solve(s)
 
-        let solution = getBlockArray(block: s!.pointee.solution)
+        let solution = getBlockArray(block: s.pointee.solution)
 
         for b in 0..<9 {
             let solutions = getNumberArray(number: solution[b].numbers)

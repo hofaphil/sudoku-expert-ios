@@ -28,8 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        if (userActivity.webpageURL != nil) {
-            loadGame(url: userActivity.webpageURL!)
+        if let url = userActivity.webpageURL {
+            loadGame(url: url)
         }
     }
 
@@ -37,7 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let urlContext = URLContexts.first {
             loadGame(url: urlContext.url)
         } else {
-            main.startNewGame(difficulty: Difficulty.init(rawValue: 0)!)
+            main.startNewGame(difficulty: Difficulty.BEGINNER)
         }
     }
 
@@ -54,8 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        // TODO: Data should best be saved when changes happen...
-        Data.instance.saveGame(main: main)
+        // TODO: the game should best be saved when changes happen...
+        Storage.instance.saveGame(main: main)
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
     }
@@ -81,11 +81,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         main.startTimer(time: 0)
-    }
-}
-
-struct SceneDelegate_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("Hello, World!")
     }
 }

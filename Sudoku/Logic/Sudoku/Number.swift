@@ -26,11 +26,11 @@ class Number: Equatable, ObservableObject, Codable {
     }
 
     func insert(number: Int, note: Bool) -> Bool {
-        if (!isChangeable) {
+        if !isChangeable {
             return true
         }
 
-        if (note) {
+        if note {
             insertNote(number)
         } else {
             insertNumber(number)
@@ -39,10 +39,10 @@ class Number: Equatable, ObservableObject, Codable {
     }
 
     private func insertNumber(_ number: Int) {
-        if (number == self.number) {
+        if number == self.number {
             delete()
         } else {
-            if (isNotes) {
+            if isNotes {
                 delete()
             }
             isNotes = false
@@ -57,14 +57,14 @@ class Number: Equatable, ObservableObject, Codable {
     }
 
     func delete() {
-        if (isChangeable) {
+        if isChangeable {
             number = 0
             notes = [Bool](repeating: false, count: 9)
         }
     }
 
     func checkNote(number: Int) {
-        if (notes[number - 1]) {
+        if notes[number - 1] {
             notes[number - 1] = false
         }
     }
@@ -75,8 +75,8 @@ class Number: Equatable, ObservableObject, Codable {
 
     static func ==(a: Number, b: Number) -> Bool {
         for i in 0..<9 {
-            if (a.notes[i] != b.notes[i]) {
-                return false;
+            if a.notes[i] != b.notes[i] {
+                return false
             }
         }
         return a.number == b.number

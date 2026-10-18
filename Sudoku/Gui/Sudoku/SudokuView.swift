@@ -7,21 +7,21 @@ struct SudokuView: View {
     @State var animate = true
 
     var body: some View {
-        NavigationView {
-            ZStack {
+        NavigationStack {
+            GeometryReader { geometry in
                 ZStack {
                     VStack(spacing: 0) {
                         StatusBar()
-                        if (main.pause) {
-                            Text("").frame(height: UIScreen.main.bounds.width)
-                        } else if (main.loading) {
-                            ActivityIndicator(shouldAnimate: $animate).frame(height: UIScreen.main.bounds.width)
+                        if main.pause {
+                            Text("").frame(height: geometry.size.width)
+                        } else if main.loading {
+                            ActivityIndicator(shouldAnimate: $animate).frame(height: geometry.size.width)
                         } else {
                             SudokuGridView(sudoku: main.game)
                         }
                         Keyboard()
                     }
-                    if (main.wonGame || main.lostGame) {
+                    if main.wonGame || main.lostGame {
                         EndCardView(won: main.wonGame, time: main.timeInt, difficulty: main.difficulty)
                         .onDisappear(perform: {
                             main.timerRun = true
@@ -31,6 +31,7 @@ struct SudokuView: View {
                         })
                     }
                 }
+                .environment(\.boardWidth, geometry.size.width)
                 .navigationBarHidden(true)
                 .onDisappear(perform: {
                     main.timerRun = false
@@ -46,6 +47,18 @@ struct SudokuView: View {
 struct SudokuView_Previews: PreviewProvider {
     static var previews: some View {
         SudokuView().environmentObject(MainModel())
+    }
+}
+
+private struct BoardWidthKey: EnvironmentKey {
+    static let defaultValue: CGFloat = 390
+}
+
+extension EnvironmentValues {
+    // width available for the sudoku grid and keyboard, set by SudokuView
+    var boardWidth: CGFloat {
+        get { self[BoardWidthKey.self] }
+        set { self[BoardWidthKey.self] = newValue }
     }
 }
 

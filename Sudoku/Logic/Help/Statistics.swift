@@ -22,7 +22,7 @@ class Statistics: Codable {
     }
 
     func getAverageTime(difficulty: Difficulty) -> Int {
-        if (timesPlayed[difficulty.rawValue] != 0) {
+        if timesPlayed[difficulty.rawValue] != 0 {
             return timeOverall[difficulty.rawValue] / timesPlayed[difficulty.rawValue]
         }
         return 0

@@ -10,7 +10,7 @@ struct StatisticsCard: View {
     
     init(difficulty: Difficulty) {
         self.difficulty = difficulty
-        let stats = Data().loadStatistics()
+        let stats = Storage.instance.loadStatistics()
         
         bestTime = stats.getBestTime(difficulty: difficulty)
         timesPlayed = stats.getTimesPlayed(difficulty: difficulty)

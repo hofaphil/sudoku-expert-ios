@@ -29,10 +29,13 @@ struct StatusBar: View {
     var optionMenu: some View {
         Menu {
             Button(action: {
-                let data = ShareClass.generateShareLink(sudoku: main.game, difficulty: main.difficulty)
-                if data != nil {
-                    let av = UIActivityViewController(activityItems: [data!], applicationActivities: nil)
-                    UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+                if let link = ShareClass.generateShareLink(sudoku: main.game, difficulty: main.difficulty) {
+                    let av = UIActivityViewController(activityItems: [link], applicationActivities: nil)
+                    let window = UIApplication.shared.connectedScenes
+                        .compactMap { $0 as? UIWindowScene }
+                        .flatMap { $0.windows }
+                        .first { $0.isKeyWindow }
+                    window?.rootViewController?.present(av, animated: true, completion: nil)
                 }
             }) {
                 Label("challenge", systemImage: "person.2.fill")
@@ -58,30 +61,32 @@ struct StatusBar: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                NavigationLink("", destination: SettingsView(), isActive: $settings)
                 newGameMenu
                 Spacer()
-                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_TIME) ? main.time : "--:--").font(.largeTitle).bold().foregroundStyle(Color.statusBarText)
+                Text(UserDefaults.standard.bool(forKey: Storage.GAME_SHOW_TIME) ? main.time : "--:--").font(.largeTitle).bold().foregroundStyle(Color.statusBarText)
                 Spacer()
                 optionMenu
-                NavigationLink("", destination: StatisticsView(), isActive: $statistics)
             }
             .padding()
             HStack {
                 Spacer()
                 Text(main.difficulty.asString)
                 Spacer()
-                Text(UserDefaults.standard.bool(forKey: Data.GAME_SHOW_ERRORS) ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
+                Text(UserDefaults.standard.bool(forKey: Storage.GAME_SHOW_ERRORS) ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }
             .padding(.top, 6).padding(.bottom, 6).border(Color.foreground, width: 2).padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 2))
         }
         .background(Color.statusBarBackground)
+        .navigationDestination(isPresented: $settings) { SettingsView() }
+        .navigationDestination(isPresented: $statistics) { StatisticsView() }
     }
 }
 
 struct StatusBar_Previews: PreviewProvider {
     static var previews: some View {
-        StatusBar().environmentObject(MainModel())
+        NavigationStack {
+            StatusBar().environmentObject(MainModel())
+        }
     }
 }
