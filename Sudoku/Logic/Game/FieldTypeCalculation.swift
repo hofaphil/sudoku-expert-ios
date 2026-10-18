@@ -39,7 +39,7 @@ extension MainModel {
                             let fieldNumber = game.getNumber(position: pos).number
                             let fieldNumberIsSameAsSelectedNumber = fieldNumber != 0 && fieldNumber == game.getNumber(position: selected).number
                             if fieldNumberIsSameAsSelectedNumber {
-                                fieldTypes[b][r][c].coSelected = true
+                                fieldTypes[b][r][c].sameNumber = true
                                 continue
                             }
                         }

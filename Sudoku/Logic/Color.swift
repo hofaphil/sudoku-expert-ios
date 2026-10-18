@@ -25,4 +25,6 @@ extension Color {
     static let fieldErrorBackground = Color("field-error-background")
     static let fieldSelectedText = Color("field-current-text")
     static let fieldSelectedBackground = Color("field-current-background")
+    static let fieldSameNumberBackground = Color("field-same-number-background")
+    static let fieldUserText = Color("field-user-text")
 }

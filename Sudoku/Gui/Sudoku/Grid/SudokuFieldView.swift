@@ -49,7 +49,7 @@ struct SudokuFieldView: View {
             } else {
                 if model.isChangeable {
                     Text(model.number == 0 ? " " : String(model.number))
-                        .font(.system(size: 22)).italic().fontWeight(.light).foregroundStyle(getTextColor())
+                        .font(.system(size: 22)).italic().bold().foregroundStyle(getTextColor())
                 } else {
                     Text(model.number == 0 ? " " : String(model.number))
                         .font(.system(size: 22)).bold().foregroundStyle(getTextColor())
@@ -83,6 +83,9 @@ struct SudokuFieldView: View {
         if fieldType.selected {
             return Color.fieldSelectedBackground
         }
+        if fieldType.sameNumber {
+            return Color.fieldSameNumberBackground
+        }
         if fieldType.coSelected {
             return Color.fieldCoSelectedBackground
         }
@@ -93,6 +96,9 @@ struct SudokuFieldView: View {
         let fieldType = getFieldType()
         if fieldType.error {
             return Color.fieldErrorText
+        }
+        if model.isChangeable && model.number != 0 {
+            return Color.fieldUserText
         }
         if fieldType.selected {
             return Color.fieldSelectedText
