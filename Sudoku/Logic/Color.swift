@@ -9,6 +9,8 @@ extension Color {
     static let error = Color("error")
     
     static let foreground = Color("foreground")
+    static let border = Color("border")
+    static let gridLine = Color("grid-line")
     static let background = Color("background")
     
     static let keyboardButtonSelectedText = Color("keyboard-button-selected-text")
@@ -27,4 +29,5 @@ extension Color {
     static let fieldSelectedBackground = Color("field-current-background")
     static let fieldSameNumberBackground = Color("field-same-number-background")
     static let fieldUserText = Color("field-user-text")
+    static let fieldUserSelectedText = Color("field-user-selected-text")
 }

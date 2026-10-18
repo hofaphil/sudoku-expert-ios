@@ -75,7 +75,7 @@ struct StatusBar: View {
                 Text(UserDefaults.standard.bool(forKey: Storage.GAME_SHOW_ERRORS) ? "\(main.game.overallErrors) / 3 Errors" : "- / 3 Errors")
                 Spacer()
             }
-            .padding(.top, 6).padding(.bottom, 6).border(Color.foreground, width: 2).padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 2))
+            .padding(.top, 6).padding(.bottom, 6).border(Color.border, width: 2).padding(EdgeInsets(top: 0, leading: 2, bottom: 2, trailing: 2))
         }
         .background(Color.statusBarBackground)
         .navigationDestination(isPresented: $settings) { SettingsView() }

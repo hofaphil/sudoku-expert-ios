@@ -4,7 +4,6 @@ struct SudokuFieldView: View {
     
     @ObservedObject var model: Number = Number()
     @EnvironmentObject var main: MainModel
-    @Environment(\.colorScheme) var colorScheme
     @Environment(\.boardWidth) var boardWidth
     
     var position: Position
@@ -58,7 +57,7 @@ struct SudokuFieldView: View {
             }
         }
         .padding(0)
-        .frame(width: fieldSize, height: fieldSize).border(Color.foreground, width: 0.5)
+        .frame(width: fieldSize, height: fieldSize).border(Color.gridLine, width: 0.5)
         .background(getBackgroundColor())
         .onTapGesture(perform: { main.select(position: position) })
     }
@@ -71,13 +70,9 @@ struct SudokuFieldView: View {
         return main.fieldTypes[position.block][position.row][position.column]
     }
     
-    func isDarkMode() -> Bool {
-        return colorScheme == .dark
-    }
-    
     func getBackgroundColor () -> Color {
         let fieldType = getFieldType()
-        if fieldType.error && !isDarkMode() {
+        if fieldType.error {
             return Color.fieldErrorBackground
         }
         if fieldType.selected {
@@ -98,7 +93,7 @@ struct SudokuFieldView: View {
             return Color.fieldErrorText
         }
         if model.isChangeable && model.number != 0 {
-            return Color.fieldUserText
+            return fieldType.selected ? Color.fieldUserSelectedText : Color.fieldUserText
         }
         if fieldType.selected {
             return Color.fieldSelectedText

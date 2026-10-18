@@ -44,7 +44,7 @@ struct Keyboard: View {
                     Text("Notes").bold()
                 }
                 .onTapGesture(perform: { main.isNotes = !main.isNotes })
-                .frame(width: width).padding(padding).border(main.isNotes ? Color.keyboardButtonSelectedText: Color.foreground, width: borderWidth)
+                .frame(width: width).padding(padding).border(main.isNotes ? Color.keyboardButtonSelectedText : Color.border, width: borderWidth)
                 .foregroundStyle(main.isNotes ? Color.keyboardButtonSelectedText : Color.foreground)
                 .background(main.isNotes ? Color.keyboardButtonSelectedBackground : nil)
 
@@ -53,14 +53,14 @@ struct Keyboard: View {
                     Text("Delete").bold()
                 }
                 .onTapGesture(perform: { main.delete() })
-                .frame(width: width).padding(padding).border(Color.foreground, width: borderWidth)
+                .frame(width: width).padding(padding).border(Color.border, width: borderWidth)
 
                 HStack {
                     Image(systemName: "pause.rectangle").imageScale(.small)
                     Text("Pause").bold()
                 }
                 .onTapGesture(perform: { main.pause = !main.pause })
-                .frame(width: width).padding(padding).border(main.pause ? Color.keyboardButtonSelectedText: Color.foreground, width: borderWidth)
+                .frame(width: width).padding(padding).border(main.pause ? Color.keyboardButtonSelectedText : Color.border, width: borderWidth)
                 .foregroundStyle(main.pause ? Color.keyboardButtonSelectedText : Color.foreground)
                 .background(main.pause ? Color.keyboardButtonSelectedBackground : nil)
             }
