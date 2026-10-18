@@ -51,7 +51,7 @@ class ShareClass {
                         throw ShareError.SharingError
                     }
 
-                    let p = Position(block: b, row: r, column: c);
+                    let p = Position(block: b, row: r, column: c)
                     let n = Number(number: number, solution: number, isChangeable: number == 0)
                     sudoku.setNumber(position: p, number: n)
 

@@ -39,7 +39,7 @@ struct EndCardView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .contentShape(Rectangle())
                     .padding()
-                    .border(Color.foreground, width: 2)
+                    .border(Color.border, width: 2)
                 }
                 .padding().background(Color.statusBarBackground)
             }

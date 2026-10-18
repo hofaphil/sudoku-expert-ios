@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1921F8EC24B5CECB00816FD7 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1921F8EB24B5CECB00816FD7 /* Data.swift */; };
+		1921F8EC24B5CECB00816FD7 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1921F8EB24B5CECB00816FD7 /* Storage.swift */; };
 		1936CA8424742C5B00B5F5B4 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936CA8324742C5B00B5F5B4 /* StatusBar.swift */; };
 		1936CA8624742D6800B5F5B4 /* SudokuGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */; };
 		1954D09325C42A3B00FD5235 /* SettingsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1954D09225C42A3B00FD5235 /* SettingsSwitch.swift */; };
@@ -45,7 +45,7 @@
 		19F6BFDE27ED01FB005558D4 /* Sudoku.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFDD27ED01FB005558D4 /* Sudoku.swift */; };
 		19F6BFE027ED0203005558D4 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFDF27ED0203005558D4 /* Block.swift */; };
 		19F6BFE227ED020D005558D4 /* Number.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F6BFE127ED020D005558D4 /* Number.swift */; };
-		19F8E2D7247D46D400DB8EBD /* FieldTypeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */; };
+		19F8E2D7247D46D400DB8EBD /* FieldTypeCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */; };
 		1EC0D0047731E178F073D7E1 /* StatisticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0D1C1D256F1DCEE897514 /* StatisticsTests.swift */; };
 		1EC0D0722B86CAAFED1C5543 /* ShareClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DC693B72B4BAC81BDEB9 /* ShareClassTests.swift */; };
 		1EC0D559A5F6853997501FBE /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC0DC481CF518F3B1ACA0C6 /* MainModel.swift */; };
@@ -65,7 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1921F8EB24B5CECB00816FD7 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		1921F8EB24B5CECB00816FD7 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		1936CA8324742C5B00B5F5B4 /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		1936CA8524742D6800B5F5B4 /* SudokuGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuGridView.swift; sourceTree = "<group>"; };
 		1954D09225C42A3B00FD5235 /* SettingsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSwitch.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		19F6BFDD27ED01FB005558D4 /* Sudoku.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sudoku.swift; sourceTree = "<group>"; };
 		19F6BFDF27ED0203005558D4 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		19F6BFE127ED020D005558D4 /* Number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Number.swift; sourceTree = "<group>"; };
-		19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "\U0015FieldTypeCalculation.swift"; sourceTree = "<group>"; };
+		19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldTypeCalculation.swift; sourceTree = "<group>"; };
 		1EC0D037539C66440171D4F7 /* Statistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		1EC0D1C1D256F1DCEE897514 /* StatisticsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsTests.swift; sourceTree = "<group>"; };
 		1EC0D55ADE94D3C619A71D22 /* LinkShortenerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkShortenerTests.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 				199FF2922609F33800CB76F8 /* Share */,
 				19F5A24F247AD2180069B62E /* Sudoku */,
 				1970CF2C2469FD45000C8722 /* Help */,
-				1921F8EB24B5CECB00816FD7 /* Data.swift */,
+				1921F8EB24B5CECB00816FD7 /* Storage.swift */,
 				1EC0DC481CF518F3B1ACA0C6 /* MainModel.swift */,
 			);
 			path = Logic;
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				199DEB142F26692F00E69E50 /* FieldType.swift */,
-				19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */,
+				19F8E2D6247D46D400DB8EBD /* FieldTypeCalculation.swift */,
 				1977F75F249CF950008C0736 /* Timer.swift */,
 				1978974C260C7D9A009FFBDE /* NotesCheck.swift */,
 			);
@@ -475,7 +475,7 @@
 				1971836B247430F20031B501 /* Keyboard.swift in Sources */,
 				19F6BFE227ED020D005558D4 /* Number.swift in Sources */,
 				199FF2942609F34400CB76F8 /* ShareClass.swift in Sources */,
-				1921F8EC24B5CECB00816FD7 /* Data.swift in Sources */,
+				1921F8EC24B5CECB00816FD7 /* Storage.swift in Sources */,
 				1977F760249CF950008C0736 /* Timer.swift in Sources */,
 				1936CA8424742C5B00B5F5B4 /* StatusBar.swift in Sources */,
 				19F5D29F25C1ADEA000C5B37 /* StatisticsView.swift in Sources */,
@@ -489,7 +489,7 @@
 				1971837324744D850031B501 /* Position.swift in Sources */,
 				1978974D260C7D9A009FFBDE /* NotesCheck.swift in Sources */,
 				1936CA8624742D6800B5F5B4 /* SudokuGridView.swift in Sources */,
-				19F8E2D7247D46D400DB8EBD /* FieldTypeCalculation.swift in Sources */,
+				19F8E2D7247D46D400DB8EBD /* FieldTypeCalculation.swift in Sources */,
 				1EC0D559A5F6853997501FBE /* MainModel.swift in Sources */,
 				1EC0D727715CC530E8847A62 /* Statistics.swift in Sources */,
 			);
@@ -668,6 +668,8 @@
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sudoku/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sudoku Expert";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -694,6 +696,8 @@
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Sudoku/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Sudoku Expert";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -716,9 +720,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.philpphofer.SudokuUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.philipphofer.SudokuUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -736,9 +740,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2H8P6HWJ5W;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = de.philpphofer.SudokuUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = de.philipphofer.SudokuUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

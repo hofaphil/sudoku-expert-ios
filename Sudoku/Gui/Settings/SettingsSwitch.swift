@@ -25,6 +25,6 @@ struct SettingsSwitch: View {
 
 struct SettingsSwitch_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsSwitch(title: "Test Title", key: Data.SETTINGS_CHECK_NOTES)
+        SettingsSwitch(title: "Test Title", key: Storage.SETTINGS_CHECK_NOTES)
     }
 }

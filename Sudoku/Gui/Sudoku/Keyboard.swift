@@ -3,14 +3,15 @@ import SwiftUI
 struct Keyboard: View {
 
     @EnvironmentObject var main: MainModel
+    @Environment(\.boardWidth) var boardWidth
+    @AppStorage(Storage.SETTINGS_HIDE_COMPLETED) var hideCompleted = false
 
     let padding: CGFloat = 10
-    let width: CGFloat
     let borderWidth: CGFloat = 2
     let spacing: CGFloat = 4
 
-    init() {
-        width = (UIScreen.main.bounds.width - (6 * (padding + borderWidth))) / 3
+    var width: CGFloat {
+        (boardWidth - (6 * (padding + borderWidth))) / 3
     }
 
     var body: some View {
@@ -44,7 +45,7 @@ struct Keyboard: View {
                     Text("Notes").bold()
                 }
                 .onTapGesture(perform: { main.isNotes = !main.isNotes })
-                .frame(width: width).padding(padding).border(main.isNotes ? Color.keyboardButtonSelectedText: Color.foreground, width: borderWidth)
+                .frame(width: width).padding(padding).border(main.isNotes ? Color.keyboardButtonSelectedText : Color.border, width: borderWidth)
                 .foregroundStyle(main.isNotes ? Color.keyboardButtonSelectedText : Color.foreground)
                 .background(main.isNotes ? Color.keyboardButtonSelectedBackground : nil)
 
@@ -53,14 +54,14 @@ struct Keyboard: View {
                     Text("Delete").bold()
                 }
                 .onTapGesture(perform: { main.delete() })
-                .frame(width: width).padding(padding).border(Color.foreground, width: borderWidth)
+                .frame(width: width).padding(padding).border(Color.border, width: borderWidth)
 
                 HStack {
                     Image(systemName: "pause.rectangle").imageScale(.small)
                     Text("Pause").bold()
                 }
                 .onTapGesture(perform: { main.pause = !main.pause })
-                .frame(width: width).padding(padding).border(main.pause ? Color.keyboardButtonSelectedText: Color.foreground, width: borderWidth)
+                .frame(width: width).padding(padding).border(main.pause ? Color.keyboardButtonSelectedText : Color.border, width: borderWidth)
                 .foregroundStyle(main.pause ? Color.keyboardButtonSelectedText : Color.foreground)
                 .background(main.pause ? Color.keyboardButtonSelectedBackground : nil)
             }
@@ -69,9 +70,13 @@ struct Keyboard: View {
     }
 
     private func button(_ number: Int) -> some View {
-        Button(action: { insert(number) }) {
+        let hidden = hideCompleted && main.game.count(number: number) >= 9
+        return Button(action: { insert(number) }) {
             Text(String(number)).font(.system(size: 30)).bold().foregroundStyle(Color.foreground)
         }
+        // keep the space so the other keys do not move
+        .opacity(hidden ? 0 : 1)
+        .disabled(hidden)
     }
 
     private func insert(_ number: Int) {

@@ -2,7 +2,7 @@ import Foundation
 
 class Block: Equatable, Codable {
 
-    private var numbers: [[Number]];
+    private var numbers: [[Number]]
 
     init() {
         numbers = []
@@ -23,7 +23,7 @@ class Block: Equatable, Codable {
     }
 
     func getNumbers() -> [[Number]] {
-        numbers;
+        numbers
     }
 
     func getNumber(row: Int, column: Int) -> Number {
@@ -31,17 +31,17 @@ class Block: Equatable, Codable {
     }
 
     func setNumber(row: Int, column: Int, number: Number) {
-        numbers[row][column] = number;
+        numbers[row][column] = number
     }
 
     static func ==(a: Block, b: Block) -> Bool {
         for i in 0..<3 {
             for j in 0..<3 {
-                if (!(a.numbers[i][j] == b.numbers[i][j])) {
+                if !(a.numbers[i][j] == b.numbers[i][j]) {
                     return false
                 }
             }
         }
-        return true;
+        return true
     }
 }

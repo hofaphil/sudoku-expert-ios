@@ -4,20 +4,25 @@ struct SudokuFieldView: View {
     
     @ObservedObject var model: Number = Number()
     @EnvironmentObject var main: MainModel
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.boardWidth) var boardWidth
     
     var position: Position
     
     let fontSize: CGFloat = 12
     
-    var fieldSize: CGFloat
-    var noteSize: CGFloat
+    let parentPadding: CGFloat
+    
+    var fieldSize: CGFloat {
+        (boardWidth - (6 * parentPadding)) / 9
+    }
+    var noteSize: CGFloat {
+        fieldSize / 3
+    }
     
     init(_ model: Number, _ position: Position, _ parentPadding: CGFloat) {
         self.position = position
         self.model = model
-        fieldSize = (UIScreen.main.bounds.size.width - (6 * parentPadding)) / 9
-        noteSize = fieldSize / 3
+        self.parentPadding = parentPadding
     }
     
     var body: some View {
@@ -41,9 +46,9 @@ struct SudokuFieldView: View {
                     }
                 }
             } else {
-                if (model.isChangeable) {
+                if model.isChangeable {
                     Text(model.number == 0 ? " " : String(model.number))
-                        .font(.system(size: 22)).italic().fontWeight(.light).foregroundStyle(getTextColor())
+                        .font(.system(size: 22)).italic().bold().foregroundStyle(getTextColor())
                 } else {
                     Text(model.number == 0 ? " " : String(model.number))
                         .font(.system(size: 22)).bold().foregroundStyle(getTextColor())
@@ -52,7 +57,7 @@ struct SudokuFieldView: View {
             }
         }
         .padding(0)
-        .frame(width: fieldSize, height: fieldSize).border(Color.foreground, width: 0.5)
+        .frame(width: fieldSize, height: fieldSize).border(Color.gridLine, width: 0.5)
         .background(getBackgroundColor())
         .onTapGesture(perform: { main.select(position: position) })
     }
@@ -65,19 +70,18 @@ struct SudokuFieldView: View {
         return main.fieldTypes[position.block][position.row][position.column]
     }
     
-    func isDarkMode() -> Bool {
-        return colorScheme == .dark
-    }
-    
     func getBackgroundColor () -> Color {
         let fieldType = getFieldType()
-        if (fieldType.error && !isDarkMode()) {
+        if fieldType.error {
             return Color.fieldErrorBackground
         }
-        if (fieldType.selected) {
+        if fieldType.selected {
             return Color.fieldSelectedBackground
         }
-        if (fieldType.coSelected) {
+        if fieldType.sameNumber {
+            return Color.fieldSameNumberBackground
+        }
+        if fieldType.coSelected {
             return Color.fieldCoSelectedBackground
         }
         return Color.fieldUnselectedBackground
@@ -85,13 +89,16 @@ struct SudokuFieldView: View {
     
     func getTextColor() -> Color {
         let fieldType = getFieldType()
-        if (fieldType.error) {
+        if fieldType.error {
             return Color.fieldErrorText
         }
-        if (fieldType.selected) {
+        if model.isChangeable && model.number != 0 {
+            return fieldType.selected ? Color.fieldUserSelectedText : Color.fieldUserText
+        }
+        if fieldType.selected {
             return Color.fieldSelectedText
         }
-        if (fieldType.coSelected) {
+        if fieldType.coSelected {
             return Color.fieldCoSelectedText
         }
         return Color.fieldUnselectedText

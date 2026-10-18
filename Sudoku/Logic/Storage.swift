@@ -1,6 +1,6 @@
 import Foundation
 
-class Data {
+class Storage {
 
     static let LOAD_MODE = "load_mode"
 
@@ -19,37 +19,37 @@ class Data {
     static let SETTINGS_SHOW_ERRORS = "settings_mark_errors"
     static let SETTINGS_SHOW_TIME = "settings_show_time"
     static let SETTINGS_COLOR = "settings_color"
+    static let SETTINGS_HIDE_COMPLETED = "settings_hide_completed"
 
     // for statistics
     static let STATISTICS = "statistics"
 
-    static let instance = Data()
+    static let instance = Storage()
 
     let storage = UserDefaults.standard
 
     func saveGame(main: MainModel) {
-        storage.set(main.difficulty.rawValue, forKey: Data.GAME_DIFFICULTY)
-        storage.set(main.timeInt, forKey: Data.GAME_TIME)
-        storage.set(storage.bool(forKey: Data.SETTINGS_SHOW_TIME), forKey: Data.GAME_SHOW_TIME)
-        storage.set(storage.bool(forKey: Data.SETTINGS_SHOW_ERRORS), forKey: Data.GAME_SHOW_ERRORS)
+        storage.set(main.difficulty.rawValue, forKey: Storage.GAME_DIFFICULTY)
+        storage.set(main.timeInt, forKey: Storage.GAME_TIME)
+        storage.set(storage.bool(forKey: Storage.SETTINGS_SHOW_TIME), forKey: Storage.GAME_SHOW_TIME)
+        storage.set(storage.bool(forKey: Storage.SETTINGS_SHOW_ERRORS), forKey: Storage.GAME_SHOW_ERRORS)
 
         // save the game itself
         do {
-            try storage.set(JSONEncoder().encode(main.game), forKey: Data.GAME)
+            try storage.set(JSONEncoder().encode(main.game), forKey: Storage.GAME)
         } catch {
             // TODO error handling
         }
     }
 
     func loadGame(main: MainModel) {
-        main.difficulty = Difficulty.getDifficulty(intVal: storage.integer(forKey: Data.GAME_DIFFICULTY))
-        main.timeInt = storage.integer(forKey: Data.GAME_TIME)
+        main.difficulty = Difficulty.getDifficulty(intVal: storage.integer(forKey: Storage.GAME_DIFFICULTY))
+        main.timeInt = storage.integer(forKey: Storage.GAME_TIME)
 
         // load the game itself
-        let jsonString = storage.data(forKey: Data.GAME)
-        if ((jsonString) != nil) {
+        if let json = storage.data(forKey: Storage.GAME) {
             do {
-                main.game = try JSONDecoder().decode(Sudoku.self, from: jsonString!)
+                main.game = try JSONDecoder().decode(Sudoku.self, from: json)
             } catch {
                 // TODO error handling
             }
@@ -58,17 +58,16 @@ class Data {
 
     func saveStatistics(statistics: Statistics) {
         do {
-            try storage.set(JSONEncoder().encode(statistics), forKey: Data.STATISTICS)
+            try storage.set(JSONEncoder().encode(statistics), forKey: Storage.STATISTICS)
         } catch {
             // TODO error handling
         }
     }
 
     func loadStatistics() -> Statistics {
-        let jsonString = storage.data(forKey: Data.STATISTICS)
-        if ((jsonString) != nil) {
+        if let json = storage.data(forKey: Storage.STATISTICS) {
             do {
-                return try JSONDecoder().decode(Statistics.self, from: jsonString!)
+                return try JSONDecoder().decode(Statistics.self, from: json)
             } catch {
                 // TODO error handling
             }

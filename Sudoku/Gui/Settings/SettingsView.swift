@@ -9,13 +9,14 @@ struct SettingsView: View {
     var body: some View {
         let list = List {
             Section(header: Text(LocalizedStringKey("game-settings"))) {
-                SettingsSwitch(title: "mark-same-numbers", key: Data.SETTINGS_MARK_NUMBERS)
-                SettingsSwitch(title: "highlight-lines", key: Data.SETTINGS_MARK_LINES)
-                SettingsSwitch(title: "check-notes", key: Data.SETTINGS_CHECK_NOTES)
+                SettingsSwitch(title: "mark-same-numbers", key: Storage.SETTINGS_MARK_NUMBERS)
+                SettingsSwitch(title: "highlight-lines", key: Storage.SETTINGS_MARK_LINES)
+                SettingsSwitch(title: "check-notes", key: Storage.SETTINGS_CHECK_NOTES)
+                SettingsSwitch(title: "hide-completed", key: Storage.SETTINGS_HIDE_COMPLETED)
             }
             Section(footer: Text(LocalizedStringKey("changes-on-new-game"))) {
-                SettingsSwitch(title: "show-errors", key: Data.SETTINGS_SHOW_ERRORS)
-                SettingsSwitch(title: "play-with-timer", key: Data.SETTINGS_SHOW_TIME)
+                SettingsSwitch(title: "show-errors", key: Storage.SETTINGS_SHOW_ERRORS)
+                SettingsSwitch(title: "play-with-timer", key: Storage.SETTINGS_SHOW_TIME)
             }
             Section(header: Text(LocalizedStringKey("more"))) {
                 SettingsButton(title: "reset-statistics", action: { alert = true })
@@ -24,7 +25,11 @@ struct SettingsView: View {
             .alert(isPresented: self.$alert) {
                 Alert(title: Text(LocalizedStringKey("delete-statistics")),
                     message: Text(LocalizedStringKey("delete-all-statistics")),
-                    primaryButton: .destructive(Text(LocalizedStringKey("delete")), action: { UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!) }),
+                    primaryButton: .destructive(Text(LocalizedStringKey("delete")), action: {
+                        if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                            UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+                        }
+                    }),
                     secondaryButton: .default(Text(LocalizedStringKey("cancel"))))
             }
         }

@@ -13,7 +13,7 @@ class Sudoku: Equatable, Codable {
     }
 
     func insert(number: Int, position: Position, note: Bool) {
-        if (!blocks[position.block].insert(number: number, position: position, note: note)) {
+        if !blocks[position.block].insert(number: number, position: position, note: note) {
             overallErrors += 1
         }
     }
@@ -23,11 +23,11 @@ class Sudoku: Equatable, Codable {
     }
 
     func freeFields() -> Int {
-        var freeFields = 0;
+        var freeFields = 0
         for k in 0..<9 {
             for i in 0..<3 {
                 for j in 0..<3 {
-                    if (getNumber(position: Position(block: k, row: i, column: j)).number == 0) {
+                    if getNumber(position: Position(block: k, row: i, column: j)).number == 0 {
                         freeFields += 1
                     }
                 }
@@ -36,12 +36,27 @@ class Sudoku: Equatable, Codable {
         return freeFields
     }
 
-    func currentErrors() -> Int {
-        var currentErrors = 0;
+    // how often a number is placed, wrong placements included
+    func count(number: Int) -> Int {
+        var count = 0
         for k in 0..<9 {
             for i in 0..<3 {
                 for j in 0..<3 {
-                    if (getNumber(position: Position(block: k, row: i, column: j)).isError()) {
+                    if getNumber(position: Position(block: k, row: i, column: j)).number == number {
+                        count += 1
+                    }
+                }
+            }
+        }
+        return count
+    }
+
+    func currentErrors() -> Int {
+        var currentErrors = 0
+        for k in 0..<9 {
+            for i in 0..<3 {
+                for j in 0..<3 {
+                    if getNumber(position: Position(block: k, row: i, column: j)).isError() {
                         currentErrors += 1
                     }
                 }
@@ -64,7 +79,7 @@ class Sudoku: Equatable, Codable {
 
     static func ==(a: Sudoku, b: Sudoku) -> Bool {
         for block in 0..<9 {
-            if (!(a.blocks[block] == b.blocks[block])) {
+            if !(a.blocks[block] == b.blocks[block]) {
                 return false
             }
         }
